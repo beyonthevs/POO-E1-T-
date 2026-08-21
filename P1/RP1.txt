@@ -1,0 +1,134 @@
+%-----------------------------------------------------------
+% Git
+%-----------------------------------------------------------
+
+\subsubsection{Git [1]}
+
+Git es un sistema de control de versiones distribuido que registra los
+cambios de un proyecto mediante \textit{commits}, permitiendo conservar,
+comparar y recuperar diferentes versiones de los archivos. A diferencia
+de un sistema centralizado, cada repositorio Git contiene el historial
+del proyecto, por lo que el trabajo puede realizarse localmente
+\cite{progit}.
+
+Su funcionamiento básico puede describirse mediante tres etapas:
+
+\begin{enumerate}[leftmargin=*, itemsep=2pt]
+    \item \textbf{Working Directory:} contiene los archivos sobre los
+    que se está trabajando y donde se realizan las modificaciones.
+
+    \item \textbf{Staging Area (Index):} contiene los cambios que han
+    sido seleccionados para formar parte del siguiente \textit{commit}.
+
+    \item \textbf{Local Repository:} almacena permanentemente los
+    cambios registrados mediante \textit{commits}, formando el historial
+    del proyecto.
+\end{enumerate}
+
+Las transiciones principales entre estas etapas son:
+
+\begin{center}
+\begin{tabular}{>{\ttfamily}l c >{\ttfamily}l}
+\toprule
+Estado inicial & Comando & Estado siguiente \\
+\midrule
+Working Directory & git add & Staging Area \\
+Staging Area & git commit & Local Repository \\
+Local Repository & git push & Remote Repository \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Por ejemplo, el flujo básico de trabajo es:
+
+\begin{verbatim}
+git add Hola.java
+git commit -m "Agrega Hola.java"
+git push
+\end{verbatim}
+
+El comando \texttt{git status} permite consultar el estado actual de los
+archivos y del área de preparación \cite{git-reference}.
+
+\noindent\textbf{Fuente [1]:}
+S. Chacon and B. Straub, \textit{Pro Git}, 2nd ed. Apress, 2014.
+[En línea]. Disponible en:
+\url{https://git-scm.com/book/en/v2}. [Accedido: 21-ago-2026].
+
+%-----------------------------------------------------------
+% Funcionamiento de Java
+%-----------------------------------------------------------
+
+\subsubsection{Funcionamiento de un programa Java: ``Hola mundo'' [2]}
+
+Un programa Java se escribe inicialmente como código fuente en un archivo
+\texttt{.java}. En este caso, el archivo \texttt{Hola.java} contiene la
+clase \texttt{Hola} y su método \texttt{main}, que constituye el punto de
+entrada de la aplicación.
+
+El proceso solicitado puede expresarse textualmente como:
+
+\begin{center}
+\texttt{Hola.java - javac Hola.java - bytecode - java Hola - Hola mundo}
+\end{center}
+
+Primero, el compilador \texttt{javac} transforma el código fuente de
+\texttt{Hola.java} en \textit{bytecode}, almacenado normalmente en
+\texttt{Hola.class}. Este bytecode está diseñado para ser ejecutado por
+una \textbf{Java Virtual Machine (JVM)}, lo que permite mantener la
+independencia respecto de la arquitectura del sistema
+\cite{jls,jvms}.
+
+Al ejecutar \texttt{java Hola}, el lanzador inicia la JVM, carga la clase
+\texttt{Hola} y llama a su método \texttt{main}. Durante la ejecución,
+la JVM puede interpretar el bytecode y, mediante un compilador
+\textbf{JIT (Just-In-Time)}, convertir código ejecutado frecuentemente en
+instrucciones nativas optimizadas para el procesador
+\cite{jvms}.
+
+Para este caso, la ejecución de
+\texttt{System.out.println("Hola mundo");} produce finalmente la salida:
+
+\begin{center}
+\texttt{Hola mundo}
+\end{center}
+
+\noindent\textbf{Fuente [2]:}
+Oracle, ``The Java\textsuperscript{\textregistered} Language
+Specification, Java SE 26 Edition,'' Oracle Corporation, 2026.
+[En línea]. Disponible en:
+\url{https://docs.oracle.com/javase/specs/jls/se26/html/}. [Accedido:
+21-ago-2026].
+
+%-----------------------------------------------------------
+% Referencias
+%-----------------------------------------------------------
+
+\begin{thebibliography}{9}
+
+\bibitem{progit}
+S. Chacon and B. Straub, \textit{Pro Git}, 2nd ed. Apress, 2014.
+[En línea]. Disponible en:
+\url{https://git-scm.com/book/en/v2}.
+
+\bibitem{git-reference}
+Git Project, ``Git Reference.''
+[En línea]. Disponible en:
+\url{https://git-scm.com/docs}.
+
+\bibitem{jls}
+Oracle, ``The Java\textsuperscript{\textregistered} Language
+Specification, Java SE 26 Edition,'' Oracle Corporation, 2026.
+[En línea]. Disponible en:
+\url{https://docs.oracle.com/javase/specs/jls/se26/html/}.
+
+\bibitem{jvms}
+T. Lindholm, F. Yellin, G. Bracha, A. Buckley, and A. Smith,
+\textit{The Java Virtual Machine Specification}, Java SE 26 Edition,
+Oracle Corporation, 2026.
+[En línea]. Disponible en:
+\url{https://docs.oracle.com/javase/specs/jvms/se26/html/}.
+
+\end{thebibliography}
+
+\end{document}
