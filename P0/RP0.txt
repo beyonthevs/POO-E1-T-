@@ -509,8 +509,7 @@ desarrollo posterior.
 
 
 \section{Referencias}
-
-% Evitar el segundo encabezado "Referencias" generado por thebibliography.
+    
 \begingroup
 \renewcommand{\refname}{}
 \begin{thebibliography}{9}
