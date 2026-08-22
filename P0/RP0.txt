@@ -61,7 +61,7 @@ comparar y recuperar diferentes versiones de los archivos. Esto permite
 tener una organización clara mediante un log de cómo fue cambiando
 nuestro proyecto con cada actualización recibida, controlando a su vez
 quien modifica y en que momento lo hizo
-\cite{progit}.
+\cite{git-docs}.
 
 Su funcionamiento básico puede describirse mediante cuatro etapas:
 
@@ -131,7 +131,7 @@ Por ejemplo, el flujo básico de trabajo es:
 
 El comando \texttt{git status} permite consultar el estado actual de los
 archivos y del área de preparación
-\cite{progit}.
+\cite{git-docs}.
 
 
 \subsection{Funcionamiento y ejecución de un programa Java [2]}
@@ -151,7 +151,7 @@ identificadas y compiladas dinámicamente mediante un compilador
 \textbf{JIT (Just-In-Time)}. El JIT transforma dichas secciones de
 \textit{bytecode} en instrucciones nativas optimizadas para el procesador,
 mejorando el rendimiento durante la ejecución
-\cite{jvms,java-vm-guide}.
+\cite{jvms}.
 
 El proceso general puede representarse mediante el siguiente flujo:
 
@@ -277,7 +277,7 @@ Estos comandos constituyen una base práctica para la navegación,
 gestión de archivos y administración elemental de un sistema UNIX.
 Su combinación permite realizar desde operaciones sencillas, como
 crear y mover archivos, hasta tareas más específicas, como buscar
-información o modificar permisos.
+información o modificar permisos \cite{coreutils}.
 
 
 \subsection{LLM}
@@ -424,9 +424,9 @@ El procedimiento realizado puede resumirse en las siguientes etapas:
 \end{tikzpicture}
 \end{center}
 
-\subsection{GitHub}
+\subsection{GitHub [4]}
 
-Para la entrega de esta práctica, también se realizó un repositorio del equipo con el objetivo de facilitar su organización y manipulación, así como llevar un registro de las aportaciones de cada uno de los integrantes. Gracias a esto, es posible entregar la práctica mediante un único enlace, en lugar de enviar cada elemento por separado.
+Para la entrega de esta práctica, también se realizó un repositorio del equipo con el objetivo de facilitar su organización y manipulación, así como llevar un registro de las aportaciones de cada uno de los integrantes. Gracias a esto, es posible entregar la práctica mediante un único enlace, en lugar de enviar cada elemento por separado. GitHub permite almacenar los archivos de un proyecto y su historial de revisiones, además de facilitar la colaboración entre sus integrantes \cite{github-docs}.
 
 
 \section{Resultados}
@@ -509,31 +509,30 @@ desarrollo posterior.
 
 
 \section{Referencias}
-    
+
 \begingroup
 \renewcommand{\refname}{}
 \begin{thebibliography}{9}
 
-\bibitem{progit}
-S. Chacon and B. Straub, \textit{Pro Git}, 2nd ed. Berkeley, CA, USA:
-Apress, 2014. [En línea]. Disponible en:
-\url{https://git-scm.com/book/en/v2}.
+\bibitem{git-docs}
+Git, ``Git Documentation,'' Git Project. [Online]. Available:
+\url{https://git-scm.com/docs}. Accessed: Aug. 21, 2026.
 
 \bibitem{jvms}
 T. Lindholm, F. Yellin, G. Bracha, A. Buckley, and D. Smith,
-\textit{The Java Virtual Machine Specification}, Java SE 26 ed.,
-Oracle Corporation, 2026. [En línea]. Disponible en:
+``The Java Virtual Machine Specification, Java SE 26 Edition,'' Oracle.
+[Online]. Available:
 \url{https://docs.oracle.com/en/java/javase/26/docs/specs/jvms/index.html}.
-
-\bibitem{java-vm-guide}
-Oracle Corporation, ``Java Virtual Machine Guide, Release 26,''
-Oracle Corporation, 2026. [En línea]. Disponible en:
-\url{https://docs.oracle.com/en/java/javase/26/vm/index.html}.
+Accessed: Aug. 21, 2026.
 
 \bibitem{coreutils}
-Free Software Foundation, ``GNU Coreutils Manual,'' GNU Project, 2026.
-[En línea]. Disponible en:
-\url{https://www.gnu.org/software/coreutils/manual/}.
+Free Software Foundation, ``GNU Coreutils Manual,'' GNU Project.
+[Online]. Available:
+\url{https://www.gnu.org/software/coreutils/manual/}. Accessed: Aug. 21, 2026.
+
+\bibitem{github-docs}
+GitHub, ``Repositories,'' GitHub Docs. [Online]. Available:
+\url{https://docs.github.com/en/repositories}. Accessed: Aug. 21, 2026.
 
 \end{thebibliography}
 \endgroup
