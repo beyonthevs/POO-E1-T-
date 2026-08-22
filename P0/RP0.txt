@@ -1,19 +1,72 @@
-%-----------------------------------------------------------
-% Git
-%-----------------------------------------------------------
+\documentclass[12pt,a4paper]{article}
 
-\subsubsection{Git [1]}
+
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+
+
+\geometry{
+    margin=2.5cm
+}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    citecolor=black
+}
+
+
+\begin{document}
+
+\tableofcontents
+\clearpage
+
+
+\section{Introducción}
+
+En este documento se presenta la ``Práctica 0'' del laboratorio de EDA II,
+la cual introduce de manera preliminar algunas de las herramientas que
+serán utilizadas a lo largo del curso, funcionando como un preludio de los
+conceptos y procedimientos que se desarrollarán en sesiones posteriores.
+
+Por ello, el objetivo principal de esta práctica es que el alumno
+comprenda el uso adecuado de una LLM, conozca los fundamentos de
+Git y GitHub, adquiera familiaridad con el entorno UNIX y comience a
+``pensar'' en el lenguaje Java, comprendiendo de manera general cómo
+se procesa y ejecuta un programa dentro de una computadora.
+
+
+\section{Marco Teórico}
+
+
+\subsection{Git [1]}
 
 Git es un sistema de control de versiones distribuido que registra los
 cambios de un proyecto mediante \textit{commits}, permitiendo conservar,
-comparar y recuperar diferentes versiones de los archivos. A diferencia
-de un sistema centralizado, cada repositorio Git contiene el historial
-del proyecto, por lo que el trabajo puede realizarse localmente
+comparar y recuperar diferentes versiones de los archivos. Esto permite
+tener una organización clara mediante un log de cómo fue cambiando
+nuestro proyecto con cada actualización recibida, controlando a su vez
+quien modifica y en que momento lo hizo
 \cite{progit}.
 
-Su funcionamiento básico puede describirse mediante tres etapas:
+Su funcionamiento básico puede describirse mediante cuatro etapas:
 
 \begin{enumerate}[leftmargin=*, itemsep=2pt]
+
     \item \textbf{Working Directory:} contiene los archivos sobre los
     que se está trabajando y donde se realizan las modificaciones.
 
@@ -23,6 +76,12 @@ Su funcionamiento básico puede describirse mediante tres etapas:
     \item \textbf{Local Repository:} almacena permanentemente los
     cambios registrados mediante \textit{commits}, formando el historial
     del proyecto.
+
+    \item \textbf{Remote Repository (GitHub):} almacena una copia del
+    historial del proyecto en un servidor remoto, permitiendo sincronizar
+    los cambios entre distintos entornos y colaborar con otros usuarios
+    mediante comandos como \texttt{git push} y \texttt{git pull}.
+
 \end{enumerate}
 
 Las transiciones principales entre estas etapas son:
@@ -41,94 +100,443 @@ Local Repository & git push & Remote Repository \\
 
 Por ejemplo, el flujo básico de trabajo es:
 
-\begin{verbatim}
-git add Hola.java
-git commit -m "Agrega Hola.java"
-git push
-\end{verbatim}
+\begin{center}
+\begin{tikzpicture}[
+    node distance=1.8cm,
+    box/.style={
+        rectangle,
+        draw,
+        rounded corners,
+        minimum width=3.2cm,
+        minimum height=1cm,
+        align=center
+    },
+    arrow/.style={
+        -{Latex[length=3mm]},
+        thick
+    }
+]
+
+\node[box] (wd) {Working\\Directory};
+\node[box, right=of wd] (stage) {Staging\\Area};
+\node[box, right=of stage] (local) {Local\\Repository};
+\node[box, right=of local] (remote) {Remote\\Repository\\(GitHub)};
+
+\draw[arrow] (wd) -- node[above]{\texttt{git add}} (stage);
+\draw[arrow] (stage) -- node[above]{\texttt{git commit}} (local);
+\draw[arrow] (local) -- node[above]{\texttt{git push}} (remote);
+
+\end{tikzpicture}
+\end{center}
 
 El comando \texttt{git status} permite consultar el estado actual de los
-archivos y del área de preparación \cite{git-reference}.
+archivos y del área de preparación
+\cite{progit}.
 
-\noindent\textbf{Fuente [1]:}
-S. Chacon and B. Straub, \textit{Pro Git}, 2nd ed. Apress, 2014.
-[En línea]. Disponible en:
-\url{https://git-scm.com/book/en/v2}. [Accedido: 21-ago-2026].
 
-%-----------------------------------------------------------
-% Funcionamiento de Java
-%-----------------------------------------------------------
-
-\subsubsection{Funcionamiento de un programa Java: ``Hola mundo'' [2]}
+\subsection{Funcionamiento y ejecución de un programa Java [2]}
 
 Un programa Java se escribe inicialmente como código fuente en un archivo
-\texttt{.java}. En este caso, el archivo \texttt{Hola.java} contiene la
-clase \texttt{Hola} y su método \texttt{main}, que constituye el punto de
-entrada de la aplicación.
+con extensión \texttt{.java}. Este código es transformado por el compilador
+\texttt{javac} en \textit{bytecode}, almacenado en archivos con extensión
+\texttt{.class}. El \textit{bytecode} no se ejecuta directamente sobre el
+procesador, sino mediante una \textbf{Java Virtual Machine (JVM)}, lo que
+permite ejecutar el mismo código sobre diferentes arquitecturas y sistemas
+operativos \cite{jvms}.
 
-El proceso solicitado puede expresarse textualmente como:
+Durante la ejecución, la JVM carga las clases necesarias y comienza a
+ejecutar sus instrucciones. El código puede ser inicialmente interpretado,
+mientras que las partes que se ejecutan con mayor frecuencia pueden ser
+identificadas y compiladas dinámicamente mediante un compilador
+\textbf{JIT (Just-In-Time)}. El JIT transforma dichas secciones de
+\textit{bytecode} en instrucciones nativas optimizadas para el procesador,
+mejorando el rendimiento durante la ejecución
+\cite{jvms,java-vm-guide}.
 
-\begin{center}
-\texttt{Hola.java - javac Hola.java - bytecode - java Hola - Hola mundo}
-\end{center}
-
-Primero, el compilador \texttt{javac} transforma el código fuente de
-\texttt{Hola.java} en \textit{bytecode}, almacenado normalmente en
-\texttt{Hola.class}. Este bytecode está diseñado para ser ejecutado por
-una \textbf{Java Virtual Machine (JVM)}, lo que permite mantener la
-independencia respecto de la arquitectura del sistema
-\cite{jls,jvms}.
-
-Al ejecutar \texttt{java Hola}, el lanzador inicia la JVM, carga la clase
-\texttt{Hola} y llama a su método \texttt{main}. Durante la ejecución,
-la JVM puede interpretar el bytecode y, mediante un compilador
-\textbf{JIT (Just-In-Time)}, convertir código ejecutado frecuentemente en
-instrucciones nativas optimizadas para el procesador
-\cite{jvms}.
-
-Para este caso, la ejecución de
-\texttt{System.out.println("Hola mundo");} produce finalmente la salida:
+El proceso general puede representarse mediante el siguiente flujo:
 
 \begin{center}
-\texttt{Hola mundo}
+\begin{tikzpicture}[
+    node distance=1.3cm,
+    box/.style={
+        rectangle,
+        draw,
+        rounded corners,
+        minimum width=4.5cm,
+        minimum height=0.9cm,
+        align=center
+    },
+    decision/.style={
+        diamond,
+        draw,
+        aspect=2,
+        align=center,
+        inner sep=2pt
+    },
+    arrow/.style={
+        -{Latex[length=3mm]},
+        thick
+    }
+]
+
+\node[box] (source)
+    {Código fuente\\Archivo \texttt{.java}};
+
+\node[box, below=of source] (compiler)
+    {Compilador \texttt{javac}\\Compilación};
+
+\node[box, below=of compiler] (bytecode)
+    {\textit{Bytecode}\\Archivos \texttt{.class}};
+
+\node[box, below=of bytecode] (jvm)
+    {\textbf{JVM}\\Carga e interpretación del \textit{bytecode}};
+
+\node[decision, below=1.5cm of jvm] (frequent)
+    {Código\\ejecutado\\frecuentemente};
+
+\node[box, below=1.5cm of frequent] (jit)
+    {\textbf{JIT}\\Compilación a código nativo};
+
+\node[box, right=4.2cm of jvm] (native)
+    {Instrucciones nativas\\Ejecución en el procesador};
+
+\draw[arrow] (source) -- (compiler);
+\draw[arrow] (compiler) -- (bytecode);
+\draw[arrow] (bytecode) -- (jvm);
+\draw[arrow] (jvm) -- (frequent);
+
+\draw[arrow] (frequent) -- node[right]{Sí} (jit);
+\draw[arrow] (jit) -- (native);
+\draw[arrow] (jvm) -- (native);
+
+\draw[arrow] (frequent) -- ++(-2.2,0)
+    node[left]{No} |- (native);
+
+\end{tikzpicture}
 \end{center}
 
-\noindent\textbf{Fuente [2]:}
-Oracle, ``The Java\textsuperscript{\textregistered} Language
-Specification, Java SE 26 Edition,'' Oracle Corporation, 2026.
-[En línea]. Disponible en:
-\url{https://docs.oracle.com/javase/specs/jls/se26/html/}. [Accedido:
-21-ago-2026].
+De esta manera, la ejecución de un programa Java puede resumirse como una
+cadena de transformación en la que el código fuente es compilado a
+\textit{bytecode}, posteriormente cargado por la JVM y finalmente
+interpretado o compilado dinámicamente mediante JIT para su ejecución
+sobre el procesador.
 
-%-----------------------------------------------------------
-% Referencias
-%-----------------------------------------------------------
 
+\subsection{Comandos UNIX fundamentales [3]}
+
+Los sistemas UNIX proporcionan una colección de comandos para
+interactuar con el sistema de archivos, ejecutar operaciones sobre
+archivos y directorios y consultar información del sistema. Entre los
+comandos más utilizados se encuentran los siguientes:
+
+\begin{enumerate}[leftmargin=*, itemsep=3pt]
+
+    \item \textbf{\texttt{pwd}}:
+    muestra la ruta absoluta del directorio de trabajo actual.
+
+    \item \textbf{\texttt{ls}}:
+    lista los archivos y directorios contenidos en la ubicación actual.
+
+    \item \textbf{\texttt{cd}}:
+    permite cambiar el directorio de trabajo.
+
+    \item \textbf{\texttt{mkdir}}:
+    crea uno o varios directorios.
+
+    \item \textbf{\texttt{touch}}:
+    crea un archivo vacío cuando no existe y, en caso contrario,
+    actualiza sus marcas de tiempo.
+
+    \item \textbf{\texttt{cp}}:
+    copia archivos o directorios hacia otra ubicación.
+
+    \item \textbf{\texttt{mv}}:
+    mueve archivos o directorios y también permite cambiar sus nombres.
+
+    \item \textbf{\texttt{rm}}:
+    elimina archivos o directorios.
+
+    \item \textbf{\texttt{cat}}:
+    muestra el contenido de uno o varios archivos directamente en la
+    terminal.
+
+    \item \textbf{\texttt{grep}}:
+    busca patrones de texto dentro de archivos o de la salida de otros
+    comandos.
+
+    \item \textbf{\texttt{chmod}}:
+    modifica los permisos de acceso asociados a archivos y directorios.
+
+    \item \textbf{\texttt{man}}:
+    muestra el manual de un comando, proporcionando su sintaxis,
+    opciones y descripción.
+
+\end{enumerate}
+
+Estos comandos constituyen una base práctica para la navegación,
+gestión de archivos y administración elemental de un sistema UNIX.
+Su combinación permite realizar desde operaciones sencillas, como
+crear y mover archivos, hasta tareas más específicas, como buscar
+información o modificar permisos.
+
+
+\subsection{LLM}
+
+Un \textit{Large Language Model} (LLM) es un modelo de inteligencia
+artificial entrenado con grandes cantidades de datos textuales para
+aprender patrones del lenguaje y generar, interpretar o transformar
+texto. Su funcionamiento se basa principalmente en redes neuronales
+profundas, generalmente de arquitectura \textit{Transformer}, que
+procesan secuencias de texto y predicen los elementos más probables
+según el contexto recibido.
+
+Durante su entrenamiento, el modelo ajusta sus parámetros para aprender
+representaciones y relaciones estadísticas presentes en los datos.
+Posteriormente, estos parámetros permiten realizar tareas como
+generación de texto, respuesta a preguntas, traducción, resumen y
+asistencia en programación.
+
+\section{Desarrollo}
+
+\subsection{Funcionamiento práctico de ``Hola mundo''}
+
+En esta parte de la práctica se creó el archivo \texttt{Hola.java} como
+archivo fuente del programa. Para ello, se accedió a la terminal y se
+ubicó la sesión de trabajo en el directorio correspondiente. Desde la
+misma terminal se generó un archivo vacío con el nombre
+\texttt{Hola.java}, sin incorporar inicialmente contenido alguno.
+
+Posteriormente, el archivo fue abierto mediante Visual Studio Code, donde
+se escribió el programa correspondiente al ejercicio de ``Hola mundo''.
+Una vez finalizada la escritura y verificado el contenido del archivo,
+se regresó a la terminal para realizar completamente desde ella el
+proceso de compilación y ejecución, utilizando las herramientas
+disponibles para Java en el entorno UNIX.
+
+El procedimiento realizado puede representarse mediante el siguiente
+flujo:
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    box/.style={
+        rectangle,
+        draw,
+        rounded corners,
+        minimum width=4.8cm,
+        minimum height=0.9cm,
+        align=center
+    },
+    arrow/.style={
+        -{Latex[length=3mm]},
+        thick
+    }
+]
+
+\node[box] (create) {Crear el archivo vacío\\\texttt{Hola.java}};
+\node[box, below=of create] (edit)
+    {Abrir \texttt{Hola.java}\\en Visual Studio Code};
+\node[box, below=of edit] (write)
+    {Escribir y finalizar\\el programa};
+\node[box, below=of write] (compile)
+    {Compilar el programa\\desde la terminal};
+\node[box, below=of compile] (execute)
+    {Ejecutar la clase\\desde la terminal};
+\node[box, below=of execute] (output)
+    {Salida obtenida:\\``Hola mundo''};
+
+\draw[arrow] (create) -- (edit);
+\draw[arrow] (edit) -- (write);
+\draw[arrow] (write) -- (compile);
+\draw[arrow] (compile) -- (execute);
+\draw[arrow] (execute) -- (output);
+
+\end{tikzpicture}
+\end{center}
+
+El algoritmo implementado consiste en proporcionar al programa un punto
+de entrada mediante el método \texttt{main}. Una vez iniciada la
+ejecución, se realiza la impresión del mensaje ``Hola mundo'' en la
+salida estándar. Debido a la simplicidad del programa, no se requieren
+decisiones, ciclos ni estructuras de datos adicionales para obtener el
+resultado esperado.
+
+\subsection{Entrenamiento de LLM}
+
+Como parte de la práctica se elaboró un \textit{prompt} destinado a
+proporcionar a un modelo de lenguaje grande (\textit{Large Language
+Model}, LLM) el contexto necesario para orientar sus respuestas de
+acuerdo con las características del usuario y de la actividad.
+
+Para ello, se especificaron elementos como la edad, el nivel escolar, el
+curso en el que se encuentra el estudiante, el temario correspondiente y
+el tema que se estaba estudiando en ese momento. El objetivo fue
+establecer previamente el nivel de conocimientos esperado, el contenido
+relevante y el tipo de respuesta requerido.
+
+De esta manera, el \textit{prompt} funciona como una referencia
+contextual para que la LLM pueda generar respuestas más adecuadas al
+nivel académico del estudiante y mantener una orientación coherente con
+los contenidos que se están trabajando. La intención no fue únicamente
+obtener una respuesta puntual, sino proporcionar información suficiente
+para mejorar la calidad del acompañamiento y la guía proporcionada por
+el modelo.
+
+El procedimiento realizado puede resumirse en las siguientes etapas:
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    box/.style={
+        rectangle,
+        draw,
+        rounded corners,
+        minimum width=5cm,
+        minimum height=0.9cm,
+        align=center
+    },
+    arrow/.style={
+        -{Latex[length=3mm]},
+        thick
+    }
+]
+
+\node[box] (context)
+    {Definir el contexto académico\\del estudiante};
+
+\node[box, below=of context] (topics)
+    {Especificar curso,\\temario y tema actual};
+
+\node[box, below=of topics] (goal)
+    {Definir el contenido y\\nivel de respuesta esperado};
+
+\node[box, below=of goal] (prompt)
+    {Integrar la información\\en el \textit{prompt}};
+
+\node[box, below=of prompt] (response)
+    {Obtener respuestas\\contextualizadas de la LLM};
+
+\draw[arrow] (context) -- (topics);
+\draw[arrow] (topics) -- (goal);
+\draw[arrow] (goal) -- (prompt);
+\draw[arrow] (prompt) -- (response);
+
+\end{tikzpicture}
+\end{center}
+
+\subsection{GitHub}
+
+Para la entrega de esta práctica, también se realizó un repositorio del equipo con el objetivo de facilitar su organización y manipulación, así como llevar un registro de las aportaciones de cada uno de los integrantes. Gracias a esto, es posible entregar la práctica mediante un único enlace, en lugar de enviar cada elemento por separado.
+
+
+\section{Resultados}
+
+
+\subsection{Código fuente de ``Hola.java''}
+
+La siguiente captura muestra el código fuente escrito en Java, el cual fue el trabajado durante la sesión.
+
+\begin{center}
+    \includegraphics[width=0.72\textwidth]{imagenes/hola_codigo.png}
+\end{center}
+
+
+\subsection{Compilación y ejecución desde la terminal}
+
+La segunda captura evidencia el procedimiento realizado desde la terminal: se compila
+\texttt{Hola.java} con \texttt{javac} y posteriormente se ejecuta la clase resultante
+con \texttt{java}, obteniendo como salida ``Hola mundo''.
+
+\begin{center}
+    \includegraphics[width=0.86\textwidth]{imagenes/hola_terminal.png}
+\end{center}
+
+
+\subsection{Entrenamiento de LLM}
+
+Las siguientes capturas documentan el \textit{prompt} utilizado para contextualizar la LLM,
+especificando el nivel académico, los conocimientos disponibles, la forma de explicar los
+conceptos y las condiciones que debe considerar al escribir sus futuras respuestas.
+
+\begin{center}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{cc}
+    \includegraphics[height=0.400\textheight]{imagenes/llm_01.png} &
+    \includegraphics[height=0.400\textheight]{imagenes/llm_02.png} \\[6pt]
+    \includegraphics[height=0.400\textheight]{imagenes/llm_03.png} &
+    \includegraphics[height=0.400\textheight]{imagenes/llm_04.png} \\
+\end{tabular}
+\end{center}
+
+\clearpage
+
+\begin{center}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{cc}
+    \includegraphics[height=0.400\textheight]{imagenes/llm_05.png} &
+    \includegraphics[height=0.400\textheight]{imagenes/llm_06.png} \\[6pt]
+    \includegraphics[height=0.400\textheight]{imagenes/llm_07.png} &
+    \includegraphics[height=0.400\textheight]{imagenes/llm_08.png} \\
+\end{tabular}
+\end{center}
+\clearpage
+
+
+\section{Conclusiones}
+
+Con el trabajo realizado, es correcto concluir que se cumplieron los
+objetivos planteados para la práctica. En primer lugar, se logró una
+comprensión general del funcionamiento interno de Java mediante los
+diagramas elaborados para representar su proceso de compilación y
+ejecución. Asimismo, se realizó el entrenamiento de la LLM por parte de
+cada uno de los integrantes restantes, estableciendo el contexto
+necesario para orientar sus respuestas de acuerdo con las necesidades
+académicas de cada participante.
+
+De igual manera, se adquirió un manejo inicial de comandos UNIX durante
+la creación, compilación y ejecución del archivo \texttt{.java}. Por
+último, se obtuvo un mayor entendimiento de GitHub mediante la
+investigación de su funcionamiento y la creación de un repositorio
+propio para el trabajo colaborativo del equipo.
+
+No obstante, debe hacerse énfasis en que el cumplimiento de estos
+objetivos es todavía parcial. La comprensión y el dominio de estas
+herramientas requieren continuar trabajando con ellas de manera
+constante a lo largo del curso. Por ello, ninguno de los integrantes
+puede considerarse, al menos por el momento, un experto en los temas
+abordados, sino que esta práctica representa un punto de partida para su
+desarrollo posterior.
+
+
+\section{Referencias}
+
+% Evitar el segundo encabezado "Referencias" generado por thebibliography.
+\begingroup
+\renewcommand{\refname}{}
 \begin{thebibliography}{9}
 
 \bibitem{progit}
-S. Chacon and B. Straub, \textit{Pro Git}, 2nd ed. Apress, 2014.
-[En línea]. Disponible en:
+S. Chacon and B. Straub, \textit{Pro Git}, 2nd ed. Berkeley, CA, USA:
+Apress, 2014. [En línea]. Disponible en:
 \url{https://git-scm.com/book/en/v2}.
 
-\bibitem{git-reference}
-Git Project, ``Git Reference.''
-[En línea]. Disponible en:
-\url{https://git-scm.com/docs}.
-
-\bibitem{jls}
-Oracle, ``The Java\textsuperscript{\textregistered} Language
-Specification, Java SE 26 Edition,'' Oracle Corporation, 2026.
-[En línea]. Disponible en:
-\url{https://docs.oracle.com/javase/specs/jls/se26/html/}.
-
 \bibitem{jvms}
-T. Lindholm, F. Yellin, G. Bracha, A. Buckley, and A. Smith,
-\textit{The Java Virtual Machine Specification}, Java SE 26 Edition,
-Oracle Corporation, 2026.
+T. Lindholm, F. Yellin, G. Bracha, A. Buckley, and D. Smith,
+\textit{The Java Virtual Machine Specification}, Java SE 26 ed.,
+Oracle Corporation, 2026. [En línea]. Disponible en:
+\url{https://docs.oracle.com/en/java/javase/26/docs/specs/jvms/index.html}.
+
+\bibitem{java-vm-guide}
+Oracle Corporation, ``Java Virtual Machine Guide, Release 26,''
+Oracle Corporation, 2026. [En línea]. Disponible en:
+\url{https://docs.oracle.com/en/java/javase/26/vm/index.html}.
+
+\bibitem{coreutils}
+Free Software Foundation, ``GNU Coreutils Manual,'' GNU Project, 2026.
 [En línea]. Disponible en:
-\url{https://docs.oracle.com/javase/specs/jvms/se26/html/}.
+\url{https://www.gnu.org/software/coreutils/manual/}.
 
 \end{thebibliography}
+\endgroup
 
 \end{document}
