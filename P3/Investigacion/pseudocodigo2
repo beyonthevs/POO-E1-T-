@@ -1,0 +1,22 @@
+Algoritmo Palindromo5Digitos
+    Repetir
+        Escribir "Dime un número de 5 dígitos"
+        Leer numero
+        numero=valor.abs(numero)
+
+        Si numero < 100000 O numero > 9999 Entonces
+            Escribir "Error: el número debe tener 5 dígitos"
+        FinSi
+    Hasta Que numero > 9999 Y numero < 100000
+
+    d1 ← numero DIV 10000
+    d2 ← (numero DIV 1000) MOD 10
+    d4 ← (numero DIV 10) MOD 10
+    d5 ← numero MOD 10
+
+    Si d1 = d5 Y d2 = d4 Entonces
+        Escribir "Es un palíndromo"
+    SiNo
+        Escribir "No es un palíndromo"
+    FinSi
+FinAlgoritmo
