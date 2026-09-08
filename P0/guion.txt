@@ -1,0 +1,34 @@
+GUION PRACTICA 0
+BLOQUE 1: Introducción y Contexto
+PONENTE (Conductor):
+Hola a todos! En este video les vamos a presentar el desarrollo de nuestra Práctica 1 de Programación Orientada a Objetos. La idea de esta práctica no fue solo escribir nuestro primer código, sino entender todo el ecosistema que usa un desarrollador: desde cómo la computadora procesa Java, cómo nos movemos en la terminal de UNIX, cómo controlamos los cambios con Git y cómo aprovechamos la Inteligencia Artificial para diseñar software. Vamos a ir viendo cada punto paso a paso.
+
+BLOQUE 2: ¿Qué hay realmente detrás de un "Hola Mundo"?
+INTERLOCUTOR 1:
+Para empezar, todos arrancamos con el clásico archivo HolaMundo.java. Se ve como algo súper simple, pero tiene las reglas básicas de Java. Lo primero es la palabra class: en Java absolutamente todo el código tiene que vivir dentro de una clase. Luego tenemos el método main, que es el punto exacto por donde la computadora sabe que tiene que empezar a ejecutar. Y finalmente, la línea System.out.println, que es la orden directa para mandar texto a la pantalla. O sea, aunque sean tres líneas, ahí ya estamos definiendo la estructura obligatoria que va a tener cualquier programa en Java de aquí en adelante.
+
+BLOQUE 3: Compilación, JVM y Buenas Prácticas de POO
+INTERLOCUTOR 2:
+Ahora, algo clave que hay que entender es que la computadora no lee directamente nuestro archivo .java. Nosotros ejecutamos en la terminal el comando javac, que es el compilador. Este proceso traduce nuestro código a un formato intermedio llamado bytecode, que se guarda en un archivo .class.
+Ese bytecode lo ejecuta la JVM, la Máquina Virtual de Java. Y esto es vital porque es lo que le da a Java su gran ventaja: la portabilidad. El mismo archivo .class corre en Windows, Mac o Linux sin cambiarle nada. Y además, desde este primer programa empezamos a cuidar el diseño: aplicamos el principio de responsabilidad mínima para que cada clase haga solo lo que le corresponde, buscando siempre tener una alta cohesión dentro de los módulos y un bajo acoplamiento entre ellos para que el código sea fácil de mantener.
+
+BLOQUE 4: El Entorno UNIX y la Magia de Git
+INTERLOCUTOR 3:
+Pero escribir código es solo una parte; también hay que aprender a movernos en el sistema. En lugar de usar el mouse, usamos la terminal de UNIX. Con comandos sencillos como pwd sabemos exactamente en qué carpeta estamos parados, con ls vemos qué archivos hay ahí y con cd nos vamos moviendo entre directorios.
+Y para no perder el control de nuestro proyecto usamos Git. En vez de andar guardando copias tipo "proyecto_final_v2", Git nos lleva un historial exacto. Usamos git status para ver qué archivos cambiaron, con git add preparamos los cambios en el staging area y con git commit tomamos una foto fija de ese avance con un mensaje descriptivo.
+
+BLOQUE 5: Caso Práctico: Diseñando la GUI con IA y POO
+INTERLOCUTOR 4:
+Para la última parte pusimos a prueba la Inteligencia Artificial con Ingeniería de Prompts. Le enseñamos la imagen del Paint y le dijimos: 'actúa como un arquitecto de software y dinos cómo programarías en Java, usando POO, esta app para dibujar rectángulos, óvalos y líneas con el mouse'.
+La IA nos dio una estructura dividida en 7 clases:
+Primero creó la clase abstracta padre llamada ⁠Figura⁠. De ahí nacen tres clases hijas: ⁠FiguraRectangulo⁠, ⁠FiguraOvalo⁠ y ⁠FiguraLinea⁠. Cada una sabe exactamente cómo dibujarse a sí misma.
+
+En ⁠FiguraRectangulo⁠, calcula la posición con el mouse y ejecuta ⁠drawRect⁠ o ⁠fillRect⁠ dependiendo de si la casilla 'Lleno' está activa.
+En ⁠FiguraOvalo⁠, hace exactamente lo mismo pero usando ⁠drawOval⁠ y ⁠fillOval⁠.
+Y en ⁠FiguraLinea⁠, simplemente une los dos puntos del clic.
+Además, usó un ⁠enum⁠ llamado ⁠TipoFigura⁠ para identificar qué forma estamos seleccionando, la clase ⁠Dibujador2D⁠ para armar la ventana principal, y el ⁠PanelDibujo⁠ que administra los clics del mouse y lleva la lista de figuras para que funcionen los botones de Deshacer y Borrar TODO.
+Al final, demostramos que la IA no es solo para tirar código, sino la podemos usar para armar un proyecto en Java bien organizado."
+
+BLOQUE 6: Conclusión
+PONENTE (Conductor):
+Como pueden ver, esta primera práctica juntó todas las herramientas fundamentales: la estructura y portabilidad de Java, el control del sistema con UNIX, la gestión de versiones con Git y la asistencia de las herramientas de IA para el diseño de software. Con esto dejamos lista la base para proyectos más complejos. ¡Muchas gracias por su atención!
