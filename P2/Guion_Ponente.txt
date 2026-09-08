@@ -1,0 +1,56 @@
+BLOQUE 1: Introducción y Contexto General 
+
+ PONENTE (FERNANDA):
+
+"¡Hola a todos! En este video les presentaremos el análisis detallado y los resultados de nuestra Práctica 2 de Programación Orientada a Objetos. Si en la primera práctica nuestro enfoque fue configurar el entorno de desarrollo con la terminal UNIX, Git, GitHub y Java, en esta ocasión dimos un paso mucho más profundo hacia la arquitectura del lenguaje.
+
+Nuestro objetivo fue comprender cómo la Máquina Virtual de Java gestiona los recursos en memoria y cómo las estructuras de control nos permiten construir código robusto, eficiente y defensivo. A lo largo de este video explicaremos la división de la memoria en la JVM y desglosaremos la solución técnica de tres programas independientes en consola: una aplicación de evaluación docente con validación estricta, un algoritmo de búsqueda del valor mayor con restricción extrema de variables, y una tabla de progresiones numéricas bien estructurada. ¡Acompáñenos a revisar cada punto!"
+
+
+
+BLOQUE 2: Clasificación de Datos y Organización en Memoria 
+
+CÉSAR:
+
+"Para entender por qué un programa es rápido o cómo se optimiza, es fundamental mirar lo que ocurre dentro de la JVM. Java divide su sistema de tipos en dos grandes categorías: primitivos y de referencia.
+
+Los tipos primitivos —como int, boolean, char, float o double— tienen un tamaño fijo y almacenan directamente su valor en la memoria Stack o estática. Esta memoria se caracteriza por una asignación y liberación de espacio ultrarrápida, administrada automáticamente por el hilo de ejecución. Por otro lado, los tipos de referencia —como las cadenas String, los arreglos o las clases— almacenan únicamente una dirección de memoria en la Stack que apunta hacia el objeto real alojado en la memoria Heap o dinámica. Para conectar ambos esquemas, Java ofrece clases envolventes o wrappers como Integer o Double. Además, utilizamos palabras reservadas del compilador javac y la palabra clave final para declarar constantes inmutables, lo cual previene modificaciones accidentales y permite al compilador aplicar optimizaciones directas en el bytecode."
+
+
+BLOQUE 3: Caso Práctico 1: Evaluación Docente y Bucle Do-While 
+
+ ROSA:
+
+"En la primera actividad práctica desarrollamos la clase Ejercicio1.java para procesar las calificaciones de un grupo de 10 alumnos. El sistema solicitaba capturar un 1 para indicar 'aprobado' o un 2 para 'reprobado'. El verdadero reto técnico de este ejercicio no era sumar, sino aplicar programación defensiva mediante la validación de las entradas por consola.
+
+Para lograrlo, anidamos un bucle do-while dentro de un ciclo for principal que controlaba a los 10 estudiantes. Elegimos do-while porque esta estructura evalúa la condición de paro al final de la ejecución, garantizando que el mensaje de captura se despliegue al menos una vez. Si el usuario ingresa un dato erróneo —como un 5 o un 0—, el programa detecta el valor fuera de rango, muestra un mensaje de advertencia y repite la solicitud inmediatamente sin avanzar el conteo de alumnos. Una vez validada la entrada, sumamos con los operadores de incremento abreviado aprobados++ y reprobados++, evaluando al final si aprobados >= 9 para imprimir el mensaje '¡Se bonifica al docente!'"
+
+
+
+BLOQUE 4: Caso Práctico 2: Búsqueda del Mayor y Optimización de Memoria 
+
+AIMÈE:
+
+"En el segundo ejercicio, implementado en Ejercicio2.java, nos enfrentamos a una restricción estricta de arquitectura: encontrar el valor más grande de una secuencia de 10 enteros positivos, pero declarando únicamente tres variables primitivas en todo el programa: contador, numero y mayor.
+
+¿Cómo resolver este problema de comparación sin utilizar arreglos en la memoria Heap? La respuesta fue la reutilización de espacios en la memoria Stack. Inicializamos contador en 1, mayor en 0 y controlamos el procesamiento con un ciclo while. En cada iteración se captura el valor ingresado en la variable numero y se evalúa la condición if (numero > mayor). Si el nuevo número es superior, sobreescribimos el contenido de la variable mayor. Al finalizar el bucle con contador++, mostramos el resultado. Esto demuestra que es posible procesar secuencias numéricas optimizando los recursos de memoria al mínimo sin saturar la aplicación."
+
+
+
+BLOQUE 5: Caso Práctico 3: Progresiones Multiplicativas y Formato de Salida 
+
+GABRIEL:
+
+"Para el tercer ejercicio desarrollamos Ejercicio3.java, enfocado en la estructuración y formateo de datos impresos en la interfaz de línea de comandos. La aplicación debía generar una tabla de progresiones numéricas calculando 10*n, 100*n y 1000*n para valores de n comprendidos entre 1 y 5.
+
+Para resolverlo, imprimimos primero la línea de encabezados y posteriormente establecimos un ciclo for con la variable de control n iterando de 1 a 5. El aspecto clave fue la integración de las secuencias de escape de tabulación \t dentro de la cadena de salida. Esto garantizó que, al ejecutarse en la terminal, cada resultado numérico se alineara perfectamente en columnas verticales. En el software profesional esto es fundamental, ya que los programas en consola deben presentar la información de forma legible, estructurada y limpia para el usuario."
+
+
+
+BLOQUE 6: Conclusión y Cierre 
+
+ PONENTE (Fernanda):
+
+"Como pudieron observar a lo largo de esta exposición, los objetivos de nuestra Práctica 2 se cumplieron al 100%. Comprobamos cómo la Máquina Virtual de Java administra los espacios en la memoria estática y dinámica, aplicamos estructuras condicionales y de repetición anidadas para blindar el software contra errores de entrada, optimizamos el uso de variables primitivas en el Stack y formateamos salidas tabuladas en la terminal.
+
+Comprender la gestión de recursos y la lógica del flujo de control nos deja con bases sólidas para avanzar con éxito hacia la creación de clases, objetos y abstracciones en la Programación Orientada a Objetos. ¡Muchas gracias por su atención!"
