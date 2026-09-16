@@ -1,0 +1,65 @@
+**PONENTE (Fernanda):**
+
+"¡Hola a todos! Bienvenidos a la presentación de nuestra Práctica 3 de Programación Orientada a Objetos. En las sesiones anteriores exploramos el entorno de desarrollo y la gestión de memoria interna en la JVM. Sin embargo, en el desarrollo de software real no resulta eficiente reinventar la rueda reprogramando funciones que el lenguaje ya resuelve de forma nativa.
+
+El objetivo principal de esta práctica fue aprender a reutilizar el poder de las librerías estándar del paquete java.util y java.lang. Para lograrlo, abordamos dos grandes áreas: primero, una investigación técnica utilizando Inteligencia Artificial Generativa sobre las colecciones HashMap y TreeSet; y segundo, el desarrollo de un programa verificador de números palíndromos de 5 dígitos en consola, aplicando validaciones estrictas y métodos estáticos. Acompáñenos a revisar cómo combinamos la teoría, las consultas a IA y la implementación en código."
+
+**AIMÉ:**
+
+"Como encargada del reporte, analicé la arquitectura del API de Java para respaldar el desarrollo. El paquete java.lang se carga automáticamente e incluye clases fundamentales como System, Math y String, mientras que de java.util tomamos Scanner para leer datos.
+
+Comprendimos la diferencia entre tipos primitivos y wrappers. Los primitivos como int o double guardan valores en la Stack sin métodos; por ello usamos wrappers como Integer o Double para tratarlos como objetos y realizar conversiones con métodos como Integer.parseInt(). Además, revisamos los métodos estáticos declarados con static, los cuales pertenecen a la clase y nos permiten ejecutar validaciones y cálculos modulares sin instanciar objetos innecesarios."
+
+**PONENTE (Fernanda):**
+
+"Para profundizar en el marco de colecciones de Java, nuestro profesor nos encomendó una dinámica muy interesante: cada integrante de la brigada utilizó una IA Generativa distinta con un prompt técnico común para consultar el funcionamiento interno y casos de uso de HashMap y TreeSet. Voy a pedirle a mis compañeros que compartamos en una rápida lluvia de ideas lo que la IA nos entregó a cada uno. A ver, Gabriel, ¿qué te arrojó la IA sobre la estructura de HashMap?"
+
+**GABRIEL:**
+
+"A mí me explicó que HashMap guarda la información en pares clave-valor y usa un algoritmo de hashing sobre el método hashCode() para calcular una posición o 'bucket' exacta. Esto hace que buscar o insertar sea inmediato, con un tiempo promedio de O(1), aunque no guarda ningún orden."
+
+**PONENTE (Fernanda):**
+
+"¡Exacto! Y a mí la IA me complementó que, si ocurren colisiones, guarda los elementos en una lista enlazada, pero si se acumulan más de 8, la convierte internamente en un árbol rojo-negro. Rosa, ¿qué te entregó la IA sobre los casos de uso reales de HashMap?"
+
+**ROSA:**
+
+"En mi consulta, la IA destacó tres usos clave: catalogar inventarios usando el código de barras como clave, gestionar tokens de sesión de usuarios en servidores web y contar la frecuencia de palabras dentro de un texto."
+
+**PONENTE (Fernanda):**
+
+"Buenísimo. Ahora pasemos a TreeSet. Aimé, ¿qué te explicó la IA sobre cómo opera por dentro?"
+
+*AIMÉ:**
+
+"A mí me detalló que TreeSet no permite elementos duplicados y mantiene los datos ordenados automáticamente mediante un árbol binario auto-balanceado llamado árbol rojo-negro. Sus búsquedas e inserciones tienen una complejidad logarítmica O(log n)."
+
+**PONENTE (Fernanda):**
+
+"Perfecto, y como lluvia de ideas final de la IA, a mí me arrojó que TreeSet es ideal para tablas de posiciones en videojuegos, agendas de eventos cronológicos y diccionarios con autocompletado."
+
+---
+
+**ROSA:**
+
+"En el algoritmo Palindromo5Digitos definimos numero como entero y pedimos 'Dime un número de 5 dígitos'. Convertimos numero a Abs(numero). Evaluamos si numero es menor a 10000 o mayor a 99999; si es verdadero, muestra 'Error: el número debe tener 5 dígitos' y repite el ciclo. Si numero es mayor o igual a 10000 y menor o igual a 99999, evalúa la función esPalindromo(numero). Si es verdadero imprime 'Es un palíndromo', si es falso imprime 'No es un palíndromo' y termina.
+
+En la función esPalindromo(numero), evalúa si numero entre 10000 es igual a numero MOD 10, Y si (numero entre 1000) MOD 10 es igual a (numero entre 10) MOD 10. Si se cumple retorna Verdadero, si no, retorna Falso."
+
+**GABRIEL:**
+
+"Pasando al código en Java de Palindromo5Digitos.java, en el método main declaramos el Scanner para la lectura y usamos Math.abs(numero) para asegurar valores positivos. Estructuramos el control de entrada con un ciclo do-while que valida la condición (numero < 10000 || numero > 99999) imprimiendo el mensaje de error hasta obtener un entero válido de 5 dígitos.
+
+Por otro lado, implementamos el método estático public static boolean esPalindromo(int numero). En una sola línea return realizamos la lógica matemática descomponiendo los dígitos con divisiones y residuos sin convertir a String, retornando true si coinciden los extremos e internos, o false en caso contrario."
+
+**CÉSAR:**
+
+"Como encargado de la edición y evidencias de ejecución, capturé las pruebas en la terminal. Comprobamos la restricción de rango ingresando valores como 00500 y 00000, ante los cuales el ciclo do-while rechazó la entrada e imprimió el mensaje de error correspondiente. Al ingresar un número válido pero no simétrico como 10000 o 11522, el programa procesó la solicitud e indicó que no era un palíndromo. Finalmente, probamos secuencias palíndromas reales como 22522, 10001 y 99999, confirmando que la lógica del código y del método estático funcionó de manera impecable."
+
+---
+
+**PONENTE (Fernanda):**
+
+"En conclusión, esta Práctica 3 nos demostró el enorme valor de utilizar las utilerías integradas de Java. Aprendimos a separar la lógica matemática de la interfaz mediante métodos estáticos, a validar datos de entrada mediante estructuras defensivas y a aprovechar el poder de las colecciones como HashMap y TreeSet según los requerimientos de rendimiento u ordenamiento.
+
+El contraste entre nuestra investigación asistida por Inteligencia Artificial y la práctica en código nos da el criterio necesario para construir sistemas cada vez más sólidos y bien estructurados. ¡Muchas gracias a todos por su atención!"
