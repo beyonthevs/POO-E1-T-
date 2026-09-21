@@ -1,0 +1,139 @@
+PSEUDOCÓDIGO - CLASE ENFERMERO
+
+CLASE Enfermero
+
+    ATRIBUTOS PRIVADOS
+        nombre : cadena
+        cedula : cadena
+        especialidad : cadena
+        noPacientes : entero
+        pacientes : arreglo de Paciente
+        sistema : Sistema
+
+    CONSTRUCTOR Enfermero(nombre, cedula, especialidad)
+        asignar nombre al atributo nombre
+        asignar cedula al atributo cedula
+        asignar especialidad al atributo especialidad
+        asignar noPacientes = 0
+        crear arreglo pacientes de tamaño 3
+    FIN CONSTRUCTOR
+
+    METODO registroEnSistema(sistema) : booleano
+        SI sistema es nulo
+            RETORNAR falso
+        FIN SI
+
+        SI sistema.registroEnfermero(this) es verdadero
+            asignar sistema al atributo sistema
+            RETORNAR verdadero
+        FIN SI
+
+        RETORNAR falso
+    FIN METODO
+
+    METODO verListaPacientes() : cadena
+        crear arreglo copia de tamaño noPacientes
+
+        PARA i = 0 HASTA noPacientes - 1
+            copia[i] = pacientes[i]
+        FIN PARA
+
+        PARA i = 0 HASTA longitud(copia) - 2
+            PARA j = 0 HASTA longitud(copia) - 2 - i
+                SI copia[j].getNombre().compareToIgnoreCase(copia[j + 1].getNombre()) < 0
+                    guardar copia[j] temporalmente
+                    copia[j] = copia[j + 1]
+                    copia[j + 1] = elemento temporal
+                FIN SI
+            FIN PARA
+        FIN PARA
+
+        asignar resultado = cadena vacía
+
+        PARA i = 0 HASTA longitud(copia) - 1
+            concatenar al resultado:
+                copia[i].getNombre()
+                " - "
+                copia[i].getEspecialidadAtencion()
+
+            SI i < longitud(copia) - 1
+                concatenar un salto de línea
+            FIN SI
+        FIN PARA
+
+        RETORNAR resultado
+    FIN METODO
+
+    METODO darTratamiento(paciente) : booleano
+        SI paciente es nulo O getPacienteAsignado(paciente) es nulo
+            RETORNAR falso
+        FIN SI
+
+        paciente.setEstado("EN TRATAMIENTO")
+
+        RETORNAR verdadero
+    FIN METODO
+
+    METODO agregarPaciente(paciente) : booleano
+        SI paciente es nulo O noPacientes >= 3
+            RETORNAR falso
+        FIN SI
+
+        SI especialidad.equalsIgnoreCase(paciente.getEspecialidadAtencion()) es falso
+            RETORNAR falso
+        FIN SI
+
+        SI getPacienteAsignado(paciente) no es nulo
+            RETORNAR falso
+        FIN SI
+
+        pacientes[noPacientes] = paciente
+        incrementar noPacientes en 1
+        paciente.setEnfermeroAsignado(this)
+
+        RETORNAR verdadero
+    FIN METODO
+
+    METODO getPacienteAsignado(paciente) : Paciente
+        PARA i = 0 HASTA noPacientes - 1
+            SI pacientes[i] es exactamente igual a paciente
+                RETORNAR pacientes[i]
+            FIN SI
+        FIN PARA
+
+        RETORNAR nulo
+    FIN METODO
+
+    METODO getNombre() : cadena
+        RETORNAR nombre
+    FIN METODO
+
+    METODO setNombre(nombre)
+        asignar nombre al atributo nombre
+    FIN METODO
+
+    METODO getCedula() : cadena
+        RETORNAR cedula
+    FIN METODO
+
+    METODO setCedula(cedula)
+        asignar cedula al atributo cedula
+    FIN METODO
+
+    METODO getEspecialidad() : cadena
+        RETORNAR especialidad
+    FIN METODO
+
+    METODO setEspecialidad(especialidad)
+        asignar especialidad al atributo especialidad
+    FIN METODO
+
+    METODO getNoPacientes() : entero
+        RETORNAR noPacientes
+    FIN METODO
+
+    METODO getSistema() : Sistema
+        RETORNAR sistema
+    FIN METODO
+
+FIN CLASE

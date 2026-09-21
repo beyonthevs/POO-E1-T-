@@ -1,0 +1,98 @@
+PSEUDOCÓDIGO - CLASE PACIENTE
+
+CLASE Paciente
+
+    ATRIBUTOS PRIVADOS
+        nombre : cadena
+        especialidadAtencion : cadena
+        estado : cadena
+        sistema : Sistema
+        medicoAsignado : Medico
+        enfermeroAsignado : Enfermero
+
+    CONSTRUCTOR Paciente(nombre, especialidadAtencion)
+        asignar nombre al atributo nombre
+        asignar especialidadAtencion al atributo especialidadAtencion
+        asignar estado = "PENDIENTE"
+    FIN CONSTRUCTOR
+
+    METODO registroEnSistema(sistema) : booleano
+        SI sistema es nulo
+            RETORNAR falso
+        FIN SI
+
+        SI sistema.registroPaciente(this) es verdadero
+            asignar sistema al atributo sistema
+            RETORNAR verdadero
+        FIN SI
+
+        RETORNAR falso
+    FIN METODO
+
+    METODO solicitarConsulta(medico) : booleano
+        SI medico es nulo
+           O medico.getNoPacientes() == 0
+           O estado no es igual a "PENDIENTE"
+            RETORNAR falso
+        FIN SI
+
+        SI especialidadAtencion.equalsIgnoreCase(medico.getEspecialidad()) es falso
+            RETORNAR falso
+        FIN SI
+
+        SI medico.getPacienteAsignado(this) es nulo
+            RETORNAR falso
+        FIN SI
+
+        RETORNAR medico.darConsulta(this)
+    FIN METODO
+
+    METODO verTratamiento() : booleano
+        RETORNAR "EN TRATAMIENTO".equals(estado)
+    FIN METODO
+
+    METODO getNombre() : cadena
+        RETORNAR nombre
+    FIN METODO
+
+    METODO setNombre(nombre)
+        asignar nombre al atributo nombre
+    FIN METODO
+
+    METODO getEspecialidadAtencion() : cadena
+        RETORNAR especialidadAtencion
+    FIN METODO
+
+    METODO setEspecialidadAtencion(especialidadAtencion)
+        asignar especialidadAtencion al atributo especialidadAtencion
+    FIN METODO
+
+    METODO getEstado() : cadena
+        RETORNAR estado
+    FIN METODO
+
+    METODO getMedicoAsignado() : Medico
+        RETORNAR medicoAsignado
+    FIN METODO
+
+    METODO getEnfermeroAsignado() : Enfermero
+        RETORNAR enfermeroAsignado
+    FIN METODO
+
+    METODO getSistema() : Sistema
+        RETORNAR sistema
+    FIN METODO
+
+    METODO setMedicoAsignado(medicoAsignado)
+        asignar medicoAsignado al atributo medicoAsignado
+    FIN METODO
+
+    METODO setEnfermeroAsignado(enfermeroAsignado)
+        asignar enfermeroAsignado al atributo enfermeroAsignado
+    FIN METODO
+
+    METODO setEstado(estado)
+        asignar estado al atributo estado
+    FIN METODO
+
+FIN CLASE

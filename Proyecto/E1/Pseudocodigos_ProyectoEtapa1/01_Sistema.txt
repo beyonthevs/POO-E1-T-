@@ -1,0 +1,194 @@
+PSEUDOCÓDIGO - CLASE SISTEMA
+
+CLASE Sistema
+
+    ATRIBUTOS PRIVADOS
+        nombreHospital : cadena
+        noMedicos : entero
+        noEnfermeros : entero
+        noPacientes : entero
+        medicos : arreglo de Medico
+        enfermeros : arreglo de Enfermero
+        pacientes : arreglo de Paciente
+
+    CONSTRUCTOR Sistema(nombreHospital)
+        asignar nombreHospital al atributo nombreHospital
+        crear arreglo medicos de tamaño 100
+        crear arreglo enfermeros de tamaño 100
+        crear arreglo pacientes de tamaño 100
+        asignar noMedicos = 0
+        asignar noEnfermeros = 0
+        asignar noPacientes = 0
+    FIN CONSTRUCTOR
+
+    METODO registroMedico(medico) : booleano
+        SI medico es nulo O noMedicos >= longitud de medicos
+           O buscarMedico(medico.getCedula()) no es nulo
+            RETORNAR falso
+        FIN SI
+
+        medicos[noMedicos] = medico
+        incrementar noMedicos en 1
+
+        RETORNAR verdadero
+    FIN METODO
+
+    METODO registroEnfermero(enfermero) : booleano
+        SI enfermero es nulo O noEnfermeros >= longitud de enfermeros
+           O buscarEnfermero(enfermero.getCedula()) no es nulo
+            RETORNAR falso
+        FIN SI
+
+        enfermeros[noEnfermeros] = enfermero
+        incrementar noEnfermeros en 1
+
+        RETORNAR verdadero
+    FIN METODO
+
+    METODO registroPaciente(paciente) : booleano
+        SI paciente es nulo O noPacientes >= longitud de pacientes
+           O buscarPaciente(paciente.getNombre()) no es nulo
+            RETORNAR falso
+        FIN SI
+
+        pacientes[noPacientes] = paciente
+        incrementar noPacientes en 1
+
+        RETORNAR verdadero
+    FIN METODO
+
+    METODO asignarPaciente(paciente, medico) : booleano
+        SI paciente es nulo O medico es nulo
+            RETORNAR falso
+        FIN SI
+
+        SI estaRegistrado(paciente) es falso O estaRegistrado(medico) es falso
+            RETORNAR falso
+        FIN SI
+
+        RETORNAR medico.agregarPaciente(paciente)
+    FIN METODO
+
+    METODO asignarPaciente(paciente, enfermero) : booleano
+        SI paciente es nulo O enfermero es nulo
+            RETORNAR falso
+        FIN SI
+
+        SI estaRegistrado(paciente) es falso O estaRegistrado(enfermero) es falso
+            RETORNAR falso
+        FIN SI
+
+        RETORNAR enfermero.agregarPaciente(paciente)
+    FIN METODO
+
+    METODO PRIVADO estaRegistrado(paciente) : booleano
+        PARA i = 0 HASTA noPacientes - 1
+            SI pacientes[i] es exactamente igual a paciente
+                RETORNAR verdadero
+            FIN SI
+        FIN PARA
+
+        RETORNAR falso
+    FIN METODO
+
+    METODO PRIVADO estaRegistrado(medico) : booleano
+        PARA i = 0 HASTA noMedicos - 1
+            SI medicos[i] es exactamente igual a medico
+                RETORNAR verdadero
+            FIN SI
+        FIN PARA
+
+        RETORNAR falso
+    FIN METODO
+
+    METODO PRIVADO estaRegistrado(enfermero) : booleano
+        PARA i = 0 HASTA noEnfermeros - 1
+            SI enfermeros[i] es exactamente igual a enfermero
+                RETORNAR verdadero
+            FIN SI
+        FIN PARA
+
+        RETORNAR falso
+    FIN METODO
+
+    METODO buscarMedico(cedula) : Medico
+        PARA i = 0 HASTA noMedicos - 1
+            SI medicos[i].getCedula().equals(cedula)
+                RETORNAR medicos[i]
+            FIN SI
+        FIN PARA
+
+        RETORNAR nulo
+    FIN METODO
+
+    METODO buscarEnfermero(cedula) : Enfermero
+        PARA i = 0 HASTA noEnfermeros - 1
+            SI enfermeros[i].getCedula().equals(cedula)
+                RETORNAR enfermeros[i]
+            FIN SI
+        FIN PARA
+
+        RETORNAR nulo
+    FIN METODO
+
+    METODO buscarPaciente(nombre) : Paciente
+        PARA i = 0 HASTA noPacientes - 1
+            SI pacientes[i].getNombre().equalsIgnoreCase(nombre)
+                RETORNAR pacientes[i]
+            FIN SI
+        FIN PARA
+
+        RETORNAR nulo
+    FIN METODO
+
+    METODO getNombreHospital() : cadena
+        RETORNAR nombreHospital
+    FIN METODO
+
+    METODO setNombreHospital(nombreHospital)
+        asignar nombreHospital al atributo nombreHospital
+    FIN METODO
+
+    METODO getNoMedicos() : entero
+        RETORNAR noMedicos
+    FIN METODO
+
+    METODO getNoEnfermeros() : entero
+        RETORNAR noEnfermeros
+    FIN METODO
+
+    METODO getNoPacientes() : entero
+        RETORNAR noPacientes
+    FIN METODO
+
+    METODO getMedicos() : arreglo de Medico
+        crear arreglo resultado de tamaño noMedicos
+
+        PARA i = 0 HASTA noMedicos - 1
+            resultado[i] = medicos[i]
+        FIN PARA
+
+        RETORNAR resultado
+    FIN METODO
+
+    METODO getEnfermeros() : arreglo de Enfermero
+        crear arreglo resultado de tamaño noEnfermeros
+
+        PARA i = 0 HASTA noEnfermeros - 1
+            resultado[i] = enfermeros[i]
+        FIN PARA
+
+        RETORNAR resultado
+    FIN METODO
+
+    METODO getPacientes() : arreglo de Paciente
+        crear arreglo resultado de tamaño noPacientes
+
+        PARA i = 0 HASTA noPacientes - 1
+            resultado[i] = pacientes[i]
+        FIN PARA
+
+        RETORNAR resultado
+    FIN METODO
+
+FIN CLASE

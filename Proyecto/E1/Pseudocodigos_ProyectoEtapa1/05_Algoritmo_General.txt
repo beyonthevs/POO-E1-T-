@@ -1,0 +1,139 @@
+PSEUDOCÓDIGO - ALGORITMO GENERAL DE LA ETAPA 1
+
+INICIO
+
+    Crear un objeto Sistema proporcionando el nombre del hospital
+
+    CREAR PERSONAL MÉDICO
+
+        Crear cada objeto Medico indicando:
+            nombre
+            cedula
+            especialidad
+
+        Para cada medico:
+            llamar registroEnSistema con el sistema
+
+            SI el registro es exitoso
+                medico queda registrado en el sistema
+            FIN SI
+
+    CREAR PERSONAL DE ENFERMERÍA
+
+        Crear cada objeto Enfermero indicando:
+            nombre
+            cedula
+            especialidad
+
+        Para cada enfermero:
+            llamar registroEnSistema con el sistema
+
+            SI el registro es exitoso
+                enfermero queda registrado en el sistema
+            FIN SI
+
+    CREAR PACIENTES
+
+        Crear cada objeto Paciente indicando:
+            nombre
+            especialidadAtencion
+
+        Para cada paciente:
+            llamar registroEnSistema con el sistema
+
+            SI el registro es exitoso
+                paciente queda registrado
+                y su estado inicial es "PENDIENTE"
+            FIN SI
+
+    ASIGNACIÓN DE PACIENTES
+
+        Para asignar un paciente a un medico:
+            comprobar que paciente y medico no sean nulos
+            comprobar que ambos estén registrados
+            llamar asignarPaciente del sistema
+
+            El sistema llama agregarPaciente del medico
+
+            El medico acepta al paciente solamente si:
+                no ha llegado a 10 pacientes
+                la especialidad coincide
+                el paciente no estaba previamente asignado
+
+        Para asignar un paciente a un enfermero:
+            comprobar que paciente y enfermero no sean nulos
+            comprobar que ambos estén registrados
+            llamar asignarPaciente del sistema
+
+            El sistema llama agregarPaciente del enfermero
+
+            El enfermero acepta al paciente solamente si:
+                no ha llegado a 3 pacientes
+                la especialidad coincide
+                el paciente no estaba previamente asignado
+
+    SOLICITUD Y CONSULTA MÉDICA
+
+        El paciente solicita consulta con un medico
+
+        Comprobar que:
+            el medico exista
+            el medico tenga pacientes
+            el paciente esté en estado "PENDIENTE"
+            la especialidad del paciente coincida con la del medico
+            el paciente esté asignado a ese medico
+
+        Llamar darConsulta del medico
+
+        El medico puede dar consulta solamente si:
+            no tiene otro paciente en consulta
+            el paciente está asignado a él
+            la especialidad coincide
+            el paciente está en estado "PENDIENTE"
+
+        SI la consulta puede comenzar
+            guardar al paciente como pacienteEnConsulta
+            cambiar el estado a "EN CONSULTA"
+        FIN SI
+
+    FINALIZACIÓN DE CONSULTA Y TRATAMIENTO
+
+        Cuando el medico da tratamiento al paciente:
+            comprobar que el paciente esté asignado al medico
+            cambiar estado a "EN TRATAMIENTO"
+
+            SI ese paciente era el que estaba en consulta
+                liberar pacienteEnConsulta
+            FIN SI
+
+        Cuando el enfermero da tratamiento al paciente:
+            comprobar que el paciente esté asignado al enfermero
+            cambiar estado a "EN TRATAMIENTO"
+        FIN SI
+
+    CONSULTA DEL ESTADO
+
+        El paciente puede llamar verTratamiento
+
+        SI el estado es "EN TRATAMIENTO"
+            retornar verdadero
+        EN CASO CONTRARIO
+            retornar falso
+        FIN SI
+
+    VISUALIZACIÓN DE LISTAS
+
+        El medico o enfermero puede llamar verListaPacientes
+
+        Crear una copia de su arreglo de pacientes
+
+        Ordenar la copia mediante intercambios consecutivos
+        en orden alfabético descendente por nombre
+
+        Construir una cadena mostrando para cada paciente:
+            nombre
+            especialidad de atención
+
+        Retornar la cadena resultante
+
+FIN
