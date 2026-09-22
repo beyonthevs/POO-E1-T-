@@ -22,8 +22,5 @@ public class Main {
    analizador.mostrarDuplicadas(true);
 
    scanner.close();
-
-
   }
-
 }
