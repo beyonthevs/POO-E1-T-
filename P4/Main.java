@@ -12,7 +12,7 @@ public class Main {
 
    analizador.contarPalabras();
 
-   int cantidadDuplicados = analizador.obtenerNumeroDuplicado();
+   int cantidadDuplicados = analizador.obtenerNumeroDuplicados();
    System.out.println("\nPalabras diferentes que se duplicaron: " + cantidadDuplicados + "\n");
    
    System.out.println("Detalle de duplicados(Sin ordenar)");
