@@ -1,0 +1,187 @@
+PSEUDOCÓDIGO - CLASE MAIN
+
+INICIO
+
+    Crear variable entrada para leer datos del teclado
+    Crear variable sistema
+
+    Mostrar "Nombre del hospital: "
+    Leer nombreHospital
+
+    SI nombreHospital está vacío
+        asignar "Hospital" a nombreHospital
+    FIN SI
+
+    Crear sistema con nombreHospital
+
+    REPETIR
+        Mostrar menú principal
+        Leer opcion
+
+        SEGÚN opcion HACER
+
+            CASO 1:
+                Solicitar nombre, cedula y especialidad del medico
+                Crear objeto Medico
+                Registrar medico en el sistema
+                Mostrar resultado del registro
+
+            CASO 2:
+                Solicitar nombre, cedula y especialidad del enfermero
+                Crear objeto Enfermero
+                Registrar enfermero en el sistema
+                Mostrar resultado del registro
+
+            CASO 3:
+                Solicitar nombre y especialidad de atención del paciente
+                Crear objeto Paciente
+                Registrar paciente en el sistema
+                Mostrar resultado del registro
+
+            CASO 4:
+                Solicitar nombre del paciente
+                Buscar paciente en el sistema
+
+                SI no existe
+                    Mostrar mensaje de paciente no encontrado
+                EN CASO CONTRARIO
+                    Solicitar cedula del medico
+                    Buscar medico en el sistema
+
+                    SI no existe
+                        Mostrar mensaje de medico no encontrado
+                    EN CASO CONTRARIO
+                        Intentar asignar paciente al medico
+                        Mostrar resultado de la asignación
+                    FIN SI
+                FIN SI
+
+            CASO 5:
+                Solicitar nombre del paciente
+                Buscar paciente en el sistema
+
+                SI no existe
+                    Mostrar mensaje de paciente no encontrado
+                EN CASO CONTRARIO
+                    Solicitar cedula del enfermero
+                    Buscar enfermero en el sistema
+
+                    SI no existe
+                        Mostrar mensaje de enfermero no encontrado
+                    EN CASO CONTRARIO
+                        Intentar asignar paciente al enfermero
+                        Mostrar resultado de la asignación
+                    FIN SI
+                FIN SI
+
+            CASO 6:
+                Solicitar nombre del paciente
+                Buscar paciente en el sistema
+
+                SI no existe
+                    Mostrar mensaje de paciente no encontrado
+                EN CASO CONTRARIO
+                    Solicitar cedula del medico
+                    Buscar medico en el sistema
+
+                    SI no existe
+                        Mostrar mensaje de medico no encontrado
+                    EN CASO CONTRARIO
+                        El paciente solicita consulta con el medico
+                        Mostrar resultado de la solicitud
+                    FIN SI
+                FIN SI
+
+            CASO 7:
+                Solicitar cedula del medico
+                Buscar medico en el sistema
+
+                SI no existe
+                    Mostrar mensaje de medico no encontrado
+                EN CASO CONTRARIO
+                    Solicitar nombre del paciente
+                    Buscar paciente en el sistema
+
+                    SI no existe
+                        Mostrar mensaje de paciente no encontrado
+                    EN CASO CONTRARIO
+                        El medico intenta dar tratamiento al paciente
+                        Mostrar resultado
+                    FIN SI
+                FIN SI
+
+            CASO 8:
+                Solicitar cedula del enfermero
+                Buscar enfermero en el sistema
+
+                SI no existe
+                    Mostrar mensaje de enfermero no encontrado
+                EN CASO CONTRARIO
+                    Solicitar nombre del paciente
+                    Buscar paciente en el sistema
+
+                    SI no existe
+                        Mostrar mensaje de paciente no encontrado
+                    EN CASO CONTRARIO
+                        El enfermero intenta dar tratamiento al paciente
+                        Mostrar resultado
+                    FIN SI
+                FIN SI
+
+            CASO 9:
+                Solicitar cedula del medico
+                Buscar medico en el sistema
+
+                SI existe
+                    Obtener lista de pacientes del medico
+                    Mostrar lista
+                EN CASO CONTRARIO
+                    Mostrar mensaje de medico no encontrado
+                FIN SI
+
+            CASO 10:
+                Solicitar cedula del enfermero
+                Buscar enfermero en el sistema
+
+                SI existe
+                    Obtener lista de pacientes del enfermero
+                    Mostrar lista
+                EN CASO CONTRARIO
+                    Mostrar mensaje de enfermero no encontrado
+                FIN SI
+
+            CASO 11:
+                Solicitar nombre del paciente
+                Buscar paciente en el sistema
+
+                SI existe
+                    Mostrar nombre del paciente
+                    Mostrar especialidad de atención
+                    Mostrar estado actual
+
+                    SI el paciente está en tratamiento
+                        Mostrar que se encuentra en tratamiento
+                    FIN SI
+                EN CASO CONTRARIO
+                    Mostrar mensaje de paciente no encontrado
+                FIN SI
+
+            CASO 12:
+                Mostrar nombre del hospital
+                Mostrar cantidad de médicos registrados
+                Mostrar cantidad de enfermeros registrados
+                Mostrar cantidad de pacientes registrados
+
+            CASO 0:
+                Mostrar "Programa finalizado."
+
+            OTRO CASO:
+                Mostrar "Opción no válida."
+
+        FIN SEGÚN
+
+    HASTA QUE opcion sea igual a 0
+
+    Cerrar entrada de datos
+
+FIN
