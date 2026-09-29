@@ -3,11 +3,11 @@ public class Fecha {
     private int dia;
     private int anio;
 
-    // Constructor
+    // Constructor basado en los setters para garantizar validaciones
     public Fecha(int mes, int dia, int anio) {
-        this.mes = mes;
-        this.dia = dia;
-        this.anio = anio;
+        setMes(mes);
+        setDia(dia);
+        setAnio(anio);
     }
 
     // Métodos modificadores (Setters)
@@ -36,8 +36,8 @@ public class Fecha {
         return anio;
     }
 
-    // Método para mostrar la fecha separada por '/'
+    // Método para mostrar la fecha consultando a través de los getters
     public void mostrarFecha() {
-        System.out.println(mes + "/" + dia + "/" + anio);
+        System.out.println(getMes() + "/" + getDia() + "/" + getAnio());
     }
 }
