@@ -1,0 +1,57 @@
+Fernanda:
+
+Hola a todos. En este video les vamos a presentar el trabajo de nuestra Práctica 5 de Programación Orientada a Objetos. Hoy nos enfocamos en algo crucial al programar: cómo proteger la información dentro de un objeto para que nadie desde fuera pueda meter datos erróneos o romper el código.
+
+Para lograrlo dividimos el trabajo en tres partes. Primero, analizamos con distintas IAs si de verdad conviene usar métodos modificadores dentro de los constructores. Segundo, armamos un sistema para manejar empleados y salarios, asegurándonos de que nunca se puedan registrar salarios negativos. Y tercero, creamos la clase Fecha para manipular variables de tiempo y mostrar salidas bien formateadas en la terminal. Acompañenos a ver la explicación de cada parte."
+
+AIMÉ:
+
+En la parte del reporte profundicé en los conceptos de abstracción y encapsulamiento. La abstracción nos permite identificar únicamente las propiedades y métodos relevantes de una entidad, ignorando los detalles innecesarios. Por su parte, el encapsulamiento crea una capa de protección alrededor de los datos para que no sean alterados de forma directa o arbitraria desde otras clases.
+
+Para lograr esto utilizamos los modificadores de acceso. Aplicamos el nivel privado `private` a todos los atributos de instancia, restringiendo su visibilidad únicamente a su propia clase. Y para permitir la lectura y modificación controlada, expusimos métodos públicos `public` mediante getters y setters. Los setters son clave porque nos permiten meter estructuras condicionales que evalúan y rechazan datos inválidos antes de asignarlos en memoria.
+
+Fernanda:
+
+"Para la primera actividad, el profesor nos pidió consultar a distintas IAs para responder una duda técnica: ¿es conveniente llamar a métodos setters dentro de un constructor? Vamos a compartir brevemente lo que encontró cada quien. Gabriel, ¿qué nos entregó tu consulta?
+
+GABRIEL:
+
+"A mí me explicó que la ventaja de usar setters en el constructor es no duplicar el código de validación. Pero el riesgo principal es que, si hay herencia y el setter no es privado o final, una subclase puede sobrescribirlo y ejecutarse sobre un objeto que aún no ha terminado de inicializarse en memoria."
+
+Fernanda:
+
+"Así es, y en mi consulta me complementó que esto se conoce como un estado de inicialización parcial, lo cual puede romper la ejecución. Rosa, ¿qué te arrojó la IA sobre las buenas prácticas?"
+
+ROSA:
+
+"Que la regla de diseño estándar es asignar los atributos directamente en el constructor, o bien asegurarnos de que los setters invocados estén declarados como `private` o `final` para evitar que las subclases alteren la lógica de construcción."
+
+Fernanda:
+
+"Con esto nos quedó claro cómo garantizar la seguridad del objeto desde el momento en que se instancia."
+
+ROSA:
+
+"En la Figura 1 de los Diagramas de Clases UML se observan ambas estructuras.
+
+Para el primer sistema, MainEmpleado contiene `+ main(args: String[]): void`. Se conecta con la clase Empleado, la cual tiene los atributos privados `- nombre: String`, `- apellido: String` y `- salarioMensual: double`. Sus métodos son el constructor `+ Empleado()`, los setters `setNombre()`, `setApellido()`, `setSalarioMensual()` y los getters `getNombre()`, `getApellido()`, `getSalarioMensual()`.
+
+Para el segundo sistema, MainFecha contiene `+ main(args: String[]): void`. Se conecta con Fecha, que contiene `- mes: int`, `- dia: int` y `- anio: int`. Sus métodos son el constructor `+ Fecha()`, los setters `setMes()`, `setDia()`, `setAnio()`, los getters `getMes()`, `getDia()`, `getAnio()` y el método `+ mostrarFecha(): void`."
+
+GABRIEL:
+
+"Revisando la implementación en código, en `Empleado.java` colocamos los atributos como `private` y en `setSalarioMensual(double salarioMensual)` agregamos la validación `if (salarioMensual > 0)`. Si el valor ingresado es negativo o cero, la asignación no se realiza y el objeto conserva su estado previo. En `MainEmpleado.java` instanciamos dos empleados, calculamos su salario anual multiplicando por 12, aplicamos un incremento del 10% mediante el setter y volvemos a desplegar el monto actualizado.
+
+En `Fecha.java` definimos sus tres atributos enteros privados. El constructor asigna los valores de mes, día y año, y el método `mostrarFecha()` imprime la cadena concatenada en el formato `mes/dia/anio` usando barras diagonales."
+
+CÉSAR:
+
+"En las pruebas de terminal compilamos y ejecutamos ambos programas. En la prueba de Empleado intentamos registrar un salario inicial de -300 pesos. El sistema detectó el error, desplegó el mensaje indicando que el salario no puede ser negativo y volvió a pedir un monto válido. Al ingresar 1000 pesos para Gabriel y 5000 para Fernanda, calculó los salarios anuales de 12,000 y 60,000. Tras aplicar el aumento del 10%, el sistema actualizó los salarios a 13,200 y 66,000 respectivamente.
+
+En la prueba de Fecha ejecutamos `MainFecha`, ingresando el mes 10, día 2 y año 2026. La función `mostrarFecha()` imprimió en pantalla la salida limpia `10/2/2026`, comprobando que los métodos accesores y el formato de despliegue funcionaron correctamente."
+
+Fernanda:
+
+"Como vimos, aplicar encapsulamiento es indispensable para que nuestros programas no acepten datos basura ni generen errores indeseados.
+
+Logramos blindar el estado de nuestras clases Empleado y Fecha, obligando a que cualquier cambio pase por los setters con sus respectivas reglas. Esperamos que les haya gustado la explicación, ¡muchas gracias por su atención!"
