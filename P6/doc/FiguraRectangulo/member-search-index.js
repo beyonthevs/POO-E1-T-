@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"mx.unam.fi.die.poo.g7.p6.p1","c":"FiguraRectangulo","l":"dibujar(Graphics2D)","u":"dibujar(java.awt.Graphics2D)"},{"p":"mx.unam.fi.die.poo.g7.p6.p1","c":"FiguraRectangulo","l":"FiguraRectangulo(int, int, int, int, Color, boolean)","u":"%3Cinit%3E(int,int,int,int,java.awt.Color,boolean)","k":"3"}];updateSearchResults();

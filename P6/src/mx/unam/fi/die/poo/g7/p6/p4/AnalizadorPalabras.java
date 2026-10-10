@@ -21,7 +21,7 @@ public class AnalizadorPalabras{
     }
 
     /**
-     * Método para contarPalabras.
+     * Método para contar el total de palabras.
      */
     public void contarPalabras(){
         String oracionLimpia=oracion.toLowerCase().replaceAll("[^a-záéíóúñ0-9]"," ");
@@ -34,7 +34,7 @@ public class AnalizadorPalabras{
     }
 
     /**
-     * Método para obtenerNumeroDuplicados.
+     * Método para obtener el número de duplicados.
      * @return Resultado de la operación.
      */
     public int obtenerNumeroDuplicados(){
@@ -48,7 +48,7 @@ public class AnalizadorPalabras{
     }
 
     /**
-     * Método para mostrarDuplicadas.
+     * Método para mostrar las palabras duplicadas.
      * @param ordenar true para ordenar, false en caso contrario.
      */
     public void mostrarDuplicadas(boolean ordenar){

@@ -27,7 +27,7 @@ public class Medico {
     }
 
     /**
-     * Método para registroEnSistema.
+     * Método para registrar un médico en el sistema.
      * @param sistema Sistema de gestión hospitalaria.
      * @return true si la operación fue exitosa, false en caso contrario.
      */
@@ -43,7 +43,7 @@ public class Medico {
     }
 
     /**
-     * Método para solicitarPaciente.
+     * Método para solicitar un paciente.
      * @return Resultado de la operación.
      */
     public Paciente solicitarPaciente() {
@@ -56,7 +56,7 @@ public class Medico {
     }
 
     /**
-     * Método para darConsulta.
+     * Método para dar consulta a un paciente.
      * @param paciente Paciente involucrado.
      * @return true si la operación fue exitosa, false en caso contrario.
      */
@@ -79,7 +79,7 @@ public class Medico {
     }
 
     /**
-     * Método para darTratamiento.
+     * Método para dar tratamiento a un paciente.
      * @param paciente Paciente involucrado.
      * @return true si la operación fue exitosa, false en caso contrario.
      */
@@ -95,7 +95,7 @@ public class Medico {
     }
 
     /**
-     * Método para verListaPacientes.
+     * Método para ver su lista de pacientes.
      * @return Resultado de la operación.
      */
     public String verListaPacientes() {
@@ -123,7 +123,7 @@ public class Medico {
     }
 
     /**
-     * Método para agregarPaciente.
+     * Método para vincular un paciente.
      * @param paciente Paciente involucrado.
      * @return true si la operación fue exitosa, false en caso contrario.
      */
@@ -144,7 +144,7 @@ public class Medico {
     }
 
     /**
-     * Método para getPacienteAsignado.
+     * Método para obtener el paciente asignado.
      * @param paciente Paciente involucrado.
      * @return El valor de la propiedad pacienteasignado.
      */
@@ -158,7 +158,7 @@ public class Medico {
     }
 
     /**
-     * Método para getNombre.
+     * Método para obtener nombre.
      * @return El valor de la propiedad nombre.
      */
     public String getNombre() {
@@ -166,15 +166,15 @@ public class Medico {
     }
 
     /**
-     * Método para setNombre.
-     * @param nombre Nombre de la persona.
+     * Método para designar el nombre.
+     * @param nombre Nombre del médico.
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     /**
-     * Método para getCedula.
+     * Método para obtener la cédula del médico.
      * @return El valor de la propiedad cédula.
      */
     public String getCedula() {
@@ -182,7 +182,7 @@ public class Medico {
     }
 
     /**
-     * Método para setCedula.
+     * Método para designar la cédula del médico.
      * @param cedula Cédula de la persona.
      */
     public void setCedula(String cedula) {
@@ -190,7 +190,7 @@ public class Medico {
     }
 
     /**
-     * Método para getEspecialidad.
+     * Método para obtener la especialidad del médico.
      * @return El valor de la propiedad especialidad.
      */
     public String getEspecialidad() {
@@ -198,7 +198,7 @@ public class Medico {
     }
 
     /**
-     * Método para setEspecialidad.
+     * Método para designar la especialidad del médico.
      * @param especialidad Especialidad del médico.
      */
     public void setEspecialidad(String especialidad) {
@@ -206,7 +206,7 @@ public class Medico {
     }
 
     /**
-     * Método para getNoPacientes.
+     * Método para obtener el número de pacientes del médico.
      * @return El valor de la propiedad nopacientes.
      */
     public int getNoPacientes() {
@@ -214,7 +214,7 @@ public class Medico {
     }
 
     /**
-     * Método para getPacienteEnConsulta.
+     * Método para obtener el paciente en consulta.
      * @return El valor de la propiedad pacienteenconsulta.
      */
     public Paciente getPacienteEnConsulta() {
@@ -222,7 +222,7 @@ public class Medico {
     }
 
     /**
-     * Método para getSistema.
+     * Método para obtener el sistema al que pertenece.
      * @return El valor de la propiedad sistema.
      */
     public Sistema getSistema() {

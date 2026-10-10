@@ -3,7 +3,7 @@ package mx.unam.fi.die.poo.g7.p6.p2;
 import java.util.Scanner;
 
 /**
- * Segundo ejercicio, prueba el uso de ciclos y condicionales.
+ * Segundo ejercicio, identifica al mayor de 10 enteros.
  */
 public class Ejercicio2 {
     /**

@@ -1,7 +1,7 @@
 package mx.unam.fi.die.poo.g7.p6.p0;
 
 /**
- * Programa super básico para imprimir un saludo en pantalla.
+ * Programa básico para imprimir un saludo en pantalla.
  */
 public class Hola{
     /**
