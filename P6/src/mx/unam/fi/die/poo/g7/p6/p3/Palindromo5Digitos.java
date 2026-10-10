@@ -9,7 +9,7 @@ public class Palindromo5Digitos {
 
     /**
      * Método principal que arranca el programa.
-     * @param args argumentos de linea de comandos
+     * @param args argumentos de línea de comandos
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

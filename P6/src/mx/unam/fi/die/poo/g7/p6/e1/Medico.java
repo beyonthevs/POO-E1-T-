@@ -13,7 +13,7 @@ public class Medico {
     private Sistema sistema;
 
     /**
-     * Constructor de Medico.
+     * Constructor de Médico.
      * @param nombre Nombre de la persona.
      * @param cedula Cédula de la persona.
      * @param especialidad Especialidad del médico.
@@ -175,7 +175,7 @@ public class Medico {
 
     /**
      * Método para getCedula.
-     * @return El valor de la propiedad cedula.
+     * @return El valor de la propiedad cédula.
      */
     public String getCedula() {
         return cedula;

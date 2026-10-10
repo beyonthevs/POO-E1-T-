@@ -11,7 +11,7 @@ public class Main {
 
     /**
      * Método principal que arranca el programa.
-     * @param args argumentos de linea de comandos
+     * @param args argumentos de línea de comandos
      */
     public static void main(String[] args) {
         System.out.print("Nombre del hospital: ");

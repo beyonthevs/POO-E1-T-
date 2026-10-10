@@ -1,5 +1,8 @@
 package mx.unam.fi.die.poo.g7.p1;
 
+/**
+ * Guarda los tipos de figuras que se pueden dibujar.
+ */
 public enum TipoFigura {
     RECTANGULO("Rectángulo"),
     OVALO("Óvalo"),
@@ -7,6 +10,10 @@ public enum TipoFigura {
 
     private final String texto;
 
+    /**
+     * Constructor de TipoFigura.
+     * @param texto Nombre de la figura.
+     */
     TipoFigura(String texto) {
         this.texto = texto;
     }

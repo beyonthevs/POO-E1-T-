@@ -3,15 +3,23 @@ package mx.unam.fi.die.poo.g7.p1;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public final /**
- * Programa para resolver el ejercicio de la clase.
+/**
+ * Guarda la información de una figura de tipo línea.
  */
-class FiguraLinea extends Figura {
+public final class FiguraLinea extends Figura {
     private final int x1;
     private final int y1;
     private final int x2;
     private final int y2;
 
+    /**
+     * Constructor de FiguraLinea.
+     * @param x1 Coordenada x inicial.
+     * @param y1 Coordenada y inicial.
+     * @param x2 Coordenada x final.
+     * @param y2 Coordenada y final.
+     * @param color Color de la línea.
+     */
     public FiguraLinea(int x1, int y1, int x2, int y2, Color color) {
         super(color, false);
         this.x1 = x1;

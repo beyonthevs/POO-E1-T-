@@ -135,7 +135,7 @@ public class Enfermero {
 
     /**
      * Método para getCedula.
-     * @return El valor de la propiedad cedula.
+     * @return El valor de la propiedad cédula.
      */
     public String getCedula() {
         return cedula;

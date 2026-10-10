@@ -6,7 +6,7 @@ package mx.unam.fi.die.poo.g7.p2;
 public class Ejercicio3 {
     /**
      * Método principal que arranca el programa.
-     * @param args argumentos de linea de comandos
+     * @param args argumentos de línea de comandos
      */
     public static void main(String[] args) {
 

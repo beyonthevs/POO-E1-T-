@@ -26,7 +26,7 @@ public class Enfermero {
     }
 
     /**
-     * Método para registroEnSistema.
+     * Método para hacer el registro en el sistema.
      * @param sistema Sistema de gestión hospitalaria.
      * @return true si la operación fue exitosa, false en caso contrario.
      */
@@ -42,7 +42,7 @@ public class Enfermero {
     }
 
     /**
-     * Método para verListaPacientes.
+     * Método para ver la lista de pacientes asignados al enfermero.
      * @return Resultado de la operación.
      */
     public String verListaPacientes() {
@@ -70,7 +70,7 @@ public class Enfermero {
     }
 
     /**
-     * Método para darTratamiento.
+     * Método para dar tratamiento a un paciente.
      * @param paciente Paciente involucrado.
      * @return true si la operación fue exitosa, false en caso contrario.
      */
@@ -83,7 +83,7 @@ public class Enfermero {
     }
 
     /**
-     * Método para agregarPaciente.
+     * Método para agregar un paciente a la lista de pacientes asignados.
      * @param paciente Paciente involucrado.
      * @return true si la operación fue exitosa, false en caso contrario.
      */
@@ -104,7 +104,7 @@ public class Enfermero {
     }
 
     /**
-     * Método para getPacienteAsignado.
+     * Método para obtener los pacientes asignados a un enfermero.
      * @param paciente Paciente involucrado.
      * @return El valor de la propiedad pacienteasignado.
      */
@@ -118,7 +118,7 @@ public class Enfermero {
     }
 
     /**
-     * Método para getNombre.
+     * Método para obtener el nombre.
      * @return El valor de la propiedad nombre.
      */
     public String getNombre() {
@@ -126,7 +126,7 @@ public class Enfermero {
     }
 
     /**
-     * Método para setNombre.
+     * Método para designar el nombre.
      * @param nombre Nombre de la persona.
      */
     public void setNombre(String nombre) {
@@ -134,15 +134,15 @@ public class Enfermero {
     }
 
     /**
-     * Método para getCedula.
-     * @return El valor de la propiedad cedula.
+     * Método para obtener la cédula del enfermero.
+     * @return El valor de la propiedad cédula.
      */
     public String getCedula() {
         return cedula;
     }
 
     /**
-     * Método para setCedula.
+     * Método para designar la cédula del enfermero.
      * @param cedula Cédula de la persona.
      */
     public void setCedula(String cedula) {
@@ -150,7 +150,7 @@ public class Enfermero {
     }
 
     /**
-     * Método para getEspecialidad.
+     * Método para obtener la especialidad del enfermero.
      * @return El valor de la propiedad especialidad.
      */
     public String getEspecialidad() {
@@ -158,7 +158,7 @@ public class Enfermero {
     }
 
     /**
-     * Método para setEspecialidad.
+     * Método para designar la especialidad del enfermero.
      * @param especialidad Especialidad del médico.
      */
     public void setEspecialidad(String especialidad) {
@@ -166,7 +166,7 @@ public class Enfermero {
     }
 
     /**
-     * Método para getNoPacientes.
+     * Método para obtener el número de pacientes asignados.
      * @return El valor de la propiedad nopacientes.
      */
     public int getNoPacientes() {
@@ -174,7 +174,7 @@ public class Enfermero {
     }
 
     /**
-     * Método para getSistema.
+     * Método para obtener el sistema al que pertenece el enfermero.
      * @return El valor de la propiedad sistema.
      */
     public Sistema getSistema() {

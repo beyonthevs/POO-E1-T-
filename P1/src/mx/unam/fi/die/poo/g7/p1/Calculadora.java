@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Calculadora {
     /**
      * Método principal que arranca el programa.
-     * @param args argumentos de linea de comandos
+     * @param args argumentos de línea de comandos
      */
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
