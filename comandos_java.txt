@@ -1,0 +1,18 @@
+Apuntes de comandos Java
+
+javac
+Ejemplo: javac -d P1/test P1/src/mx/unam/fi/die/poo/g7/p1/*.java
+Explicación: Lo uso para compilar mis archivos de Java (.java) a archivos binarios (.class). Con el -d le digo que guarde esos binarios en la carpeta test para que no se revuelvan con el código.
+
+java
+Ejemplo: java -cp P1/test mx.unam.fi.die.poo.g7.p1.Calculadora
+Explicación: Sirve para correr el programa que ya compilé. Le paso -cp (classpath) para indicarle que mis archivos .class están en la carpeta test, y luego pongo la ruta completa del paquete de mi clase principal.
+
+javadoc
+Ejemplo: javadoc -d P1/doc/Calculadora/ -sourcepath P1/src P1/src/mx/unam/fi/die/poo/g7/p1/Calculadora.java
+Explicación: Lee los comentarios que dejé en el código y arma páginas de internet (HTML) con la documentación. El -d hace que los guarde en una carpeta específica y así no me hace desorden en los PDFs.
+
+jar
+Ejemplo: jar cfe Proyecto/E1/lib/sistema-hospital.jar mx.unam.fi.die.poo.g7.e1.Main -C Proyecto/E1/test mx
+Explicación: Me sirve para meter todos mis archivos .class compilados en un solo archivo .jar (como si fuera un zip que se puede correr). La "c" crea el archivo, la "f" le pone nombre y la "e" dice cuál clase arranca todo.
+
