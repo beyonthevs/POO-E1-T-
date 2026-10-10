@@ -23,7 +23,7 @@ public class Empleado {
 
     // Métodos modificadores (Setters)
     /**
-     * Método para setNombre.
+     * Método para designar nombre.
      * @param nombre Nombre de la persona.
      */
     public void setNombre(String nombre) {
@@ -31,7 +31,7 @@ public class Empleado {
     }
 
     /**
-     * Método para setApellido.
+     * Método para designar apellido.
      * @param apellido Apellido del empleado.
      */
     public void setApellido(String apellido) {
@@ -39,7 +39,7 @@ public class Empleado {
     }
 
     /**
-     * Método para setSalarioMensual.
+     * Método para designar salario mensual.
      * @param salarioMensual Salario mensual del empleado.
      */
     public void setSalarioMensual(double salarioMensual) {
@@ -50,7 +50,7 @@ public class Empleado {
 
     // Métodos de acceso (Getters)
     /**
-     * Método para getNombre.
+     * Método para obtener nombre.
      * @return El valor de la propiedad nombre.
      */
     public String getNombre() {
@@ -58,7 +58,7 @@ public class Empleado {
     }
 
     /**
-     * Método para getApellido.
+     * Método para obtener apellido.
      * @return El valor de la propiedad apellido.
      */
     public String getApellido() {
@@ -66,7 +66,7 @@ public class Empleado {
     }
 
     /**
-     * Método para getSalarioMensual.
+     * Método para obtener salario mensual.
      * @return El valor de la propiedad salariomensual.
      */
     public double getSalarioMensual() {

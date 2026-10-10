@@ -57,7 +57,7 @@ public class Fecha {
 
     /**
      * Método para getDia.
-     * @return El valor de la propiedad dia.
+     * @return El valor de la propiedad día.
      */
     public int getDia() {
         return dia;

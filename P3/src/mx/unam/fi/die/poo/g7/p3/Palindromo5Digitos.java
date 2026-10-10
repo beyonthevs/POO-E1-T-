@@ -9,7 +9,7 @@ public class Palindromo5Digitos {
 
     /**
      * Método principal que arranca el programa.
-     * @param args argumentos de linea de comandos
+     * @param args argumentos de línea de comandos
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -35,7 +35,7 @@ public class Palindromo5Digitos {
     }
 
     /**
-     * Método para esPalindromo.
+     * Método para ver si es Palindromo.
      * @param numero Número a evaluar.
      * @return true si la operación fue exitosa, false en caso contrario.
      */

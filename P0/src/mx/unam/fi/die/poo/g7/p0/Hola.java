@@ -6,7 +6,7 @@ package mx.unam.fi.die.poo.g7.p0;
 public class Hola{
     /**
      * Método principal que arranca el programa.
-     * @param args argumentos de linea de comandos
+     * @param args argumentos de línea de comandos
      */
     public static void main(String[] args) {
         System.out.println("Hola, mundo");

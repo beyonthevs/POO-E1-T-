@@ -220,7 +220,7 @@ public class Sistema {
 
     /**
      * Método para getMedicos.
-     * @return El valor de la propiedad medicos.
+     * @return El valor de la propiedad médicos.
      */
     public Medico[] getMedicos() {
         Medico[] resultado = new Medico[noMedicos];

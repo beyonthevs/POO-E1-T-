@@ -17,13 +17,16 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Insets;
 
-public final /**
- * Programa para resolver el ejercicio de la clase.
+/**
+ * Controla la interfaz principal para dibujar figuras en 2D.
  */
-class Dibujador2D extends JFrame {
+public final class Dibujador2D extends JFrame {
     private final PanelDibujo panelDibujo = new PanelDibujo();
     private final JButton botonColor = new JButton();
 
+    /**
+     * Constructor de Dibujador2D.
+     */
     public Dibujador2D() {
         super("Dibujador 2D");
         construirInterfaz();
@@ -120,6 +123,10 @@ class Dibujador2D extends JFrame {
         return String.format("#%02X%02X%02X", color.getRed(), color.getGreen(), color.getBlue());
     }
 
+    /**
+     * Método principal que arranca el programa.
+     * @param args Argumentos de la línea de comandos.
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             new Dibujador2D().setVisible(true);
