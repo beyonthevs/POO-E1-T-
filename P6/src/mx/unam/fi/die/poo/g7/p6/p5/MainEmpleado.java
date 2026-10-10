@@ -3,7 +3,7 @@ package mx.unam.fi.die.poo.g7.p6.p5;
 import java.util.Scanner;
 
 /**
- * Prueba que la clase Empleado funcione bien creando algunos trabajadores.
+ * Prueba que la clase Empleado funcione bien creando a dos trabajadores como ejemplo.
  */
 public class MainEmpleado {
     /**

@@ -1,7 +1,7 @@
 package mx.unam.fi.die.poo.g7.p6.e1;
 
 /**
- * Controla el registro de doctores y pacientes, y los menús del hospital.
+ * Controla la interacción entre entidades, y varios métodos en relación a ellas.
  */
 public class Sistema {
     private String nombreHospital;
@@ -27,7 +27,7 @@ public class Sistema {
     }
 
     /**
-     * Método para registroMedico.
+     * Método para registrar un médico.
      * @param medico Médico involucrado.
      * @return true si la operación fue exitosa, false en caso contrario.
      */
@@ -41,7 +41,7 @@ public class Sistema {
     }
 
     /**
-     * Método para registroEnfermero.
+     * Método para registrar un enfermero.
      * @param enfermero Enfermero involucrado.
      * @return true si la operación fue exitosa, false en caso contrario.
      */
@@ -55,7 +55,7 @@ public class Sistema {
     }
 
     /**
-     * Método para registroPaciente.
+     * Método para registrar un paciente.
      * @param paciente Paciente involucrado.
      * @return true si la operación fue exitosa, false en caso contrario.
      */
@@ -69,7 +69,7 @@ public class Sistema {
     }
 
     /**
-     * Método para asignarPaciente.
+     * Método para asignar un paciente a un médico.
      * @param paciente Paciente involucrado.
      * @param medico Médico involucrado.
      * @return true si la operación fue exitosa, false en caso contrario.
@@ -85,7 +85,7 @@ public class Sistema {
     }
 
     /**
-     * Método para asignarPaciente.
+     * Método para asignar un paciente a un enfermero.
      * @param paciente Paciente involucrado.
      * @param enfermero Enfermero involucrado.
      * @return true si la operación fue exitosa, false en caso contrario.
@@ -101,7 +101,7 @@ public class Sistema {
     }
 
     /**
-     * Método para estaRegistrado.
+     * Método para ver si un paciente está registrado.
      */
     private boolean estaRegistrado(Paciente paciente) {
         for (int i = 0; i < noPacientes; i++) {
@@ -113,7 +113,7 @@ public class Sistema {
     }
 
     /**
-     * Método para estaRegistrado.
+     * Método para ver si un médico está registrado.
      */
     private boolean estaRegistrado(Medico medico) {
         for (int i = 0; i < noMedicos; i++) {
@@ -125,7 +125,7 @@ public class Sistema {
     }
 
     /**
-     * Método para estaRegistrado.
+     * Método para ver si un enfermero está registrado.
      */
     private boolean estaRegistrado(Enfermero enfermero) {
         for (int i = 0; i < noEnfermeros; i++) {
@@ -137,7 +137,7 @@ public class Sistema {
     }
 
     /**
-     * Método para buscarMedico.
+     * Método para buscar un médico por su cédula.
      * @param cedula Cédula de la persona.
      * @return El objeto encontrado, o null si no existe.
      */
@@ -151,7 +151,7 @@ public class Sistema {
     }
 
     /**
-     * Método para buscarEnfermero.
+     * Método para buscar un enfermero por su cédula.
      * @param cedula Cédula de la persona.
      * @return El objeto encontrado, o null si no existe.
      */
@@ -165,7 +165,7 @@ public class Sistema {
     }
 
     /**
-     * Método para buscarPaciente.
+     * Método para buscar un paciente por su nombre.
      * @param nombre Nombre de la persona.
      * @return El objeto encontrado, o null si no existe.
      */
@@ -179,7 +179,7 @@ public class Sistema {
     }
 
     /**
-     * Método para getNombreHospital.
+     * Método para obtener el nombre del hospital.
      * @return El valor de la propiedad nombrehospital.
      */
     public String getNombreHospital() {
@@ -187,7 +187,7 @@ public class Sistema {
     }
 
     /**
-     * Método para setNombreHospital.
+     * Método para designar el nombre del hospital.
      * @param nombreHospital Nombre del hospital.
      */
     public void setNombreHospital(String nombreHospital) {
@@ -195,7 +195,7 @@ public class Sistema {
     }
 
     /**
-     * Método para getNoMedicos.
+     * Método para obtener el número de médicos.
      * @return El valor de la propiedad nomedicos.
      */
     public int getNoMedicos() {
@@ -203,7 +203,7 @@ public class Sistema {
     }
 
     /**
-     * Método para getNoEnfermeros.
+     * Método para obtener el número de enfermeros.
      * @return El valor de la propiedad noenfermeros.
      */
     public int getNoEnfermeros() {
@@ -211,7 +211,7 @@ public class Sistema {
     }
 
     /**
-     * Método para getNoPacientes.
+     * Método para obtener el número de pacientes.
      * @return El valor de la propiedad nopacientes.
      */
     public int getNoPacientes() {
@@ -219,7 +219,7 @@ public class Sistema {
     }
 
     /**
-     * Método para getMedicos.
+     * Método para obtener los médicos registrados.
      * @return El valor de la propiedad médicos.
      */
     public Medico[] getMedicos() {
@@ -231,7 +231,7 @@ public class Sistema {
     }
 
     /**
-     * Método para getEnfermeros.
+     * Método para obtener los enfermeros registrados.
      * @return El valor de la propiedad enfermeros.
      */
     public Enfermero[] getEnfermeros() {
@@ -243,7 +243,7 @@ public class Sistema {
     }
 
     /**
-     * Método para getPacientes.
+     * Método para obtener los pacientes registrados.
      * @return El valor de la propiedad pacientes.
      */
     public Paciente[] getPacientes() {

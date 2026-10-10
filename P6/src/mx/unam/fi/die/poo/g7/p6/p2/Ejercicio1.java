@@ -3,7 +3,7 @@ package mx.unam.fi.die.poo.g7.p6.p2;
 import java.util.Scanner;
 
 /**
- * Primer ejercicio de la práctica, hace operaciones matemáticas sencillas.
+ * Primer ejercicio de la práctica, simula un bono al docente si al menos 9 alumnos aprueban.
  */
 public class Ejercicio1 {
     /**

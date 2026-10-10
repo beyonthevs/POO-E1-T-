@@ -3,7 +3,7 @@ package mx.unam.fi.die.poo.g7.p6.p3;
 import java.util.Scanner;
 
 /**
- * Programa que checa si un número de 5 dígitos se lee igual al derecho y al revés.
+ * Programa que revisa si un número de 5 dígitos se lee igual al derecho y al revés (palindromo).
  */
 public class Palindromo5Digitos {
 
@@ -35,7 +35,7 @@ public class Palindromo5Digitos {
     }
 
     /**
-     * Método para esPalindromo.
+     * Método para ver si es Palindromo.
      * @param numero Número a evaluar.
      * @return true si la operación fue exitosa, false en caso contrario.
      */

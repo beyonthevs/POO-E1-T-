@@ -3,7 +3,7 @@ package mx.unam.fi.die.poo.g7.p6.p5;
 import java.util.Scanner;
 
 /**
- * Programa chiquito para probar que la fecha se guarde y muestre bien.
+ * Programa para probar que la fecha se guarde y muestre correctamente.
  */
 public class MainFecha {
     /**

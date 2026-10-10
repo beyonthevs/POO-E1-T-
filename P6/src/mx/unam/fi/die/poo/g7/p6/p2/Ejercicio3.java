@@ -1,7 +1,7 @@
 package mx.unam.fi.die.poo.g7.p6.p2;
 
 /**
- * Tercer ejercicio, para practicar arreglos y mostrar resultados.
+ * Tercer ejercicio, para practicar arreglos y mostrar resultados con formato.
  */
 public class Ejercicio3 {
     /**
