@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"l":"mx.unam.fi.die.poo.g7.p6.e1"},{"l":"mx.unam.fi.die.poo.g7.p6.p0"},{"l":"mx.unam.fi.die.poo.g7.p6.p1"},{"l":"mx.unam.fi.die.poo.g7.p6.p2"},{"l":"mx.unam.fi.die.poo.g7.p6.p3"},{"l":"mx.unam.fi.die.poo.g7.p6.p4"},{"l":"mx.unam.fi.die.poo.g7.p6.p5"}];updateSearchResults();

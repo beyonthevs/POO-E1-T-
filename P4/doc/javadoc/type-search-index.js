@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html","k":"18"},{"p":"mx.unam.fi.die.poo.g7.p4","l":"AnalizadorPalabras"},{"p":"mx.unam.fi.die.poo.g7.p4","l":"Main"}];updateSearchResults();

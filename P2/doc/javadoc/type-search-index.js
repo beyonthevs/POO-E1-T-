@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html","k":"18"},{"p":"mx.unam.fi.die.poo.g7.p2","l":"Ejercicio1"},{"p":"mx.unam.fi.die.poo.g7.p2","l":"Ejercicio2"},{"p":"mx.unam.fi.die.poo.g7.p2","l":"Ejercicio3"}];updateSearchResults();
