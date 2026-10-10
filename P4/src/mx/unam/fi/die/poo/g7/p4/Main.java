@@ -1,0 +1,35 @@
+package mx.unam.fi.die.poo.g7.p4;
+
+import java.util.Scanner;
+
+/**
+ * Clase principal que arranca nuestro programa.
+ */
+public class Main {
+    /**
+     * Método principal que arranca el programa.
+     * @param args argumentos de linea de comandos
+     */
+  public static void main(String[]args){
+   Scanner scanner = new Scanner(System.in);
+
+
+   System.out.println("Ingresa la oracion a analizar");
+   String texto = scanner.nextLine();
+
+   AnalizadorPalabras analizador = new AnalizadorPalabras(texto);
+
+   analizador.contarPalabras();
+
+   int cantidadDuplicados = analizador.obtenerNumeroDuplicados();
+   System.out.println("\nPalabras diferentes que se duplicaron: " + cantidadDuplicados + "\n");
+   
+   System.out.println("Detalle de duplicados(Sin ordenar)");
+   analizador.mostrarDuplicadas(false);
+
+   System.out.println("\nDetalle de duplicados (Orden alfabetico)");
+   analizador.mostrarDuplicadas(true);
+
+   scanner.close();
+  }
+}

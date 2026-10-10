@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"mx.unam.fi.die.poo.g7.p6.p3","c":"Palindromo5Digitos","l":"esPalindromo(int)","k":"6"},{"p":"mx.unam.fi.die.poo.g7.p6.p3","c":"Palindromo5Digitos","l":"main(String[])","u":"main(java.lang.String[])","k":"6"},{"p":"mx.unam.fi.die.poo.g7.p6.p3","c":"Palindromo5Digitos","l":"Palindromo5Digitos()","u":"%3Cinit%3E()","k":"3"}];updateSearchResults();
