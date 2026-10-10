@@ -3,12 +3,11 @@ package mx.unam.fi.die.poo.g7.p6.p1;
 import java.util.Scanner;
 
 /**
- * Clase Calculadora para la practica p1.
- * Sirve para resolver el problema asignado.
+ * Programa que simula una calculadora básica con un menú de opciones.
  */
 public class Calculadora {
     /**
-     * Metodo principal que arranca el programa.
+     * Método principal que arranca el programa.
      * @param args argumentos de linea de comandos
      */
     public static void main(String[] args) {

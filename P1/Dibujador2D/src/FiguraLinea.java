@@ -1,7 +1,10 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public final class FiguraLinea extends Figura {
+public final /**
+ * Programa para resolver el ejercicio de la clase.
+ */
+class FiguraLinea extends Figura {
     private final int x1;
     private final int y1;
     private final int x2;

@@ -3,12 +3,11 @@ package mx.unam.fi.die.poo.g7.p6.p5;
 import java.util.Scanner;
 
 /**
- * Clase MainFecha para la practica p5.
- * Sirve para resolver el problema asignado.
+ * Programa chiquito para probar que la fecha se guarde y muestre bien.
  */
 public class MainFecha {
     /**
-     * Metodo principal que arranca el programa.
+     * Método principal que arranca el programa.
      * @param args argumentos de linea de comandos
      */
     public static void main(String[] args) {

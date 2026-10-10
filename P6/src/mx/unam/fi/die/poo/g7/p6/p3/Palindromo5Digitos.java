@@ -3,13 +3,12 @@ package mx.unam.fi.die.poo.g7.p6.p3;
 import java.util.Scanner;
 
 /**
- * Clase Palindromo5Digitos para la practica p3.
- * Sirve para resolver el problema asignado.
+ * Programa que checa si un número de 5 dígitos se lee igual al derecho y al revés.
  */
 public class Palindromo5Digitos {
 
     /**
-     * Metodo principal que arranca el programa.
+     * Método principal que arranca el programa.
      * @param args argumentos de linea de comandos
      */
     public static void main(String[] args) {
@@ -36,7 +35,9 @@ public class Palindromo5Digitos {
     }
 
     /**
-     * Metodo para esPalindromo.
+     * Método para esPalindromo.
+     * @param numero Número a evaluar.
+     * @return true si la operación fue exitosa, false en caso contrario.
      */
     public static boolean esPalindromo(int numero) {
         return (numero / 10000) == (numero % 10)

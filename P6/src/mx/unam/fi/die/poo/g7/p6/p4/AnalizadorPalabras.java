@@ -5,8 +5,7 @@ import java.util.TreeMap;
 import java.util.Map;
 
 /**
- * Clase AnalizadorPalabras para la practica p4.
- * Sirve para resolver el problema asignado.
+ * Cuenta cuántas veces aparece cada palabra en un texto y muestra las repetidas.
  */
 public class AnalizadorPalabras{
     public String oracion;
@@ -14,6 +13,7 @@ public class AnalizadorPalabras{
     
     /**
      * Constructor de AnalizadorPalabras.
+     * @param nuevaOracion Oración a analizar.
      */
     public AnalizadorPalabras(String nuevaOracion){
         this.oracion=nuevaOracion;
@@ -21,7 +21,7 @@ public class AnalizadorPalabras{
     }
 
     /**
-     * Metodo para contarPalabras.
+     * Método para contarPalabras.
      */
     public void contarPalabras(){
         String oracionLimpia=oracion.toLowerCase().replaceAll("[^a-záéíóúñ0-9]"," ");
@@ -34,7 +34,8 @@ public class AnalizadorPalabras{
     }
 
     /**
-     * Metodo para obtenerNumeroDuplicados.
+     * Método para obtenerNumeroDuplicados.
+     * @return Resultado de la operación.
      */
     public int obtenerNumeroDuplicados(){
         int contadorDuplicados=0;
@@ -47,7 +48,8 @@ public class AnalizadorPalabras{
     }
 
     /**
-     * Metodo para mostrarDuplicadas.
+     * Método para mostrarDuplicadas.
+     * @param ordenar true para ordenar, false en caso contrario.
      */
     public void mostrarDuplicadas(boolean ordenar){
         Map<String,Integer> mapaSalida=frecuencias;

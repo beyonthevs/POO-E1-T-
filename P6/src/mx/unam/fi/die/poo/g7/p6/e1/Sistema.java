@@ -1,8 +1,7 @@
 package mx.unam.fi.die.poo.g7.p6.e1;
 
 /**
- * Clase Sistema para la practica e1.
- * Sirve para resolver el problema asignado.
+ * Controla el registro de doctores y pacientes, y los menús del hospital.
  */
 public class Sistema {
     private String nombreHospital;
@@ -15,6 +14,7 @@ public class Sistema {
 
     /**
      * Constructor de Sistema.
+     * @param nombreHospital Nombre del hospital.
      */
     public Sistema(String nombreHospital) {
         this.nombreHospital = nombreHospital;
@@ -27,7 +27,9 @@ public class Sistema {
     }
 
     /**
-     * Metodo para registroMedico.
+     * Método para registroMedico.
+     * @param medico Médico involucrado.
+     * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean registroMedico(Medico medico) {
         if (medico == null || noMedicos >= medicos.length || buscarMedico(medico.getCedula()) != null) {
@@ -39,7 +41,9 @@ public class Sistema {
     }
 
     /**
-     * Metodo para registroEnfermero.
+     * Método para registroEnfermero.
+     * @param enfermero Enfermero involucrado.
+     * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean registroEnfermero(Enfermero enfermero) {
         if (enfermero == null || noEnfermeros >= enfermeros.length || buscarEnfermero(enfermero.getCedula()) != null) {
@@ -51,7 +55,9 @@ public class Sistema {
     }
 
     /**
-     * Metodo para registroPaciente.
+     * Método para registroPaciente.
+     * @param paciente Paciente involucrado.
+     * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean registroPaciente(Paciente paciente) {
         if (paciente == null || noPacientes >= pacientes.length || buscarPaciente(paciente.getNombre()) != null) {
@@ -63,7 +69,10 @@ public class Sistema {
     }
 
     /**
-     * Metodo para asignarPaciente.
+     * Método para asignarPaciente.
+     * @param paciente Paciente involucrado.
+     * @param medico Médico involucrado.
+     * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean asignarPaciente(Paciente paciente, Medico medico) {
         if (paciente == null || medico == null) {
@@ -76,7 +85,10 @@ public class Sistema {
     }
 
     /**
-     * Metodo para asignarPaciente.
+     * Método para asignarPaciente.
+     * @param paciente Paciente involucrado.
+     * @param enfermero Enfermero involucrado.
+     * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean asignarPaciente(Paciente paciente, Enfermero enfermero) {
         if (paciente == null || enfermero == null) {
@@ -89,7 +101,7 @@ public class Sistema {
     }
 
     /**
-     * Metodo para estaRegistrado.
+     * Método para estaRegistrado.
      */
     private boolean estaRegistrado(Paciente paciente) {
         for (int i = 0; i < noPacientes; i++) {
@@ -101,7 +113,7 @@ public class Sistema {
     }
 
     /**
-     * Metodo para estaRegistrado.
+     * Método para estaRegistrado.
      */
     private boolean estaRegistrado(Medico medico) {
         for (int i = 0; i < noMedicos; i++) {
@@ -113,7 +125,7 @@ public class Sistema {
     }
 
     /**
-     * Metodo para estaRegistrado.
+     * Método para estaRegistrado.
      */
     private boolean estaRegistrado(Enfermero enfermero) {
         for (int i = 0; i < noEnfermeros; i++) {
@@ -125,7 +137,9 @@ public class Sistema {
     }
 
     /**
-     * Metodo para buscarMedico.
+     * Método para buscarMedico.
+     * @param cedula Cédula de la persona.
+     * @return El objeto encontrado, o null si no existe.
      */
     public Medico buscarMedico(String cedula) {
         for (int i = 0; i < noMedicos; i++) {
@@ -137,7 +151,9 @@ public class Sistema {
     }
 
     /**
-     * Metodo para buscarEnfermero.
+     * Método para buscarEnfermero.
+     * @param cedula Cédula de la persona.
+     * @return El objeto encontrado, o null si no existe.
      */
     public Enfermero buscarEnfermero(String cedula) {
         for (int i = 0; i < noEnfermeros; i++) {
@@ -149,7 +165,9 @@ public class Sistema {
     }
 
     /**
-     * Metodo para buscarPaciente.
+     * Método para buscarPaciente.
+     * @param nombre Nombre de la persona.
+     * @return El objeto encontrado, o null si no existe.
      */
     public Paciente buscarPaciente(String nombre) {
         for (int i = 0; i < noPacientes; i++) {
@@ -161,42 +179,48 @@ public class Sistema {
     }
 
     /**
-     * Metodo para getNombreHospital.
+     * Método para getNombreHospital.
+     * @return El valor de la propiedad nombrehospital.
      */
     public String getNombreHospital() {
         return nombreHospital;
     }
 
     /**
-     * Metodo para setNombreHospital.
+     * Método para setNombreHospital.
+     * @param nombreHospital Nombre del hospital.
      */
     public void setNombreHospital(String nombreHospital) {
         this.nombreHospital = nombreHospital;
     }
 
     /**
-     * Metodo para getNoMedicos.
+     * Método para getNoMedicos.
+     * @return El valor de la propiedad nomedicos.
      */
     public int getNoMedicos() {
         return noMedicos;
     }
 
     /**
-     * Metodo para getNoEnfermeros.
+     * Método para getNoEnfermeros.
+     * @return El valor de la propiedad noenfermeros.
      */
     public int getNoEnfermeros() {
         return noEnfermeros;
     }
 
     /**
-     * Metodo para getNoPacientes.
+     * Método para getNoPacientes.
+     * @return El valor de la propiedad nopacientes.
      */
     public int getNoPacientes() {
         return noPacientes;
     }
 
     /**
-     * Metodo para getMedicos.
+     * Método para getMedicos.
+     * @return El valor de la propiedad medicos.
      */
     public Medico[] getMedicos() {
         Medico[] resultado = new Medico[noMedicos];
@@ -207,7 +231,8 @@ public class Sistema {
     }
 
     /**
-     * Metodo para getEnfermeros.
+     * Método para getEnfermeros.
+     * @return El valor de la propiedad enfermeros.
      */
     public Enfermero[] getEnfermeros() {
         Enfermero[] resultado = new Enfermero[noEnfermeros];
@@ -218,7 +243,8 @@ public class Sistema {
     }
 
     /**
-     * Metodo para getPacientes.
+     * Método para getPacientes.
+     * @return El valor de la propiedad pacientes.
      */
     public Paciente[] getPacientes() {
         Paciente[] resultado = new Paciente[noPacientes];

@@ -1,8 +1,7 @@
 package mx.unam.fi.die.poo.g7.e1;
 
 /**
- * Clase Medico para la practica e1.
- * Sirve para resolver el problema asignado.
+ * Guarda la información de los doctores del hospital y su especialidad.
  */
 public class Medico {
     private String nombre;
@@ -15,6 +14,9 @@ public class Medico {
 
     /**
      * Constructor de Medico.
+     * @param nombre Nombre de la persona.
+     * @param cedula Cédula de la persona.
+     * @param especialidad Especialidad del médico.
      */
     public Medico(String nombre, String cedula, String especialidad) {
         this.nombre = nombre;
@@ -25,7 +27,9 @@ public class Medico {
     }
 
     /**
-     * Metodo para registroEnSistema.
+     * Método para registroEnSistema.
+     * @param sistema Sistema de gestión hospitalaria.
+     * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean registroEnSistema(Sistema sistema) {
         if (sistema == null) {
@@ -39,7 +43,8 @@ public class Medico {
     }
 
     /**
-     * Metodo para solicitarPaciente.
+     * Método para solicitarPaciente.
+     * @return Resultado de la operación.
      */
     public Paciente solicitarPaciente() {
         for (int i = 0; i < noPacientes; i++) {
@@ -51,7 +56,9 @@ public class Medico {
     }
 
     /**
-     * Metodo para darConsulta.
+     * Método para darConsulta.
+     * @param paciente Paciente involucrado.
+     * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean darConsulta(Paciente paciente) {
         if (paciente == null || pacienteEnConsulta != null) {
@@ -72,7 +79,9 @@ public class Medico {
     }
 
     /**
-     * Metodo para darTratamiento.
+     * Método para darTratamiento.
+     * @param paciente Paciente involucrado.
+     * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean darTratamiento(Paciente paciente) {
         if (paciente == null || getPacienteAsignado(paciente) == null) {
@@ -86,7 +95,8 @@ public class Medico {
     }
 
     /**
-     * Metodo para verListaPacientes.
+     * Método para verListaPacientes.
+     * @return Resultado de la operación.
      */
     public String verListaPacientes() {
         Paciente[] copia = new Paciente[noPacientes];
@@ -113,7 +123,9 @@ public class Medico {
     }
 
     /**
-     * Metodo para agregarPaciente.
+     * Método para agregarPaciente.
+     * @param paciente Paciente involucrado.
+     * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean agregarPaciente(Paciente paciente) {
         if (paciente == null || noPacientes >= 10) {
@@ -132,7 +144,9 @@ public class Medico {
     }
 
     /**
-     * Metodo para getPacienteAsignado.
+     * Método para getPacienteAsignado.
+     * @param paciente Paciente involucrado.
+     * @return El valor de la propiedad pacienteasignado.
      */
     public Paciente getPacienteAsignado(Paciente paciente) {
         for (int i = 0; i < noPacientes; i++) {
@@ -144,63 +158,72 @@ public class Medico {
     }
 
     /**
-     * Metodo para getNombre.
+     * Método para getNombre.
+     * @return El valor de la propiedad nombre.
      */
     public String getNombre() {
         return nombre;
     }
 
     /**
-     * Metodo para setNombre.
+     * Método para setNombre.
+     * @param nombre Nombre de la persona.
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     /**
-     * Metodo para getCedula.
+     * Método para getCedula.
+     * @return El valor de la propiedad cedula.
      */
     public String getCedula() {
         return cedula;
     }
 
     /**
-     * Metodo para setCedula.
+     * Método para setCedula.
+     * @param cedula Cédula de la persona.
      */
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
     /**
-     * Metodo para getEspecialidad.
+     * Método para getEspecialidad.
+     * @return El valor de la propiedad especialidad.
      */
     public String getEspecialidad() {
         return especialidad;
     }
 
     /**
-     * Metodo para setEspecialidad.
+     * Método para setEspecialidad.
+     * @param especialidad Especialidad del médico.
      */
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
 
     /**
-     * Metodo para getNoPacientes.
+     * Método para getNoPacientes.
+     * @return El valor de la propiedad nopacientes.
      */
     public int getNoPacientes() {
         return noPacientes;
     }
 
     /**
-     * Metodo para getPacienteEnConsulta.
+     * Método para getPacienteEnConsulta.
+     * @return El valor de la propiedad pacienteenconsulta.
      */
     public Paciente getPacienteEnConsulta() {
         return pacienteEnConsulta;
     }
 
     /**
-     * Metodo para getSistema.
+     * Método para getSistema.
+     * @return El valor de la propiedad sistema.
      */
     public Sistema getSistema() {
         return sistema;

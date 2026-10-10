@@ -3,12 +3,11 @@ package mx.unam.fi.die.poo.g7.p5;
 import java.util.Scanner;
 
 /**
- * Clase MainEmpleado para la practica p5.
- * Sirve para resolver el problema asignado.
+ * Prueba que la clase Empleado funcione bien creando a dos trabajadores como ejemplo.
  */
 public class MainEmpleado {
     /**
-     * Metodo principal que arranca el programa.
+     * Método principal que arranca el programa.
      * @param args argumentos de linea de comandos
      */
     public static void main(String[] args) {

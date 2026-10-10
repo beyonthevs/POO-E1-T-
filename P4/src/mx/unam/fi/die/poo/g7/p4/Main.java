@@ -3,12 +3,11 @@ package mx.unam.fi.die.poo.g7.p4;
 import java.util.Scanner;
 
 /**
- * Clase Main para la practica p4.
- * Sirve para resolver el problema asignado.
+ * Clase principal que arranca nuestro programa.
  */
 public class Main {
     /**
-     * Metodo principal que arranca el programa.
+     * Método principal que arranca el programa.
      * @param args argumentos de linea de comandos
      */
   public static void main(String[]args){

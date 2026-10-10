@@ -3,15 +3,14 @@ package mx.unam.fi.die.poo.g7.e1;
 import java.util.Scanner;
 
 /**
- * Clase Main para la practica e1.
- * Sirve para resolver el problema asignado.
+ * Clase principal que arranca nuestro programa y gestiona el menú principal.
  */
 public class Main {
     private static final Scanner entrada = new Scanner(System.in);
     private static Sistema sistema;
 
     /**
-     * Metodo principal que arranca el programa.
+     * Método principal que arranca el programa.
      * @param args argumentos de linea de comandos
      */
     public static void main(String[] args) {
@@ -83,7 +82,7 @@ public class Main {
     }
 
     /**
-     * Metodo para mostrarMenu.
+     * Método para mostrarMenu.
      */
     private static void mostrarMenu() {
         System.out.println("========================================");
@@ -106,7 +105,7 @@ public class Main {
     }
 
     /**
-     * Metodo para registrarMedico.
+     * Método para registrarMedico.
      */
     private static void registrarMedico() {
         System.out.println("--- Registro de medico ---");
@@ -124,7 +123,7 @@ public class Main {
     }
 
     /**
-     * Metodo para registrarEnfermero.
+     * Método para registrarEnfermero.
      */
     private static void registrarEnfermero() {
         System.out.println("--- Registro de enfermero ---");
@@ -142,7 +141,7 @@ public class Main {
     }
 
     /**
-     * Metodo para registrarPaciente.
+     * Método para registrarPaciente.
      */
     private static void registrarPaciente() {
         System.out.println("--- Registro de paciente ---");
@@ -159,7 +158,7 @@ public class Main {
     }
 
     /**
-     * Metodo para asignarPacienteMedico.
+     * Método para asignarPacienteMedico.
      */
     private static void asignarPacienteMedico() {
         System.out.println("--- Asignacion a medico ---");
@@ -183,7 +182,7 @@ public class Main {
     }
 
     /**
-     * Metodo para asignarPacienteEnfermero.
+     * Método para asignarPacienteEnfermero.
      */
     private static void asignarPacienteEnfermero() {
         System.out.println("--- Asignacion a enfermero ---");
@@ -207,7 +206,7 @@ public class Main {
     }
 
     /**
-     * Metodo para solicitarConsulta.
+     * Método para solicitarConsulta.
      */
     private static void solicitarConsulta() {
         System.out.println("--- Solicitud de consulta ---");
@@ -231,7 +230,7 @@ public class Main {
     }
 
     /**
-     * Metodo para darTratamientoMedico.
+     * Método para darTratamientoMedico.
      */
     private static void darTratamientoMedico() {
         System.out.println("--- Tratamiento por medico ---");
@@ -254,7 +253,7 @@ public class Main {
     }
 
     /**
-     * Metodo para darTratamientoEnfermero.
+     * Método para darTratamientoEnfermero.
      */
     private static void darTratamientoEnfermero() {
         System.out.println("--- Tratamiento por enfermero ---");
@@ -277,7 +276,7 @@ public class Main {
     }
 
     /**
-     * Metodo para verListaMedico.
+     * Método para verListaMedico.
      */
     private static void verListaMedico() {
         System.out.println("--- Lista de pacientes de medico ---");
@@ -297,7 +296,7 @@ public class Main {
     }
 
     /**
-     * Metodo para verListaEnfermero.
+     * Método para verListaEnfermero.
      */
     private static void verListaEnfermero() {
         System.out.println("--- Lista de pacientes de enfermero ---");
@@ -317,7 +316,7 @@ public class Main {
     }
 
     /**
-     * Metodo para verEstadoPaciente.
+     * Método para verEstadoPaciente.
      */
     private static void verEstadoPaciente() {
         System.out.println("--- Estado de paciente ---");
@@ -337,7 +336,7 @@ public class Main {
     }
 
     /**
-     * Metodo para mostrarResumen.
+     * Método para mostrarResumen.
      */
     private static void mostrarResumen() {
         System.out.println("--- Resumen del sistema ---");
@@ -348,7 +347,7 @@ public class Main {
     }
 
     /**
-     * Metodo para buscarMedicoPorCedula.
+     * Método para buscarMedicoPorCedula.
      */
     private static Medico buscarMedicoPorCedula() {
         String cedula = leerTexto("Cedula del medico: ");
@@ -362,7 +361,7 @@ public class Main {
     }
 
     /**
-     * Metodo para buscarEnfermeroPorCedula.
+     * Método para buscarEnfermeroPorCedula.
      */
     private static Enfermero buscarEnfermeroPorCedula() {
         String cedula = leerTexto("Cedula del enfermero: ");
@@ -376,7 +375,7 @@ public class Main {
     }
 
     /**
-     * Metodo para buscarPacientePorNombre.
+     * Método para buscarPacientePorNombre.
      */
     private static Paciente buscarPacientePorNombre() {
         String nombre = leerTexto("Apellidos y nombres del paciente: ");
@@ -390,7 +389,7 @@ public class Main {
     }
 
     /**
-     * Metodo para leerTexto.
+     * Método para leerTexto.
      */
     private static String leerTexto(String mensaje) {
         System.out.print(mensaje);
@@ -398,7 +397,7 @@ public class Main {
     }
 
     /**
-     * Metodo para leerEntero.
+     * Método para leerEntero.
      */
     private static int leerEntero(String mensaje) {
         while (true) {

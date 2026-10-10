@@ -1,7 +1,10 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public final class FiguraOvalo extends Figura {
+public final /**
+ * Programa para resolver el ejercicio de la clase.
+ */
+class FiguraOvalo extends Figura {
     private final int x;
     private final int y;
     private final int ancho;

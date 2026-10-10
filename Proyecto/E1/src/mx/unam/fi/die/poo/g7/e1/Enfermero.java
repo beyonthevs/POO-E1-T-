@@ -1,8 +1,7 @@
 package mx.unam.fi.die.poo.g7.e1;
 
 /**
- * Clase Enfermero para la practica e1.
- * Sirve para resolver el problema asignado.
+ * Clase Enfermero, una de nuestras entidades en el hospital.
  */
 public class Enfermero {
     private String nombre;
@@ -14,6 +13,9 @@ public class Enfermero {
 
     /**
      * Constructor de Enfermero.
+     * @param nombre Nombre de la persona.
+     * @param cedula Cédula de la persona.
+     * @param especialidad Especialidad del médico.
      */
     public Enfermero(String nombre, String cedula, String especialidad) {
         this.nombre = nombre;
@@ -24,7 +26,9 @@ public class Enfermero {
     }
 
     /**
-     * Metodo para registroEnSistema.
+     * Método para registroEnSistema.
+     * @param sistema Sistema de gestión hospitalaria.
+     * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean registroEnSistema(Sistema sistema) {
         if (sistema == null) {
@@ -38,7 +42,8 @@ public class Enfermero {
     }
 
     /**
-     * Metodo para verListaPacientes.
+     * Método para verListaPacientes.
+     * @return Resultado de la operación.
      */
     public String verListaPacientes() {
         Paciente[] copia = new Paciente[noPacientes];
@@ -65,7 +70,9 @@ public class Enfermero {
     }
 
     /**
-     * Metodo para darTratamiento.
+     * Método para darTratamiento.
+     * @param paciente Paciente involucrado.
+     * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean darTratamiento(Paciente paciente) {
         if (paciente == null || getPacienteAsignado(paciente) == null) {
@@ -76,7 +83,9 @@ public class Enfermero {
     }
 
     /**
-     * Metodo para agregarPaciente.
+     * Método para agregarPaciente.
+     * @param paciente Paciente involucrado.
+     * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean agregarPaciente(Paciente paciente) {
         if (paciente == null || noPacientes >= 3) {
@@ -95,7 +104,9 @@ public class Enfermero {
     }
 
     /**
-     * Metodo para getPacienteAsignado.
+     * Método para getPacienteAsignado.
+     * @param paciente Paciente involucrado.
+     * @return El valor de la propiedad pacienteasignado.
      */
     public Paciente getPacienteAsignado(Paciente paciente) {
         for (int i = 0; i < noPacientes; i++) {
@@ -107,56 +118,64 @@ public class Enfermero {
     }
 
     /**
-     * Metodo para getNombre.
+     * Método para getNombre.
+     * @return El valor de la propiedad nombre.
      */
     public String getNombre() {
         return nombre;
     }
 
     /**
-     * Metodo para setNombre.
+     * Método para setNombre.
+     * @param nombre Nombre de la persona.
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     /**
-     * Metodo para getCedula.
+     * Método para getCedula.
+     * @return El valor de la propiedad cedula.
      */
     public String getCedula() {
         return cedula;
     }
 
     /**
-     * Metodo para setCedula.
+     * Método para setCedula.
+     * @param cedula Cédula de la persona.
      */
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
     /**
-     * Metodo para getEspecialidad.
+     * Método para getEspecialidad.
+     * @return El valor de la propiedad especialidad.
      */
     public String getEspecialidad() {
         return especialidad;
     }
 
     /**
-     * Metodo para setEspecialidad.
+     * Método para setEspecialidad.
+     * @param especialidad Especialidad del médico.
      */
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
 
     /**
-     * Metodo para getNoPacientes.
+     * Método para getNoPacientes.
+     * @return El valor de la propiedad nopacientes.
      */
     public int getNoPacientes() {
         return noPacientes;
     }
 
     /**
-     * Metodo para getSistema.
+     * Método para getSistema.
+     * @return El valor de la propiedad sistema.
      */
     public Sistema getSistema() {
         return sistema;

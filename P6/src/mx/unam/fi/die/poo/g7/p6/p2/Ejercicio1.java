@@ -3,12 +3,11 @@ package mx.unam.fi.die.poo.g7.p6.p2;
 import java.util.Scanner;
 
 /**
- * Clase Ejercicio1 para la practica p2.
- * Sirve para resolver el problema asignado.
+ * Primer ejercicio de la práctica, hace operaciones matemáticas sencillas.
  */
 public class Ejercicio1 {
     /**
-     * Metodo principal que arranca el programa.
+     * Método principal que arranca el programa.
      * @param args argumentos de linea de comandos
      */
     public static void main(String[] args) {

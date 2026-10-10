@@ -3,12 +3,11 @@ package mx.unam.fi.die.poo.g7.p6.p2;
 import java.util.Scanner;
 
 /**
- * Clase Ejercicio2 para la practica p2.
- * Sirve para resolver el problema asignado.
+ * Segundo ejercicio, prueba el uso de ciclos y condicionales.
  */
 public class Ejercicio2 {
     /**
-     * Metodo principal que arranca el programa.
+     * Método principal que arranca el programa.
      * @param args argumentos de linea de comandos
      */
     public static void main(String[] args) {

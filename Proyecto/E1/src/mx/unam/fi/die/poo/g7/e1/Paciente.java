@@ -1,8 +1,7 @@
 package mx.unam.fi.die.poo.g7.e1;
 
 /**
- * Clase Paciente para la practica e1.
- * Sirve para resolver el problema asignado.
+ * Guarda los datos de la gente que viene a recibir tratamiento al hospital.
  */
 public class Paciente {
     private String nombre;
@@ -14,6 +13,8 @@ public class Paciente {
 
     /**
      * Constructor de Paciente.
+     * @param nombre Nombre de la persona.
+     * @param especialidadAtencion Especialidad requerida para la atención.
      */
     public Paciente(String nombre, String especialidadAtencion) {
         this.nombre = nombre;
@@ -22,7 +23,9 @@ public class Paciente {
     }
 
     /**
-     * Metodo para registroEnSistema.
+     * Método para registroEnSistema.
+     * @param sistema Sistema de gestión hospitalaria.
+     * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean registroEnSistema(Sistema sistema) {
         if (sistema == null) {
@@ -36,7 +39,9 @@ public class Paciente {
     }
 
     /**
-     * Metodo para solicitarConsulta.
+     * Método para solicitarConsulta.
+     * @param medico Médico involucrado.
+     * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean solicitarConsulta(Medico medico) {
         if (medico == null || medico.getNoPacientes() == 0 || !estado.equals("PENDIENTE")) {
@@ -52,84 +57,96 @@ public class Paciente {
     }
 
     /**
-     * Metodo para verTratamiento.
+     * Método para verTratamiento.
+     * @return true si la operación fue exitosa, false en caso contrario.
      */
     public boolean verTratamiento() {
         return "EN TRATAMIENTO".equals(estado);
     }
 
     /**
-     * Metodo para getNombre.
+     * Método para getNombre.
+     * @return El valor de la propiedad nombre.
      */
     public String getNombre() {
         return nombre;
     }
 
     /**
-     * Metodo para setNombre.
+     * Método para setNombre.
+     * @param nombre Nombre de la persona.
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     /**
-     * Metodo para getEspecialidadAtencion.
+     * Método para getEspecialidadAtencion.
+     * @return El valor de la propiedad especialidadatencion.
      */
     public String getEspecialidadAtencion() {
         return especialidadAtencion;
     }
 
     /**
-     * Metodo para setEspecialidadAtencion.
+     * Método para setEspecialidadAtencion.
+     * @param especialidadAtencion Especialidad requerida para la atención.
      */
     public void setEspecialidadAtencion(String especialidadAtencion) {
         this.especialidadAtencion = especialidadAtencion;
     }
 
     /**
-     * Metodo para getEstado.
+     * Método para getEstado.
+     * @return El valor de la propiedad estado.
      */
     public String getEstado() {
         return estado;
     }
 
     /**
-     * Metodo para getMedicoAsignado.
+     * Método para getMedicoAsignado.
+     * @return El valor de la propiedad medicoasignado.
      */
     public Medico getMedicoAsignado() {
         return medicoAsignado;
     }
 
     /**
-     * Metodo para getEnfermeroAsignado.
+     * Método para getEnfermeroAsignado.
+     * @return El valor de la propiedad enfermeroasignado.
      */
     public Enfermero getEnfermeroAsignado() {
         return enfermeroAsignado;
     }
 
     /**
-     * Metodo para getSistema.
+     * Método para getSistema.
+     * @return El valor de la propiedad sistema.
      */
     public Sistema getSistema() {
         return sistema;
     }
 
     /**
-     * Metodo para setMedicoAsignado.
+     * Método para setMedicoAsignado.
+     * @param medicoAsignado Médico que se asignará.
      */
     public void setMedicoAsignado(Medico medicoAsignado) {
         this.medicoAsignado = medicoAsignado;
     }
 
     /**
-     * Metodo para setEnfermeroAsignado.
+     * Método para setEnfermeroAsignado.
+     * @param enfermeroAsignado Enfermero que se asignará.
      */
     public void setEnfermeroAsignado(Enfermero enfermeroAsignado) {
         this.enfermeroAsignado = enfermeroAsignado;
     }
 
     /**
-     * Metodo para setEstado.
+     * Método para setEstado.
+     * @param estado Estado del paciente.
      */
     public void setEstado(String estado) {
         this.estado = estado;

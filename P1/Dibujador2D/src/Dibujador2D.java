@@ -15,7 +15,10 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Insets;
 
-public final class Dibujador2D extends JFrame {
+public final /**
+ * Programa para resolver el ejercicio de la clase.
+ */
+class Dibujador2D extends JFrame {
     private final PanelDibujo panelDibujo = new PanelDibujo();
     private final JButton botonColor = new JButton();
 

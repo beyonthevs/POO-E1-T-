@@ -1,8 +1,7 @@
 package mx.unam.fi.die.poo.g7.p5;
 
 /**
- * Clase Fecha para la practica p5.
- * Sirve para resolver el problema asignado.
+ * Guarda el día, mes y año, y nos deja imprimir la fecha con formato.
  */
 public class Fecha {
     private int mes;
@@ -12,6 +11,9 @@ public class Fecha {
     // Constructor basado en los setters para garantizar validaciones
     /**
      * Constructor de Fecha.
+     * @param mes Mes de la fecha.
+     * @param dia Día de la fecha.
+     * @param anio Año de la fecha.
      */
     public Fecha(int mes, int dia, int anio) {
         setMes(mes);
@@ -21,21 +23,24 @@ public class Fecha {
 
     // Métodos modificadores (Setters)
     /**
-     * Metodo para setMes.
+     * Método para setMes.
+     * @param mes Mes de la fecha.
      */
     public void setMes(int mes) {
         this.mes = mes;
     }
 
     /**
-     * Metodo para setDia.
+     * Método para setDia.
+     * @param dia Día de la fecha.
      */
     public void setDia(int dia) {
         this.dia = dia;
     }
 
     /**
-     * Metodo para setAnio.
+     * Método para setAnio.
+     * @param anio Año de la fecha.
      */
     public void setAnio(int anio) {
         this.anio = anio;
@@ -43,21 +48,24 @@ public class Fecha {
 
     // Métodos de acceso (Getters)
     /**
-     * Metodo para getMes.
+     * Método para getMes.
+     * @return El valor de la propiedad mes.
      */
     public int getMes() {
         return mes;
     }
 
     /**
-     * Metodo para getDia.
+     * Método para getDia.
+     * @return El valor de la propiedad dia.
      */
     public int getDia() {
         return dia;
     }
 
     /**
-     * Metodo para getAnio.
+     * Método para getAnio.
+     * @return El valor de la propiedad anio.
      */
     public int getAnio() {
         return anio;
@@ -65,7 +73,7 @@ public class Fecha {
 
     // Método para mostrar la fecha consultando a través de los getters
     /**
-     * Metodo para mostrarFecha.
+     * Método para mostrarFecha.
      */
     public void mostrarFecha() {
         System.out.println(getMes() + "/" + getDia() + "/" + getAnio());

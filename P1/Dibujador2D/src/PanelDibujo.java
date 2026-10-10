@@ -9,7 +9,10 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class PanelDibujo extends JPanel {
+public final /**
+ * Programa para resolver el ejercicio de la clase.
+ */
+class PanelDibujo extends JPanel {
     private final List<Figura> figuras = new ArrayList<>();
 
     private Color colorActual = new Color(180, 0, 180);

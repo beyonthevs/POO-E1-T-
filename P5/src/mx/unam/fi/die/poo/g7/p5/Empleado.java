@@ -1,8 +1,7 @@
 package mx.unam.fi.die.poo.g7.p5;
 
 /**
- * Clase Empleado para la practica p5.
- * Sirve para resolver el problema asignado.
+ * Plantilla para manejar los datos de un empleado, como su nombre y salario.
  */
 public class Empleado {
     private String nombre;
@@ -12,6 +11,9 @@ public class Empleado {
     // Constructor que delega totalmente en los setters
     /**
      * Constructor de Empleado.
+     * @param nombre Nombre de la persona.
+     * @param apellido Apellido del empleado.
+     * @param salarioMensual Salario mensual del empleado.
      */
     public Empleado(String nombre, String apellido, double salarioMensual) {
         setNombre(nombre);
@@ -21,21 +23,24 @@ public class Empleado {
 
     // Métodos modificadores (Setters)
     /**
-     * Metodo para setNombre.
+     * Método para setNombre.
+     * @param nombre Nombre de la persona.
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     /**
-     * Metodo para setApellido.
+     * Método para setApellido.
+     * @param apellido Apellido del empleado.
      */
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
     /**
-     * Metodo para setSalarioMensual.
+     * Método para setSalarioMensual.
+     * @param salarioMensual Salario mensual del empleado.
      */
     public void setSalarioMensual(double salarioMensual) {
         if (salarioMensual > 0) {
@@ -45,21 +50,24 @@ public class Empleado {
 
     // Métodos de acceso (Getters)
     /**
-     * Metodo para getNombre.
+     * Método para getNombre.
+     * @return El valor de la propiedad nombre.
      */
     public String getNombre() {
         return nombre;
     }
 
     /**
-     * Metodo para getApellido.
+     * Método para getApellido.
+     * @return El valor de la propiedad apellido.
      */
     public String getApellido() {
         return apellido;
     }
 
     /**
-     * Metodo para getSalarioMensual.
+     * Método para getSalarioMensual.
+     * @return El valor de la propiedad salariomensual.
      */
     public double getSalarioMensual() {
         return salarioMensual;

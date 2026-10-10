@@ -3,12 +3,11 @@ package mx.unam.fi.die.poo.g7.p2;
 import java.util.Scanner;
 
 /**
- * Clase Ejercicio2 para la practica p2.
- * Sirve para resolver el problema asignado.
+ * Segundo ejercicio, identifica al mayor de 10 enteros.
  */
 public class Ejercicio2 {
     /**
-     * Metodo principal que arranca el programa.
+     * Método principal que arranca el programa.
      * @param args argumentos de linea de comandos
      */
     public static void main(String[] args) {
