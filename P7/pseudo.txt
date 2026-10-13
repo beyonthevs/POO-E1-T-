@@ -1,0 +1,85 @@
+Clase Punto
+    Privado double x
+    Privado double y
+
+    Punto(double x, double y)
+        this.x = x
+        this.y = y
+    Fin Punto
+
+    Metodo double getX(): Retornar x
+    Metodo double getY(): Retornar y
+Fin Clase
+
+Clase Cuadrilatero
+    Privado Punto p1
+    Privado Punto p2
+    Privado Punto p3
+    Privado Punto p4
+
+    Cuadrilatero(Punto p1, Punto p2, Punto p3, Punto p4)
+        this.p1 = p1
+        this.p2 = p2
+        this.p3 = p3
+        this.p4 = p4
+    Fin Cuadrilatero
+
+    Metodo Punto getP1(): Retornar p1
+    Metodo Punto getP2(): Retornar p2
+    Metodo Punto getP3(): Retornar p3
+    Metodo Punto getP4(): Retornar p4
+Fin Clase
+
+Clase Trapezoide hereda_de Cuadrilatero
+    Trapezoide(Punto p1, Punto p2, Punto p3, Punto p4)
+        Super(p1, p2, p3, p4)
+    Fin Trapezoide
+
+    Metodo double calcularArea()
+        double baseMayor = ValorAbsoluto(getP2().getX() - getP1().getX())
+        double baseMenor = ValorAbsoluto(getP3().getX() - getP4().getX())
+        double altura = ValorAbsoluto(getP4().getY() - getP1().getY())
+        Retornar ((baseMayor + baseMenor) * altura) / 2.0
+    Fin Metodo
+Fin Clase
+
+Clase Paralelogramo hereda_de Trapezoide
+    Paralelogramo(Punto p1, Punto p2, Punto p3, Punto p4)
+        Super(p1, p2, p3, p4)
+    Fin Paralelogramo
+Fin Clase
+
+Clase Rectangulo hereda_de Paralelogramo
+    Rectangulo(Punto p1, Punto p2, Punto p3, Punto p4)
+        Super(p1, p2, p3, p4)
+    Fin Rectangulo
+Fin Clase
+
+Clase Cuadrado hereda_de Rectangulo
+    Cuadrado(Punto p1, Punto p2, Punto p3, Punto p4)
+        Super(p1, p2, p3, p4)
+    Fin Cuadrado
+Fin Clase
+
+Inicio Programa
+    Trapezoide trapezoide = nuevo Trapezoide(
+        nuevo Punto(0.0, 0.0), nuevo Punto(8.0, 0.0), nuevo Punto(6.0, 4.0), nuevo Punto(2.0, 4.0)
+    )
+
+    Paralelogramo paralelogramo = nuevo Paralelogramo(
+        nuevo Punto(0.0, 0.0), nuevo Punto(6.0, 0.0), nuevo Punto(8.0, 4.0), nuevo Punto(2.0, 4.0)
+    )
+
+    Rectangulo rectangulo = nuevo Rectangulo(
+        nuevo Punto(0.0, 0.0), nuevo Punto(6.0, 0.0), nuevo Punto(6.0, 4.0), nuevo Punto(0.0, 4.0)
+    )
+
+    Cuadrado cuadrado = nuevo Cuadrado(
+        nuevo Punto(0.0, 0.0), nuevo Punto(5.0, 0.0), nuevo Punto(5.0, 5.0), nuevo Punto(0.0, 5.0)
+    )
+
+    Imprimir "Area Trapezoide: " + trapezoide.calcularArea()
+    Imprimir "Area Paralelogramo: " + paralelogramo.calcularArea()
+    Imprimir "Area Rectangulo: " + rectangulo.calcularArea()
+    Imprimir "Area Cuadrado: " + cuadrado.calcularArea()
+Fin Programa
