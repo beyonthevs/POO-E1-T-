@@ -1,0 +1,75 @@
+PONENTE (Fernanda):
+
+"¡Hola a todos! Bienvenidos a la presentación de nuestra Práctica 4 de Programación Orientada a Objetos. En las sesiones anteriores exploramos las herramientas básicas del lenguaje y las librerías estándar de Java. Sin embargo, en esta práctica entramos de lleno al núcleo del paradigma: el diseño de Clases y la instanciación de Objetos para construir componentes modulares que interactúen entre sí.
+
+Para esta sesión abordamos dos retos clave. En primer lugar, realizamos un ejercicio de investigación con Inteligencia Artificial Generativa sobre la gestión automática de memoria en la JVM y la ausencia de destructores explícitos en Java. En segundo lugar, desarrollamos una aplicación completa en consola llamada Analizador de Palabras Duplicadas, la cual procesa oraciones mediante expresiones regulares y organiza las frecuencias de palabras utilizando mapas en Java. Acompáñenos a revisar cómo estructuramos este proyecto."
+
+---
+
+### BLOQUE 2: Marco Teórico y Reporte 
+
+ AIMÉ:
+
+"Como encargada de la documentación del reporte, profundicé en los fundamentos teóricos que sustentan nuestra práctica. Un Tipo de Dato Abstracto nos permite definir un conjunto de datos y sus operaciones. En Java, la Clase actúa como la plantilla o molde que define los atributos de estado y los métodos de comportamiento. La creación de un Objeto se realiza mediante el proceso de instanciación con el operador `new`, solicitando espacio en la memoria Heap e invocando al método constructor.
+
+Asimismo, analizamos la palabra reservada `this` como una autorreferencia implícita para evitar ambigüedades entre parámetros y atributos. En el ámbito de colecciones, revisamos la interfaz `Map`: por un lado, `HashMap`, que utiliza una tabla de dispersión ofreciendo máxima velocidad con complejidad promedio O(1) sin orden definido; y por otro lado, `TreeMap`, basado en un árbol rojo-negro, que mantiene las claves ordenadas alfabéticamente con una complejidad O(log n)."
+
+---
+
+### BLOQUE 3: Lluvia de Ideas: Hallazgos de la IA sobre Destructores y Memoria
+
+PONENTE (Fernanda):
+
+"Como parte de nuestra investigación, cada integrante de la brigada consultó una herramienta de IA Generativa distinta utilizando un prompt técnico común para investigar sobre la destrucción de objetos en Java. Hagamos una rápida lluvia de ideas sobre las respuestas obtenidas. A ver, Gabriel, ¿qué nos entregó la IA respecto a los destructores?"
+
+GABRIEL:
+
+"A mí me aclaró que en Java no existen los destructores explícitos como en C++. La liberación de memoria en el Heap se realiza de forma automática gracias al Recolector de Basura o Garbage Collector."
+
+ PONENTE (Fernanda):
+
+"¡Exacto! Y complementando esto, la IA nos explicó que el Recolector de Basura monitorea en segundo plano los objetos que ya no tienen referencias activas en la memoria Stack para destruirlos y liberar espacio. Rosa, ¿qué te indicó la IA sobre el método finalize()?"
+
+ ROSA:
+
+"En mi consulta, la IA señaló que el método `finalize()` está en desuso y obsoleto por ser impredecible. Actualmente, si se requiere liberar recursos externos como archivos o conexiones, la buena práctica es implementar la interfaz `AutoCloseable` con la estructura `try-with-resources`."
+ 
+PONENTE (Fernanda):
+
+"Excelente. Esta investigación confirma que Java abstrae la gestión de memoria manual para evitar fugas de memoria, permitiéndonos enfocarnos en la lógica del negocio."
+
+---
+
+ BLOQUE 4: Diagrama de Clases UML y Código Fuente 
+
+ ROSA:
+
+"En el Diagrama de Clases UML observamos la relación de uso entre Main y AnalizadorPalabras. La clase Main contiene únicamente el método `public static void main(String[] args)`.
+
+La clase AnalizadorPalabras define dos atributos públicos: `oracion` de tipo String y `frecuencias` de tipo Map con claves String e Integer. Define además cuatro métodos públicos: el constructor `AnalizadorPalabras(nuevaOracion: String)`, el método `contarPalabras(): void`, el método `obtenerNumeroDuplicados(): int` y el método `mostrarDuplicadas(ordenar: boolean): void`."
+
+ GABRIEL:
+
+"Pasando al código fuente en Java, en `AnalizadorPalabras.java` el constructor inicializa la frase y crea un HashMap vacío. En `contarPalabras()` convertimos la oración a minúsculas con `toLowerCase()`, limpiamos la puntuación usando la expresión regular `replaceAll("[^a-záéíóúñ0-9]", "")` y fragmentamos la cadena con `split("\\s+")`. Recorremos las palabras y registramos sus frecuencias usando `getOrDefault()`.
+
+En `obtenerNumeroDuplicados()` contamos cuántas palabras tienen una frecuencia mayor a 1. Y en `mostrarDuplicadas(ordenar)`, si el parámetro es `true`, instanciamos dinámicamente un `TreeMap` con nuestro `HashMap` para reordenar las palabras alfabéticamente de forma automática antes de imprimirlas."
+
+---
+
+ BLOQUE 5: Pruebas de Ejecución en Terminal 
+
+ CÉSAR:
+
+"Como encargado de la edición y recopilación de evidencias en terminal, validamos el comportamiento de las clases en el entorno UNIX. En la primera prueba ingresamos la cadena con variaciones 'hola HOLA HoLa ahol ola ola alo'. Confirmamos que `toLowerCase()` unificó las mayúsculas contabilizando 3 repeticiones de 'hola' y 2 de 'ola'. Al mostrar los datos, el `HashMap` imprimió los resultados en el orden del hash y el `TreeMap` los ordenó alfabéticamente colocando 'hola' antes de 'ola'.
+
+En la segunda prueba introdujimos una oración sin repetidos terminada con signo de interrogación. La expresión regular removió limpiamente el carácter especial '?' y el sistema retornó 0 duplicados, desplegando correctamente el mensaje informativo de la aplicación."
+
+---
+
+ BLOQUE 6: Conclusión y Cierre 
+
+PONENTE (Fernanda):
+
+"En conclusión, en esta Práctica 4 logramos consolidar el uso de clases y objetos en Java, entendiendo cómo separar responsabilidades entre una clase analizadora y la clase principal Main. Comprendimos la ventaja de la memoria administrada por el Recolector de Basura y el potencial de las colecciones `Map` para resolver conteo de frecuencias de forma eficiente.
+
+Agradecemos su atención y dejamos abiertas las bases para continuar con temas avanzados de la Programación Orientada a Objetos. ¡Muchas gracias!"...
