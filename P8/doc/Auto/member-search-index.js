@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"mx.unam.fi.die.poo.g7.p8","c":"Auto","l":"Auto(String, double, double)","u":"%3Cinit%3E(java.lang.String,double,double)","k":"3"},{"p":"mx.unam.fi.die.poo.g7.p8","c":"Auto","l":"getHuellaCarbono()"},{"p":"mx.unam.fi.die.poo.g7.p8","c":"Auto","l":"toString()"}];updateSearchResults();
