@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"hospital.interfaces","c":"AtencionMedica","l":"darTratamiento(Paciente)","u":"darTratamiento(hospital.pacientes.Paciente)"},{"p":"hospital.interfaces","c":"AtencionMedica","l":"getDescripcionAtencion()"},{"p":"hospital.interfaces","c":"AtencionMedica","l":"verListaPacientes()"}];updateSearchResults();
