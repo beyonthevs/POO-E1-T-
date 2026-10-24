@@ -1,0 +1,48 @@
+BLOQUE 1: Introducción y Planteamiento 
+PONENTE (Fernanda):
+"Hola a todos. En esta ocasión les vamos a presentar los resultados de nuestra Práctica 7 de Programación Orientada a Objetos. En las sesiones pasadas estuvimos trabajando con paquetes y encapsulamiento básico, pero en esta entrega nos enfoscamos en cómo reutilizar código de forma eficiente mediante la herencia y la composición.   
+
+Para resolver la práctica desarrollamos dos actividades. Primero, analizamos con distintas herramientas de IA por qué no se recomienda usar el modificador de acceso protected al heredar clases. Segundo, construimos una jerarquía de herencia profunda para la familia de los cuadriláteros: creamos la clase base Cuadrilatero y derivamos en cascada Trapezoide, Paralelogramo, Rectangulo y Cuadrado, integrando también la clase Punto para manejar las coordenadas de los vértices. Acompañenos a ver cómo organizamos el código."   
+
+BLOQUE 2: Marco Teórico y Conceptos de POO 
+AIMÉ:
+"En la parte del reporte profundicé en los conceptos teóricos que sustentan la práctica. La herencia nos permite crear clases nuevas extendiendo las funcionalidades de clases ya existentes con la palabra reservada extends. En nuestro diseño distinguimos dos tipos de relaciones fundamentales:   
+
+Primero, la relación de composición o HAS-A, donde una clase utiliza instancias de otra. En nuestro caso, un Cuadrilatero tiene cuatro objetos de tipo Punto. Segundo, la relación de herencia o IS-A, que establece una jerarquía de identidad. Por ejemplo, un Cuadrado es un Rectangulo, y un Rectangulo es un Paralelogramo. Además, revisamos el uso de la referencia super para invocar constructores de la superclase y la anotación @Override para sobrescribir comportamientos."   
+
+BLOQUE 3: Lluvia de Ideas: Hallazgos de la IA sobre protected PONENTE (Fernanda):
+"Para la primera actividad, el profesor nos pidió consultar a distintas IAs para responder una pregunta de diseño: ¿por qué se considera una mala práctica usar el modificador protected en la herencia? En esta rápida lluvia de ideas les compartimos lo que descubrimos. Gabriel, ¿qué te arrojó tu consulta?"   
+
+GABRIEL:
+"A mí me explicó que protected rompe el encapsulamiento porque no solo le da acceso a las clases hijas, sino a cualquier otra clase que esté guardada dentro del mismo paquete, abriendo accesos no deseados."   
+
+PONENTE (Fernanda):
+"Exacto, y en mi consulta me complementó que esto quita el control sobre cómo se modifican los datos y puede generar fallos de seguridad. Rosa, ¿qué te salió a ti sobre las buenas prácticas?"   
+
+ROSA:
+"Que lo correcto es mantener los atributos siempre como privados private y ofrecer acceso controlado a través de métodos públicos getters y setters, garantizando que cualquier cambio pase por una validación."   
+PONENTE (Fernanda):
+"Con esto confirmamos la importancia de proteger los datos internos de nuestras clases base."   
+
+BLOQUE 4: Diagrama UML y Código Fuente ROSA:
+"En los diagramas de clases UML se aprecia la jerarquía completa.   
+
+Primero tenemos la clase Punto con sus atributos - x: double y - y: double, su constructor y los métodos + getX(): double y + getY(): double.
+La clase base Cuadrilatero contiene cuatro atributos privados - p1, p2, p3, p4: Punto, su constructor y los métodos + getP1(), getP2(), getP3() y getP4().
+De ella hereda Trapezoide, que añade el método + calcularArea(): double. Y de Trapezoide derivan en cascada Paralelogramo, Rectangulo y Cuadrado, recibiendo los cuatro puntos en sus constructores."   
+
+GABRIEL:
+"Revisando la implementación en código, en Punto.java y Cuadrilatero.java establecimos la composición de vértices. En Trapezoide.java heredamos de Cuadrilatero con extends e invocamos a su constructor usando super(p1, p2, p3, p4). Dentro de Trapezoide programamos el método calcularArea(), aplicando la fórmula general de base mayor más base menor por altura entre dos.   
+
+Lo interesante de la herencia en cascada es que Paralelogramo, Rectangulo y Cuadrado heredan directamente de Trapezoide. Ninguna de estas subclases necesitó volver a escribir el código del área, ya que reutilizan automáticamente la fórmula calculada en la clase base."   
+
+BLOQUE 5: Pruebas de Ejecución en Terminal CÉSAR:
+"Como encargado de las evidencias y pruebas en consola, validamos el cálculo de áreas para cada figura utilizando vértices conocidos.   
+
+En la prueba del Trapezoide usamos bases de 8.0 y 4.0 con altura de 4.0, obteniendo un área de 24.0. Para el Paralelogramo y el Rectangulo ingresamos coordenadas con base 6.0 y altura 4.0, obteniendo un área de 24.0 en ambos casos. Y para el Cuadrado usamos lados de 5.0, devolviendo un área de 25.0. Ejecutamos el programa desde el archivo JAR compilado y desde la clase Main, confirmando que la fórmula heredada funcionó perfecto para todas las figuras."   
+
+BLOQUE 6: Cierre
+PONENTE (Fernanda):
+"Con esta práctica comprobamos lo útil que es la herencia bien aplicada, porque al programar la fórmula del área una sola vez en la clase base, todas las demás figuras pudieron usarla sin repetir código.   
+
+Además, nos quedó claro por qué debemos mantener los atributos privados y usar composición para estructurar objetos más complejos como los vértices. Muchas gracias a todos por su atención.

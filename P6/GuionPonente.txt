@@ -1,0 +1,77 @@
+ BLOQUE 1: Introducción y Planteamiento 
+
+ PONENTE (Fernanda):
+
+"Hola a todos. En esta ocasión les vamos a presentar los resultados de nuestra Práctica 6 de POO. Hasta ahorita veníamos entregando los programas con todas las clases juntas en una sola carpeta, pero para esta entrega nos tocó reestructurar todo el trabajo que llevamos en el semestre.
+
+Lo que hicimos fue acomodar nuestras prácticas pasadas dentro de los paquetes oficiales que nos dio el profesor, separar en carpetas distintas el código fuente de las clases compiladas, y aprender a generar la documentación con JavaDoc junto con el ejecutable JAR de nuestro proyecto del hospital. Mis compañeros les van a ir explicando cómo quedó organizado cada punto."
+
+---
+
+ BLOQUE 2: Marco Teórico y Estructura de Carpetas 
+ AIMÉ:
+
+"En la parte del reporte explicamos cómo Java maneja la estructura de directorios. Un paquete es básicamente una carpeta virtual que agrupa clases con un mismo propósito para que no choquen si se llaman igual. Para ubicar una clase sin confundirla usamos su *Fully Qualified Name*, que es su nombre completo junto con la ruta de paquetes.
+
+Específicamente organizamos las carpetas así: dentro de `src` guardamos todo el código fuente `.java`; en `test` van los archivos compilados `.class`; en `doc` dejamos las páginas que genera JavaDoc; y en `lib` colocamos las librerías y el ejecutable `.jar`. Todo esto dentro del espacio de nombres de nuestra brigada: `mx.unam.fi.die.poo.g7`."
+
+---
+
+ BLOQUE 3: Lluvia de Ideas: Hallazgos de la IA sobre JAR y JavaDoc 
+
+ PONENTE (Fernanda):
+
+"Para la primera actividad, cada quien consultó a una IA diferente sobre las buenas prácticas para armar archivos JAR y la documentación con JavaDoc. En esta rápida lluvia de ideas les compartimos lo que descubrimos. Gabriel, ¿qué te arrojó tu consulta?"
+
+ GABRIEL:
+
+"A mí me explicó que JavaDoc toma los comentarios que le ponemos a las clases y métodos con etiquetas como `@param` y `@return`, y con eso crea un sitio web con toda la explicación técnica del código."
+
+ PONENTE (Fernanda):
+
+"Exacto, y en mi consulta me complementó que para armar un JAR ejecutable hay que indicarle con precisión cuál es la clase que tiene el método `main` para que pueda arrancar. Rosa, ¿qué te salió a ti sobre la carpeta de destino?"
+
+ ROSA:
+
+"Que la documentación de JavaDoc siempre hay que mandarla a una subcarpeta propia dentro de `doc/` para no revolver ni encimar los archivos con los reportes en PDF."
+
+ PONENTE (Fernanda):
+
+"Con esas recomendaciones dejamos listo el empaquetado del avance del proyecto hospitalario."
+
+---
+
+ BLOQUE 4: Diagramas UML y Comandos de Consola 
+
+ ROSA:
+
+"En esta reestructuración agregamos también los diagramas UML de las clases pasadas.
+
+Aquí tenemos la clase `Hola` con su método `+ main(args : String[]) : void`; la clase `Calculadora` con `+ main(args : String[]) : void`; los programas `Ejercicio1`, `Ejercicio2` y `Ejercicio3`, cada uno con su correspondiente `+ main(args : String[]) : void`; y la clase `Palindromo5Digitos` con su método `main` y su función estática `+ esPalindromo(numero : int) : boolean`."
+
+ GABRIEL:
+
+"En la terminal usamos cuatro comandos principales:
+Primero, `javac -d P1/test` para compilar los `.java` de la carpeta `src/`, donde la bandera `-d` arma la estructura de carpetas y guarda los `.class` en `test/`.
+Segundo, `java -cp P1/test` con el nombre completo de la clase para ejecutar el programa.
+Tercero, `javadoc -d` para construir la documentación web.
+Y cuarto, `jar cfe` para generar el ejecutable `.jar` marcando cuál es la clase principal con el `main`."
+
+---
+
+ BLOQUE 5: Reorganización y Pruebas en Terminal
+
+ CÉSAR:
+
+"Como encargado de las evidencias y pruebas en consola, me tocó acomodar las cinco prácticas anteriores dentro de sus subpaquetes de `p1` a `p5`, y el avance del hospital en `e1`.
+
+Al ejecutar los comandos comprobamos que el compilador creó el árbol de directorios `mx/unam/fi/die/poo/g7` dentro de `test/` de forma automática. Corrimos los programas con su nombre completo de paquete, generamos la documentación de JavaDoc y creamos sin errores el archivo `sistema-hospital.jar` en la carpeta `lib/`."
+
+---
+
+ BLOQUE 6: Cierre 
+ PONENTE (Fernanda):
+
+"Con esto logramos pasar de tener archivos sueltos a una estructura de proyecto bien armada y fácil de navegar.
+
+Dejamos alineadas todas las prácticas anteriores con la nomenclatura del grupo y el proyecto del hospital listo en su archivo JAR. Muchas gracias a todos por su atención."
