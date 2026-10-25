@@ -50,7 +50,7 @@ public class MedicoEspecialista extends Medico {
             return false;
         }
 
-        if (this.pacienteEnConsulta != null) {
+        if (getPacienteEnConsulta() != null) {
             System.out.println("Aviso: El medico especialista ya tiene un paciente en consulta.");
             return false;
         }
@@ -60,7 +60,7 @@ public class MedicoEspecialista extends Medico {
             return false;
         }
 
-        if (!(paciente instanceof PacienteEspecialidad) || !this.especialidad.equalsIgnoreCase(paciente.getEspecialidadAtencion())) {
+        if (!(paciente instanceof PacienteEspecialidad) || !getEspecialidad().equalsIgnoreCase(paciente.getEspecialidadAtencion())) {
             System.out.println("Aviso: El medico especialista solo atiende pacientes de su propia especialidad.");
             return false;
         }
@@ -70,7 +70,7 @@ public class MedicoEspecialista extends Medico {
             return false;
         }
 
-        this.pacienteEnConsulta = paciente;
+        setPacienteEnConsulta(paciente);
         paciente.setEstado(Paciente.ESTADO_EN_CONSULTA);
         return true;
     }
@@ -93,14 +93,14 @@ public class MedicoEspecialista extends Medico {
             return false;
         }
 
-        if (!(paciente instanceof PacienteEspecialidad) || !this.especialidad.equalsIgnoreCase(paciente.getEspecialidadAtencion())) {
+        if (!(paciente instanceof PacienteEspecialidad) || !getEspecialidad().equalsIgnoreCase(paciente.getEspecialidadAtencion())) {
             System.out.println("Aviso: El medico especialista solo atiende pacientes de su propia especialidad.");
             return false;
         }
 
         paciente.setEstado(Paciente.ESTADO_EN_TRATAMIENTO);
-        if (this.pacienteEnConsulta == paciente) {
-            this.pacienteEnConsulta = null;
+        if (getPacienteEnConsulta() == paciente) {
+            setPacienteEnConsulta(null);
         }
         return true;
     }
@@ -119,7 +119,7 @@ public class MedicoEspecialista extends Medico {
         }
 
         paciente.actualizarDiagnostico(diagnosticoDetallado);
-        return "Dictamen de Especialidad (" + this.especialidad + ") - Dr(a). " + getNombre() +
+        return "Dictamen de Especialidad (" + getEspecialidad() + ") - Dr(a). " + getNombre() +
                "\nCedula de posgrado: " + this.cedulaEspecialidad +
                "\nPaciente: " + paciente.getNombre() +
                "\nDiagnostico: " + diagnosticoDetallado;
@@ -148,7 +148,7 @@ public class MedicoEspecialista extends Medico {
      */
     @Override
     public String getDescripcionAtencion() {
-        return "Atencion Especializada en " + this.especialidad + " (Certificado por: " + this.hospitalCertificador + ")";
+        return "Atencion Especializada en " + getEspecialidad() + " (Certificado por: " + this.hospitalCertificador + ")";
     }
 
     @Override

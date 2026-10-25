@@ -12,19 +12,19 @@ public abstract class Paciente {
     private final String nombre;
 
     /** Especialidad medica requerida. */
-    protected String especialidadAtencion;
+    private String especialidadAtencion;
 
     /** Estado actual del paciente. */
-    protected String estado;
+    private String estado;
 
     /** Medico asignado al paciente. */
-    protected Medico medicoAsignado;
+    private Medico medicoAsignado;
 
     /** Enfermero asignado al paciente. */
-    protected Enfermero enfermeroAsignado;
+    private Enfermero enfermeroAsignado;
 
     /** Sistema hospitalario al que pertenece. */
-    protected Sistema sistema;
+    private Sistema sistema;
 
     /** Estado cuando el paciente esta en espera. */
     public static final String ESTADO_PENDIENTE = "PENDIENTE";

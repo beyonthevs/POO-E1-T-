@@ -1,5 +1,6 @@
 package hospital.personal;
 
+import java.util.ArrayList;
 import hospital.pacientes.Paciente;
 
 /**
@@ -62,12 +63,11 @@ public class JefeEnfermeria extends Enfermero {
      * Funcion de supervision: Revisa la ocupacion de pacientes de cada enfermero
      * y genera un informe de estado.
      *
-     * @param listaEnfermeros Arreglo de enfermeros del hospital.
-     * @param total Cantidad de enfermeros registrados.
+     * @param listaEnfermeros Lista de enfermeros del hospital.
      * @return Texto con el informe de supervision.
      */
-    public String supervisarPersonal(Enfermero[] listaEnfermeros, int total) {
-        if (listaEnfermeros == null || total <= 0) {
+    public String supervisarPersonal(ArrayList<Enfermero> listaEnfermeros) {
+        if (listaEnfermeros == null || listaEnfermeros.isEmpty()) {
             return "No hay personal de enfermeria registrado para supervisar.";
         }
 
@@ -77,8 +77,7 @@ public class JefeEnfermeria extends Enfermero {
         reporte.append("Departamento: ").append(this.departamentoCoordinado).append("\n");
         reporte.append("--------------------------------------------\n");
 
-        for (int i = 0; i < total; i++) {
-            Enfermero e = listaEnfermeros[i];
+        for (Enfermero e : listaEnfermeros) {
             if (e != null) {
                 int ocupados = e.getNoPacientes();
                 int disponibles = Enfermero.CAPACIDAD_MAXIMA_PACIENTES - ocupados;
@@ -89,6 +88,26 @@ public class JefeEnfermeria extends Enfermero {
         }
         reporte.append("============================================");
         return reporte.toString();
+    }
+
+    /**
+     * Funcion de supervision sobrecargada para arreglos primitivos.
+     *
+     * @param listaEnfermeros Arreglo de enfermeros del hospital.
+     * @param total Cantidad de enfermeros registrados.
+     * @return Texto con el informe de supervision.
+     */
+    public String supervisarPersonal(Enfermero[] listaEnfermeros, int total) {
+        if (listaEnfermeros == null || total <= 0) {
+            return "No hay personal de enfermeria registrado para supervisar.";
+        }
+        ArrayList<Enfermero> lista = new ArrayList<>();
+        for (int i = 0; i < total && i < listaEnfermeros.length; i++) {
+            if (listaEnfermeros[i] != null) {
+                lista.add(listaEnfermeros[i]);
+            }
+        }
+        return supervisarPersonal(lista);
     }
 
     /**

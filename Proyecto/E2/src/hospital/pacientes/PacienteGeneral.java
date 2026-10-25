@@ -72,6 +72,14 @@ public class PacienteGeneral extends Paciente {
         return medico.darConsulta(this);
     }
 
+    /**
+     * Genera la ficha basica de atencion para consulta externa.
+     * @return Resumen breve con nombre y clinica de procedencia.
+     */
+    public String obtenerFichaGeneral() {
+        return "Ficha General: " + getNombre() + " | Procedencia: " + this.clinicaProcedencia;
+    }
+
     public String getClinicaProcedencia() {
         return this.clinicaProcedencia;
     }

@@ -99,7 +99,7 @@ public class EnfermeroEspecialista extends Enfermero {
      */
     @Override
     public String getDescripcionAtencion() {
-        return "Enfermeria Especializada en " + this.especialidad + " - Area: " + this.areaProcedimientos;
+        return "Enfermeria Especializada en " + getEspecialidad() + " - Area: " + this.areaProcedimientos;
     }
 
     @Override

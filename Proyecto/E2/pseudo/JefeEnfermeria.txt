@@ -1,0 +1,99 @@
+Clase JefeEnfermeria HeredaDe Enfermero
+    Atributos:
+        Privado departamentoCoordinado: Cadena
+        Privado enfermerosBajoMando: Entero
+
+    Constructor(nombre: Cadena, cedula: Cadena, especialidad: Cadena, departamentoCoordinado: Cadena, enfermerosBajoMando: Entero)
+        LlamarConstructorPadre(nombre, cedula, especialidad)
+        Si departamentoCoordinado == Nulo O esVacio(eliminarEspacios(departamentoCoordinado)) Entonces
+            this.departamentoCoordinado = "Sin asignar"
+        SiNo
+            this.departamentoCoordinado = eliminarEspacios(departamentoCoordinado)
+        FinSi
+
+        Si enfermerosBajoMando < 0 Entonces
+            this.enfermerosBajoMando = 0
+        SiNo
+            this.enfermerosBajoMando = enfermerosBajoMando
+        FinSi
+    FinConstructor
+
+    Metodo darTratamiento(paciente: Paciente): Booleano
+        Si paciente == Nulo Entonces
+            Imprimir("Aviso: El paciente no puede ser nulo.")
+            Retornar Falso
+        FinSi
+
+        Si getPacienteAsignado(paciente) == Nulo Entonces
+            Imprimir("Aviso: El paciente no esta asignado a la jefatura de enfermeria.")
+            Retornar Falso
+        FinSi
+
+        paciente.setEstado(Paciente.ESTADO_EN_TRATAMIENTO)
+        Retornar Verdadero
+    FinMetodo
+
+    Metodo supervisarPersonal(listaEnfermeros: Lista de Enfermero): Cadena
+        Si listaEnfermeros == Nulo O longitud(listaEnfermeros) == 0 Entonces
+            Retornar "No hay personal de enfermeria registrado para supervisar."
+        FinSi
+
+        reporte = "=== INFORME DE SUPERVISION DE ENFERMERIA ===\n"
+        reporte = reporte + "Jefe supervisor: " + getNombre() + "\n"
+        reporte = reporte + "Departamento: " + this.departamentoCoordinado + "\n"
+        reporte = reporte + "--------------------------------------------\n"
+
+        Para Cada e En listaEnfermeros Hacer
+            Si e != Nulo Entonces
+                ocupados = e.getNoPacientes()
+                disponibles = Enfermero.CAPACIDAD_MAXIMA_PACIENTES - ocupados
+                reporte = reporte + "- " + e.getNombre() + " [" + e.getEspecialidad() + "] | Pacientes: " + ocupados + "/" + Enfermero.CAPACIDAD_MAXIMA_PACIENTES + " (Disponibles: " + disponibles + ")\n"
+            FinSi
+        FinPara
+
+        reporte = reporte + "============================================"
+        Retornar reporte
+    FinMetodo
+
+    Metodo coordinarGuardia(enfermero: Enfermero, turnoTurno: Cadena): Booleano
+        Si enfermero == Nulo O turnoTurno == Nulo O esVacio(eliminarEspacios(turnoTurno)) Entonces
+            Imprimir("Aviso: Datos invalidos para coordinar guardia.")
+            Retornar Falso
+        FinSi
+        Retornar Verdadero
+    FinMetodo
+
+    Metodo getDepartamentoCoordinado(): Cadena
+        Retornar this.departamentoCoordinado
+    FinMetodo
+
+    Metodo setDepartamentoCoordinado(departamentoCoordinado: Cadena)
+        Si departamentoCoordinado == Nulo O esVacio(eliminarEspacios(departamentoCoordinado)) Entonces
+            Imprimir("Aviso: El departamento coordinado no puede estar vacio.")
+        SiNo
+            this.departamentoCoordinado = eliminarEspacios(departamentoCoordinado)
+        FinSi
+    FinMetodo
+
+    Metodo getEnfermerosBajoMando(): Entero
+        Retornar this.enfermerosBajoMando
+    FinMetodo
+
+    Metodo setEnfermerosBajoMando(enfermerosBajoMando: Entero)
+        Si enfermerosBajoMando < 0 Entonces
+            Imprimir("Aviso: El numero de enfermeros no puede ser negativo. Se asigna 0 por defecto.")
+            this.enfermerosBajoMando = 0
+        SiNo
+            this.enfermerosBajoMando = enfermerosBajoMando
+        FinSi
+    FinMetodo
+
+    Metodo getDescripcionAtencion(): Cadena
+        Retornar "Jefatura y Coordinacion de Enfermeria - Depto: " + this.departamentoCoordinado
+    FinMetodo
+
+    Metodo toString(): Cadena
+        Retornar LlamarMetodoPadre toString() + "\nCargo: Jefe de Enfermeria\nDepartamento coordinado: " + this.departamentoCoordinado + "\nPersonal bajo mando: " + this.enfermerosBajoMando
+    FinMetodo
+FinClase
+

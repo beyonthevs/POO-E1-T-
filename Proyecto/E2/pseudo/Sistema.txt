@@ -1,0 +1,259 @@
+Clase Sistema
+    Atributos:
+        Privado nombreHospital: Cadena
+        Privado medicos: Lista de Medico
+        Privado enfermeros: Lista de Enfermero
+        Privado pacientes: Lista de Paciente
+        Privado medicosPorCedula: Diccionario de [Cadena, Medico]
+        Privado enfermerosPorCedula: Diccionario de [Cadena, Enfermero]
+        Privado pacientesPorNombre: Diccionario de [Cadena, Paciente]
+
+    Constructor(nombreHospital: Cadena)
+        Si nombreHospital == Nulo O esVacio(eliminarEspacios(nombreHospital)) Entonces
+            this.nombreHospital = "UNAM"
+        SiNo
+            this.nombreHospital = eliminarEspacios(nombreHospital)
+        FinSi
+
+        this.medicos = nueva Lista()
+        this.enfermeros = nueva Lista()
+        this.pacientes = nueva Lista()
+        this.medicosPorCedula = nuevo Diccionario()
+        this.enfermerosPorCedula = nuevo Diccionario()
+        this.pacientesPorNombre = nuevo Diccionario()
+    FinConstructor
+
+    Metodo registroMedico(medico: Medico): Booleano
+        Si medico == Nulo Entonces
+            Imprimir("Aviso: El medico no puede ser nulo.")
+            Retornar Falso
+        FinSi
+
+        clave = mayusculas(eliminarEspacios(medico.getCedula()))
+        Si contieneClave(this.medicosPorCedula, clave) Entonces
+            Imprimir("Aviso: Ya existe un medico registrado con la cedula: " + medico.getCedula())
+            Retornar Falso
+        FinSi
+
+        agregar(this.medicos, medico)
+        poner(this.medicosPorCedula, clave, medico)
+        Si medico.getSistema() != this Entonces
+            medico.setSistema(this)
+        FinSi
+        Retornar Verdadero
+    FinMetodo
+
+    Metodo registroEnfermero(enfermero: Enfermero): Booleano
+        Si enfermero == Nulo Entonces
+            Imprimir("Aviso: El enfermero no puede ser nulo.")
+            Retornar Falso
+        FinSi
+
+        clave = mayusculas(eliminarEspacios(enfermero.getCedula()))
+        Si contieneClave(this.enfermerosPorCedula, clave) Entonces
+            Imprimir("Aviso: Ya existe un enfermero registrado con la cedula: " + enfermero.getCedula())
+            Retornar Falso
+        FinSi
+
+        agregar(this.enfermeros, enfermero)
+        poner(this.enfermerosPorCedula, clave, enfermero)
+        Si enfermero.getSistema() != this Entonces
+            enfermero.setSistema(this)
+        FinSi
+        Retornar Verdadero
+    FinMetodo
+
+    Metodo registroPaciente(paciente: Paciente): Booleano
+        Si paciente == Nulo Entonces
+            Imprimir("Aviso: El paciente no puede ser nulo.")
+            Retornar Falso
+        FinSi
+
+        clave = mayusculas(eliminarEspacios(paciente.getNombre()))
+        Si contieneClave(this.pacientesPorNombre, clave) Entonces
+            Imprimir("Aviso: Ya existe un paciente registrado con el nombre: " + paciente.getNombre())
+            Retornar Falso
+        FinSi
+
+        agregar(this.pacientes, paciente)
+        poner(this.pacientesPorNombre, clave, paciente)
+        Si paciente.getSistema() != this Entonces
+            paciente.setSistema(this)
+        FinSi
+        Retornar Verdadero
+    FinMetodo
+
+    Metodo asignarPaciente(paciente: Paciente, medico: Medico): Booleano
+        Si paciente == Nulo O medico == Nulo Entonces
+            Imprimir("Aviso: Paciente o medico nulo en la asignacion.")
+            Retornar Falso
+        FinSi
+
+        Si NO estaRegistrado(paciente) Entonces
+            Imprimir("Aviso: El paciente no se encuentra registrado en el sistema.")
+            Retornar Falso
+        FinSi
+
+        Si NO estaRegistrado(medico) Entonces
+            Imprimir("Aviso: El medico no se encuentra registrado en el sistema.")
+            Retornar Falso
+        FinSi
+
+        Si paciente EsInstanciaDe PacienteGeneral Entonces
+            Si medico EsInstanciaDe MedicoEspecialista Entonces
+                Imprimir("Aviso: Un medico especialista no puede recibir pacientes generales.")
+                Retornar Falso
+            FinSi
+            Si NO (medico EsInstanciaDe MedicoGeneral) Entonces
+                Imprimir("Aviso: Los pacientes generales solo pueden asignarse a medicos generales.")
+                Retornar Falso
+            FinSi
+        FinSi
+
+        Si paciente EsInstanciaDe PacienteEspecialidad Entonces
+            Si NO (medico EsInstanciaDe MedicoEspecialista) Entonces
+                Imprimir("Aviso: Los pacientes de especialidad solo pueden asignarse a medicos especialistas.")
+                Retornar Falso
+            FinSi
+            Si NO igualIgnorandoMayusculas(paciente.getEspecialidadAtencion(), medico.getEspecialidad()) Entonces
+                Imprimir("Aviso: La especialidad requerida por el paciente no coincide con la del medico.")
+                Retornar Falso
+            FinSi
+        FinSi
+
+        Si NO igualIgnorandoMayusculas(medico.getEspecialidad(), paciente.getEspecialidadAtencion()) Entonces
+            Imprimir("Aviso: No coincide la especialidad de atencion.")
+            Retornar Falso
+        FinSi
+
+        Retornar medico.agregarPaciente(paciente)
+    FinMetodo
+
+    Metodo asignarPaciente(paciente: Paciente, enfermero: Enfermero): Booleano
+        Si paciente == Nulo O enfermero == Nulo Entonces
+            Imprimir("Aviso: Paciente o enfermero nulo en la asignacion.")
+            Retornar Falso
+        FinSi
+
+        Si NO estaRegistrado(paciente) Entonces
+            Imprimir("Aviso: El paciente no se encuentra registrado en el sistema.")
+            Retornar Falso
+        FinSi
+
+        Si NO estaRegistrado(enfermero) Entonces
+            Imprimir("Aviso: El enfermero no se encuentra registrado en el sistema.")
+            Retornar Falso
+        FinSi
+
+        Si enfermero EsInstanciaDe EnfermeroEspecialista Entonces
+            Si paciente EsInstanciaDe PacienteGeneral Entonces
+                Imprimir("Aviso: El enfermero especialista solo atiende pacientes de su especialidad.")
+                Retornar Falso
+            FinSi
+            Si paciente EsInstanciaDe PacienteEspecialidad Entonces
+                Si NO igualIgnorandoMayusculas(enfermero.getEspecialidad(), paciente.getEspecialidadAtencion()) Entonces
+                    Imprimir("Aviso: La especialidad del enfermero no coincide con la del paciente.")
+                    Retornar Falso
+                FinSi
+            FinSi
+        FinSi
+
+        Si NO igualIgnorandoMayusculas(enfermero.getEspecialidad(), paciente.getEspecialidadAtencion()) Entonces
+            Imprimir("Aviso: La especialidad del enfermero no coincide con la del paciente.")
+            Retornar Falso
+        FinSi
+
+        Retornar enfermero.agregarPaciente(paciente)
+    FinMetodo
+
+    Metodo Privado estaRegistrado(paciente: Paciente): Booleano
+        Si paciente == Nulo O paciente.getNombre() == Nulo Entonces
+            Retornar Falso
+        FinSi
+        clave = mayusculas(eliminarEspacios(paciente.getNombre()))
+        Retornar obtener(this.pacientesPorNombre, clave) == paciente
+    FinMetodo
+
+    Metodo Privado estaRegistrado(medico: Medico): Booleano
+        Si medico == Nulo O medico.getCedula() == Nulo Entonces
+            Retornar Falso
+        FinSi
+        clave = mayusculas(eliminarEspacios(medico.getCedula()))
+        Retornar obtener(this.medicosPorCedula, clave) == medico
+    FinMetodo
+
+    Metodo Privado estaRegistrado(enfermero: Enfermero): Booleano
+        Si enfermero == Nulo O enfermero.getCedula() == Nulo Entonces
+            Retornar Falso
+        FinSi
+        clave = mayusculas(eliminarEspacios(enfermero.getCedula()))
+        Retornar obtener(this.enfermerosPorCedula, clave) == enfermero
+    FinMetodo
+
+    Metodo buscarMedico(cedula: Cadena): Medico
+        Si cedula == Nulo Entonces
+            Retornar Nulo
+        FinSi
+        clave = mayusculas(eliminarEspacios(cedula))
+        Retornar obtener(this.medicosPorCedula, clave)
+    FinMetodo
+
+    Metodo buscarEnfermero(cedula: Cadena): Enfermero
+        Si cedula == Nulo Entonces
+            Retornar Nulo
+        FinSi
+        clave = mayusculas(eliminarEspacios(cedula))
+        Retornar obtener(this.enfermerosPorCedula, clave)
+    FinMetodo
+
+    Metodo buscarPaciente(nombre: Cadena): Paciente
+        Si nombre == Nulo Entonces
+            Retornar Nulo
+        FinSi
+        clave = mayusculas(eliminarEspacios(nombre))
+        Retornar obtener(this.pacientesPorNombre, clave)
+    FinMetodo
+
+    Metodo getPersonalAtencion(): Lista de AtencionMedica
+        lista = nueva Lista()
+        agregarTodos(lista, this.medicos)
+        agregarTodos(lista, this.enfermeros)
+        Retornar lista
+    FinMetodo
+
+    Metodo getNombreHospital(): Cadena
+        Retornar this.nombreHospital
+    FinMetodo
+
+    Metodo setNombreHospital(nombreHospital: Cadena)
+        Si nombreHospital == Nulo O esVacio(eliminarEspacios(nombreHospital)) Entonces
+            this.nombreHospital = "UNAM"
+        SiNo
+            this.nombreHospital = eliminarEspacios(nombreHospital)
+        FinSi
+    FinMetodo
+
+    Metodo getNoMedicos(): Entero
+        Retornar longitud(this.medicos)
+    FinMetodo
+
+    Metodo getNoEnfermeros(): Entero
+        Retornar longitud(this.enfermeros)
+    FinMetodo
+
+    Metodo getNoPacientes(): Entero
+        Retornar longitud(this.pacientes)
+    FinMetodo
+
+    Metodo getMedicos(): Lista de Medico
+        Retornar nueva Lista(this.medicos)
+    FinMetodo
+
+    Metodo getEnfermeros(): Lista de Enfermero
+        Retornar nueva Lista(this.enfermeros)
+    FinMetodo
+
+    Metodo getPacientes(): Lista de Paciente
+        Retornar nueva Lista(this.pacientes)
+    FinMetodo
+FinClase

@@ -1,0 +1,433 @@
+Clase Main
+    Atributos:
+        Estatico Privado sistema: Sistema
+
+    Constructor Privado()
+    FinConstructor
+
+    Metodo Estatico Publico main(args: Arreglo de Cadena)
+        entrada = nuevo LectorConsola()
+
+        Imprimir("--- SIMULADOR DE SISTEMA HOSPITALARIO ---")
+        ImprimirSinSalto("Nombre del hospital: ")
+        nombreHospital = eliminarEspacios(entrada.leerLinea())
+
+        Si esVacio(nombreHospital) Entonces
+            nombreHospital = "UNAM"
+        FinSi
+
+        sistema = nuevo Sistema(nombreHospital)
+
+        opcion = 0
+        Hacer
+            mostrarMenu()
+            opcion = leerEntero(entrada, "Seleccione una opcion: ")
+
+            Segun opcion Hacer
+                Caso 1:
+                    registrarMedico(entrada)
+                Caso 2:
+                    registrarEnfermero(entrada)
+                Caso 3:
+                    registrarPaciente(entrada)
+                Caso 4:
+                    asignarPacienteMedico(entrada)
+                Caso 5:
+                    asignarPacienteEnfermero(entrada)
+                Caso 6:
+                    solicitarConsulta(entrada)
+                Caso 7:
+                    darTratamientoMedico(entrada)
+                Caso 8:
+                    darTratamientoEnfermero(entrada)
+                Caso 9:
+                    verListaMedico(entrada)
+                Caso 10:
+                    verListaEnfermero(entrada)
+                Caso 11:
+                    verEstadoPaciente(entrada)
+                Caso 12:
+                    supervisionJefeEnfermeria(entrada)
+                Caso 13:
+                    expedirCertificadoSalud(entrada)
+                Caso 14:
+                    mostrarResumenYPersonalAtencion()
+                Caso 0:
+                    Imprimir("Sistema hospitalario cerrado correctamente.")
+                DeOtroModo:
+                    Imprimir("Opcion no valida. Intente de nuevo.")
+            FinSegun
+
+            Si opcion != 0 Entonces
+                Imprimir("")
+            FinSi
+        Mientras opcion != 0
+
+        entrada.cerrar()
+    FinMetodo
+
+    Metodo Estatico Privado mostrarMenu()
+        Imprimir("Hospital: " + sistema.getNombreHospital())
+        Imprimir("1. Registrar medico (General o Especialista)")
+        Imprimir("2. Registrar enfermero (Especialista o Jefe)")
+        Imprimir("3. Registrar paciente (General o Especialidad)")
+        Imprimir("4. Asignar paciente a medico")
+        Imprimir("5. Asignar paciente a enfermero")
+        Imprimir("6. Solicitar consulta medica")
+        Imprimir("7. Dar tratamiento por medico")
+        Imprimir("8. Dar tratamiento por enfermero")
+        Imprimir("9. Ver lista de pacientes de un medico")
+        Imprimir("10. Ver lista de pacientes de un enfermero")
+        Imprimir("11. Ver estado clinico de un paciente")
+        Imprimir("12. Supervision de enfermeria (Jefe de Enfermeria)")
+        Imprimir("13. Expedir certificado de salud (Medico General)")
+        Imprimir("14. Resumen general y catalogo de atencion medica")
+        Imprimir("0. Salir")
+    FinMetodo
+
+    Metodo Estatico Privado registrarMedico(entrada: LectorConsola)
+        Imprimir("-- Registro de Medico --")
+        Imprimir("1. Medico General")
+        Imprimir("2. Medico Especialista")
+        tipo = leerEntero(entrada, "Seleccione el tipo de medico: ")
+
+        nombre = leerTexto(entrada, "Apellidos y nombres: ")
+        cedula = leerTexto(entrada, "Cedula profesional: ")
+
+        medico = Nulo
+        Si tipo == 1 Entonces
+            consultorio = leerEntero(entrada, "Numero de consultorio: ")
+            medico = nuevo MedicoGeneral(nombre, cedula, consultorio)
+        SiNo
+            Si tipo == 2 Entonces
+                especialidad = leerTexto(entrada, "Especialidad medica: ")
+                cedulaEsp = leerTexto(entrada, "Cedula de especialidad: ")
+                hospitalCert = leerTexto(entrada, "Hospital o institucion certificadora: ")
+                medico = nuevo MedicoEspecialista(nombre, cedula, especialidad, cedulaEsp, hospitalCert)
+            SiNo
+                Imprimir("Aviso: Tipo de medico no valido.")
+                Retornar
+            FinSi
+        FinSi
+
+        Si medico.registroEnSistema(sistema) Entonces
+            Imprimir("Medico registrado exitosamente.")
+        SiNo
+            Imprimir("No fue posible registrar al medico.")
+        FinSi
+    FinMetodo
+
+    Metodo Estatico Privado registrarEnfermero(entrada: LectorConsola)
+        Imprimir("-- Registro de Personal de Enfermeria --")
+        Imprimir("1. Enfermero Especialista")
+        Imprimir("2. Jefe de Enfermeria")
+        tipo = leerEntero(entrada, "Seleccione el tipo: ")
+
+        nombre = leerTexto(entrada, "Apellidos y nombres: ")
+        cedula = leerTexto(entrada, "Cedula profesional: ")
+        especialidad = leerTexto(entrada, "Especialidad de enfermeria: ")
+
+        enfermero = Nulo
+        Si tipo == 1 Entonces
+            area = leerTexto(entrada, "Area de procedimientos: ")
+            enfermero = nuevo EnfermeroEspecialista(nombre, cedula, especialidad, area)
+        SiNo
+            Si tipo == 2 Entonces
+                depto = leerTexto(entrada, "Departamento coordinado: ")
+                bajoMando = leerEntero(entrada, "Personal subordinado bajo mando: ")
+                enfermero = nuevo JefeEnfermeria(nombre, cedula, especialidad, depto, bajoMando)
+            SiNo
+                Imprimir("Aviso: Tipo no valido.")
+                Retornar
+            FinSi
+        FinSi
+
+        Si enfermero.registroEnSistema(sistema) Entonces
+            Imprimir("Personal de enfermeria registrado correctamente.")
+        SiNo
+            Imprimir("No fue posible registrar al enfermero.")
+        FinSi
+    FinMetodo
+
+    Metodo Estatico Privado registrarPaciente(entrada: LectorConsola)
+        Imprimir("-- Registro de Paciente --")
+        Imprimir("1. Paciente General")
+        Imprimir("2. Paciente de Especialidad")
+        tipo = leerEntero(entrada, "Seleccione el tipo de paciente: ")
+
+        nombre = leerTexto(entrada, "Apellidos y nombres: ")
+
+        paciente = Nulo
+        Si tipo == 1 Entonces
+            clinica = leerTexto(entrada, "Clinica de procedencia: ")
+            paciente = nuevo PacienteGeneral(nombre, clinica)
+        SiNo
+            Si tipo == 2 Entonces
+                especialidad = leerTexto(entrada, "Especialidad medica requerida: ")
+                diagnostico = leerTexto(entrada, "Diagnostico o referencia previa: ")
+                prioridad = leerEntero(entrada, "Nivel de prioridad (1 = Urgente, 2 = Prioritaria, 3 = Ordinaria): ")
+                paciente = nuevo PacienteEspecialidad(nombre, especialidad, diagnostico, prioridad)
+            SiNo
+                Imprimir("Aviso: Tipo de paciente no valido.")
+                Retornar
+            FinSi
+        FinSi
+
+        Si paciente.registroEnSistema(sistema) Entonces
+            Imprimir("Paciente registrado exitosamente.")
+        SiNo
+            Imprimir("No fue posible registrar al paciente.")
+        FinSi
+    FinMetodo
+
+    Metodo Estatico Privado asignarPacienteMedico(entrada: LectorConsola)
+        Imprimir("-- Asignacion de Paciente a Medico --")
+        paciente = buscarPacientePorNombre(entrada)
+        Si paciente == Nulo Entonces
+            Retornar
+        FinSi
+
+        medico = buscarMedicoPorCedula(entrada)
+        Si medico == Nulo Entonces
+            Retornar
+        FinSi
+
+        Si sistema.asignarPaciente(paciente, medico) Entonces
+            Imprimir("Paciente asignado exitosamente al medico " + medico.getNombre() + ".")
+        SiNo
+            Imprimir("No fue posible asignar al paciente con el medico.")
+        FinSi
+    FinMetodo
+
+    Metodo Estatico Privado asignarPacienteEnfermero(entrada: LectorConsola)
+        Imprimir("-- Asignacion de Paciente a Enfermero --")
+        paciente = buscarPacientePorNombre(entrada)
+        Si paciente == Nulo Entonces
+            Retornar
+        FinSi
+
+        enfermero = buscarEnfermeroPorCedula(entrada)
+        Si enfermero == Nulo Entonces
+            Retornar
+        FinSi
+
+        Si sistema.asignarPaciente(paciente, enfermero) Entonces
+            Imprimir("Paciente asignado exitosamente al enfermero " + enfermero.getNombre() + ".")
+        SiNo
+            Imprimir("No fue posible asignar al paciente con el enfermero.")
+        FinSi
+    FinMetodo
+
+    Metodo Estatico Privado solicitarConsulta(entrada: LectorConsola)
+        Imprimir("-- Solicitud de Consulta Medica --")
+        paciente = buscarPacientePorNombre(entrada)
+        Si paciente == Nulo Entonces
+            Retornar
+        FinSi
+
+        medico = buscarMedicoPorCedula(entrada)
+        Si medico == Nulo Entonces
+            Retornar
+        FinSi
+
+        Si paciente.solicitarConsulta(medico) Entonces
+            Imprimir("Consulta iniciada con el Dr(a). " + medico.getNombre() + ".")
+            Imprimir("Estado del paciente: " + paciente.getEstado())
+        SiNo
+            Imprimir("No fue posible iniciar la consulta medica.")
+        FinSi
+    FinMetodo
+
+    Metodo Estatico Privado darTratamientoMedico(entrada: LectorConsola)
+        Imprimir("-- Administracion de Tratamiento por Medico --")
+        medico = buscarMedicoPorCedula(entrada)
+        Si medico == Nulo Entonces
+            Retornar
+        FinSi
+
+        paciente = buscarPacientePorNombre(entrada)
+        Si paciente == Nulo Entonces
+            Retornar
+        FinSi
+
+        Si medico.darTratamiento(paciente) Entonces
+            Imprimir("Tratamiento administrado exitosamente.")
+            Imprimir("Nuevo estado del paciente: " + paciente.getEstado())
+        SiNo
+            Imprimir("No fue posible dar tratamiento con este medico.")
+        FinSi
+    FinMetodo
+
+    Metodo Estatico Privado darTratamientoEnfermero(entrada: LectorConsola)
+        Imprimir("-- Administracion de Tratamiento por Enfermero --")
+        enfermero = buscarEnfermeroPorCedula(entrada)
+        Si enfermero == Nulo Entonces
+            Retornar
+        FinSi
+
+        paciente = buscarPacientePorNombre(entrada)
+        Si paciente == Nulo Entonces
+            Retornar
+        FinSi
+
+        Si enfermero.darTratamiento(paciente) Entonces
+            Imprimir("Tratamiento administrado exitosamente por enfermeria.")
+            Imprimir("Nuevo estado del paciente: " + paciente.getEstado())
+        SiNo
+            Imprimir("No fue posible dar tratamiento con este enfermero.")
+        FinSi
+    FinMetodo
+
+    Metodo Estatico Privado verListaMedico(entrada: LectorConsola)
+        Imprimir("-- Lista de Pacientes Asignados al Medico --")
+        medico = buscarMedicoPorCedula(entrada)
+        Si medico == Nulo Entonces
+            Retornar
+        FinSi
+
+        lista = medico.verListaPacientes()
+        Si esVacio(lista) Entonces
+            Imprimir("El medico no cuenta con pacientes asignados actualmente.")
+        SiNo
+            Imprimir(lista)
+        FinSi
+    FinMetodo
+
+    Metodo Estatico Privado verListaEnfermero(entrada: LectorConsola)
+        Imprimir("-- Lista de Pacientes Asignados al Enfermero --")
+        enfermero = buscarEnfermeroPorCedula(entrada)
+        Si enfermero == Nulo Entonces
+            Retornar
+        FinSi
+
+        lista = enfermero.verListaPacientes()
+        Si esVacio(lista) Entonces
+            Imprimir("El enfermero no cuenta con pacientes asignados actualmente.")
+        SiNo
+            Imprimir(lista)
+        FinSi
+    FinMetodo
+
+    Metodo Estatico Privado verEstadoPaciente(entrada: LectorConsola)
+        Imprimir("-- Estado Clinico del Paciente --")
+        paciente = buscarPacientePorNombre(entrada)
+        Si paciente == Nulo Entonces
+            Retornar
+        FinSi
+
+        Imprimir(paciente.toString())
+        Si paciente.estaEnConsulta() Entonces
+            Imprimir("Estado: El paciente esta actualmente en consulta.")
+        SiNo
+            Si paciente.estaEnTratamiento() Entonces
+                Imprimir("Estado: El paciente se encuentra en tratamiento.")
+            SiNo
+                Imprimir("Estado: El paciente esta en espera (PENDIENTE).")
+            FinSi
+        FinSi
+    FinMetodo
+
+    Metodo Estatico Privado supervisionJefeEnfermeria(entrada: LectorConsola)
+        Imprimir("-- Modulo de Supervision de Jefatura de Enfermeria --")
+        enfermero = buscarEnfermeroPorCedula(entrada)
+        Si enfermero == Nulo Entonces
+            Retornar
+        FinSi
+
+        Si enfermero EsInstanciaDe JefeEnfermeria Entonces
+            jefe = (JefeEnfermeria) enfermero
+            Imprimir(jefe.supervisarPersonal(sistema.getEnfermeros()))
+        SiNo
+            Imprimir("Aviso: El enfermero seleccionado no es Jefe de Enfermeria.")
+        FinSi
+    FinMetodo
+
+    Metodo Estatico Privado expedirCertificadoSalud(entrada: LectorConsola)
+        Imprimir("-- Expedicion de Certificado de Salud --")
+        medico = buscarMedicoPorCedula(entrada)
+        Si medico == Nulo Entonces
+            Retornar
+        FinSi
+
+        Si NO (medico EsInstanciaDe MedicoGeneral) Entonces
+            Imprimir("Aviso: El certificado de salud solo puede ser expedido por un Medico General.")
+            Retornar
+        FinSi
+
+        paciente = buscarPacientePorNombre(entrada)
+        Si paciente == Nulo Entonces
+            Retornar
+        FinSi
+
+        Si NO (paciente EsInstanciaDe PacienteGeneral) Entonces
+            Imprimir("Aviso: El certificado de salud solo puede ser expedido a un Paciente General.")
+            Retornar
+        FinSi
+
+        mg = (MedicoGeneral) medico
+        pg = (PacienteGeneral) paciente
+        mg.expedirCertificadoSalud(pg)
+    FinMetodo
+
+    Metodo Estatico Privado mostrarResumenYPersonalAtencion()
+        Imprimir("-- Resumen Global del Sistema --")
+        Imprimir("Hospital: " + sistema.getNombreHospital())
+        Imprimir("Medicos registrados: " + sistema.getNoMedicos())
+        Imprimir("Enfermeros registrados: " + sistema.getNoEnfermeros())
+        Imprimir("Pacientes registrados: " + sistema.getNoPacientes())
+        Imprimir("\n-- Catalogo de Atencion Medica --")
+
+        personal = sistema.getPersonalAtencion()
+        Si longitud(personal) == 0 Entonces
+            Imprimir("No hay personal de atencion registrado actualmente.")
+        SiNo
+            Para i Desde 0 Hasta longitud(personal) - 1 Hacer
+                miembro = personal[i]
+                ImprimirFormato("[%02d] %s\n", i + 1, miembro.getDescripcionAtencion())
+            FinPara
+        FinSi
+    FinMetodo
+
+    Metodo Estatico Privado buscarMedicoPorCedula(entrada: LectorConsola): Medico
+        cedula = leerTexto(entrada, "Cedula del medico: ")
+        medico = sistema.buscarMedico(cedula)
+        Si medico == Nulo Entonces
+            Imprimir("Aviso: No se encontro ningun medico con la cedula: " + cedula)
+        FinSi
+        Retornar medico
+    FinMetodo
+
+    Metodo Estatico Privado buscarEnfermeroPorCedula(entrada: LectorConsola): Enfermero
+        cedula = leerTexto(entrada, "Cedula del enfermero: ")
+        enfermero = sistema.buscarEnfermero(cedula)
+        Si enfermero == Nulo Entonces
+            Imprimir("Aviso: No se encontro ningun enfermero con la cedula: " + cedula)
+        FinSi
+        Retornar enfermero
+    FinMetodo
+
+    Metodo Estatico Privado buscarPacientePorNombre(entrada: LectorConsola): Paciente
+        nombre = leerTexto(entrada, "Apellidos y nombres del paciente: ")
+        paciente = sistema.buscarPaciente(nombre)
+        Si paciente == Nulo Entonces
+            Imprimir("Aviso: No se encontro ningun paciente con el nombre: " + nombre)
+        FinSi
+        Retornar paciente
+    FinMetodo
+
+    Metodo Estatico Privado leerTexto(entrada: LectorConsola, mensaje: Cadena): Cadena
+        ImprimirSinSalto(mensaje)
+        valor = eliminarEspacios(entrada.leerLinea())
+        Retornar valor
+    FinMetodo
+
+    Metodo Estatico Privado leerEntero(entrada: LectorConsola, mensaje: Cadena): Entero
+        ImprimirSinSalto(mensaje)
+        Intentar
+            Retornar convertirAEntero(eliminarEspacios(entrada.leerLinea()))
+        Capturar ErrorFormatoNumero
+            Retornar -1
+        FinIntentar
+    FinMetodo
+FinClase
+

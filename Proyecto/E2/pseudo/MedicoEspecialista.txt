@@ -1,0 +1,109 @@
+Clase MedicoEspecialista HeredaDe Medico
+    Atributos:
+        Privado cedulaEspecialidad: Cadena
+        Privado hospitalCertificador: Cadena
+
+    Constructor(nombre: Cadena, cedula: Cadena, especialidad: Cadena, cedulaEspecialidad: Cadena, hospitalCertificador: Cadena)
+        LlamarConstructorPadre(nombre, cedula, especialidad)
+        Si cedulaEspecialidad == Nulo O esVacio(eliminarEspacios(cedulaEspecialidad)) Entonces
+            this.cedulaEspecialidad = "Sin cedula de especialidad"
+        SiNo
+            this.cedulaEspecialidad = eliminarEspacios(cedulaEspecialidad)
+        FinSi
+
+        Si hospitalCertificador == Nulo O esVacio(eliminarEspacios(hospitalCertificador)) Entonces
+            this.hospitalCertificador = "Sin asignar"
+        SiNo
+            this.hospitalCertificador = eliminarEspacios(hospitalCertificador)
+        FinSi
+    FinConstructor
+
+    Metodo darConsulta(paciente: Paciente): Booleano
+        Si paciente == Nulo Entonces
+            Imprimir("Aviso: El paciente no puede ser nulo.")
+            Retornar Falso
+        FinSi
+
+        Si getPacienteEnConsulta() != Nulo Entonces
+            Imprimir("Aviso: El medico especialista ya tiene un paciente en consulta.")
+            Retornar Falso
+        FinSi
+
+        Si getPacienteAsignado(paciente) == Nulo Entonces
+            Imprimir("Aviso: El paciente no esta asignado a este especialista.")
+            Retornar Falso
+        FinSi
+
+        Si NO (paciente EsInstanciaDe PacienteEspecialidad) O NO igualIgnorandoMayusculas(getEspecialidad(), paciente.getEspecialidadAtencion()) Entonces
+            Imprimir("Aviso: El medico especialista solo atiende pacientes de su propia especialidad.")
+            Retornar Falso
+        FinSi
+
+        Si NO paciente.estaPendiente() Entonces
+            Imprimir("Aviso: El paciente no esta en estado PENDIENTE.")
+            Retornar Falso
+        FinSi
+
+        setPacienteEnConsulta(paciente)
+        paciente.setEstado(Paciente.ESTADO_EN_CONSULTA)
+        Retornar Verdadero
+    FinMetodo
+
+    Metodo darTratamiento(paciente: Paciente): Booleano
+        Si paciente == Nulo Entonces
+            Imprimir("Aviso: El paciente no puede ser nulo.")
+            Retornar Falso
+        FinSi
+
+        Si getPacienteAsignado(paciente) == Nulo Entonces
+            Imprimir("Aviso: El paciente no esta asignado a este especialista.")
+            Retornar Falso
+        FinSi
+
+        Si NO (paciente EsInstanciaDe PacienteEspecialidad) O NO igualIgnorandoMayusculas(getEspecialidad(), paciente.getEspecialidadAtencion()) Entonces
+            Imprimir("Aviso: El medico especialista solo atiende pacientes de su propia especialidad.")
+            Retornar Falso
+        FinSi
+
+        paciente.setEstado(Paciente.ESTADO_EN_TRATAMIENTO)
+        Si getPacienteEnConsulta() == paciente Entonces
+            setPacienteEnConsulta(Nulo)
+        FinSi
+        Retornar Verdadero
+    FinMetodo
+
+    Metodo emitirDictamenEspecializado(paciente: PacienteEspecialidad, diagnosticoDetallado: Cadena): Cadena
+        Si paciente == Nulo O getPacienteAsignado(paciente) == Nulo Entonces
+            Imprimir("Aviso: No se puede emitir dictamen porque el paciente no esta asignado a este especialista.")
+            Retornar Nulo
+        FinSi
+
+        paciente.actualizarDiagnostico(diagnosticoDetallado)
+        Retornar "Dictamen de Especialidad (" + getEspecialidad() + ") - Dr(a). " + getNombre() + "\nCedula de posgrado: " + this.cedulaEspecialidad + "\nPaciente: " + paciente.getNombre() + "\nDiagnostico: " + diagnosticoDetallado
+    FinMetodo
+
+    Metodo getCedulaEspecialidad(): Cadena
+        Retornar this.cedulaEspecialidad
+    FinMetodo
+
+    Metodo getHospitalCertificador(): Cadena
+        Retornar this.hospitalCertificador
+    FinMetodo
+
+    Metodo setHospitalCertificador(hospitalCertificador: Cadena)
+        Si hospitalCertificador == Nulo O esVacio(eliminarEspacios(hospitalCertificador)) Entonces
+            Imprimir("Aviso: El hospital certificador no puede estar vacio.")
+        SiNo
+            this.hospitalCertificador = eliminarEspacios(hospitalCertificador)
+        FinSi
+    FinMetodo
+
+    Metodo getDescripcionAtencion(): Cadena
+        Retornar "Atencion Especializada en " + getEspecialidad() + " (Certificado por: " + this.hospitalCertificador + ")"
+    FinMetodo
+
+    Metodo toString(): Cadena
+        Retornar LlamarMetodoPadre toString() + "\nTipo: Medico Especialista\nCedula de Especialidad: " + this.cedulaEspecialidad + "\nCertificado por: " + this.hospitalCertificador
+    FinMetodo
+FinClase
+

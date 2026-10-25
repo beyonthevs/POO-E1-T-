@@ -1,0 +1,6 @@
+Interfaz AtencionMedica
+    Metodo darTratamiento(paciente: Paciente): Booleano
+    Metodo verListaPacientes(): Cadena
+    Metodo getDescripcionAtencion(): Cadena
+FinInterfaz
+

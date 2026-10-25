@@ -1,6 +1,7 @@
 package hospital.sistema;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 import hospital.pacientes.Paciente;
 import hospital.pacientes.PacienteGeneral;
 import hospital.pacientes.PacienteEspecialidad;
@@ -430,7 +431,7 @@ public class Main {
 
         if (enfermero instanceof JefeEnfermeria) {
             JefeEnfermeria jefe = (JefeEnfermeria) enfermero;
-            System.out.println(jefe.supervisarPersonal(sistema.getEnfermeros(), sistema.getNoEnfermeros()));
+            System.out.println(jefe.supervisarPersonal(sistema.getEnfermeros()));
         } else {
             System.out.println("Aviso: El enfermero seleccionado no es Jefe de Enfermeria.");
         }
@@ -479,12 +480,12 @@ public class Main {
         System.out.println("Pacientes registrados: " + sistema.getNoPacientes());
         System.out.println("\n-- Catalogo de Atencion Medica --");
 
-        hospital.interfaces.AtencionMedica[] personal = sistema.getPersonalAtencion();
-        if (personal.length == 0) {
+        ArrayList<hospital.interfaces.AtencionMedica> personal = sistema.getPersonalAtencion();
+        if (personal.isEmpty()) {
             System.out.println("No hay personal de atencion registrado actualmente.");
         } else {
-            for (int i = 0; i < personal.length; i++) {
-                hospital.interfaces.AtencionMedica miembro = personal[i];
+            for (int i = 0; i < personal.size(); i++) {
+                hospital.interfaces.AtencionMedica miembro = personal.get(i);
                 System.out.printf("[%02d] %s%n", (i + 1), miembro.getDescripcionAtencion());
             }
         }

@@ -1,0 +1,164 @@
+ClaseAbstracta Enfermero Implementa AtencionMedica
+    Constante Publico CAPACIDAD_MAXIMA_PACIENTES = 3
+
+    Atributos:
+        Privado nombre: Cadena
+        Privado cedula: Cadena
+        Privado especialidad: Cadena
+        Privado pacientes: Lista de Paciente
+        Privado sistema: Sistema
+
+    Constructor(nombre: Cadena, cedula: Cadena, especialidad: Cadena)
+        Si nombre == Nulo O esVacio(eliminarEspacios(nombre)) Entonces
+            this.nombre = "Sin asignar"
+        SiNo
+            this.nombre = eliminarEspacios(nombre)
+        FinSi
+
+        Si cedula == Nulo O esVacio(eliminarEspacios(cedula)) Entonces
+            this.cedula = "Sin cedula"
+        SiNo
+            this.cedula = eliminarEspacios(cedula)
+        FinSi
+
+        Si especialidad == Nulo O esVacio(eliminarEspacios(especialidad)) Entonces
+            this.especialidad = "General"
+        SiNo
+            this.especialidad = eliminarEspacios(especialidad)
+        FinSi
+
+        this.pacientes = nueva Lista()
+    FinConstructor
+
+    Metodo registroEnSistema(sistema: Sistema): Booleano
+        Si sistema == Nulo Entonces
+            Imprimir("Aviso: El sistema no puede ser nulo.")
+            Retornar Falso
+        FinSi
+
+        Si this.sistema == sistema Entonces
+            Retornar Verdadero
+        FinSi
+
+        Si sistema.registroEnfermero(this) Entonces
+            this.sistema = sistema
+            Retornar Verdadero
+        SiNo
+            Retornar Falso
+        FinSi
+    FinMetodo
+
+    MetodoAbstracto darTratamiento(paciente: Paciente): Booleano
+
+    Metodo verListaPacientes(): Cadena
+        Si longitud(this.pacientes) == 0 Entonces
+            Retornar ""
+        FinSi
+
+        copia = nueva Lista(this.pacientes)
+        Para i Desde 0 Hasta longitud(copia) - 2 Hacer
+            Para j Desde 0 Hasta longitud(copia) - 2 - i Hacer
+                Si compararIgnorandoMayusculas(copia[j].getNombre(), copia[j + 1].getNombre()) < 0 Entonces
+                    temporal = copia[j]
+                    copia[j] = copia[j + 1]
+                    copia[j + 1] = temporal
+                FinSi
+            FinPara
+        FinPara
+
+        sb = ""
+        Para i Desde 0 Hasta longitud(copia) - 1 Hacer
+            sb = sb + copia[i].getNombre() + " - " + copia[i].getEspecialidadAtencion()
+            Si i < longitud(copia) - 1 Entonces
+                sb = sb + "\n"
+            FinSi
+        FinPara
+        Retornar sb
+    FinMetodo
+
+    Metodo agregarPaciente(paciente: Paciente): Booleano
+        Si paciente == Nulo Entonces
+            Imprimir("Aviso: El paciente no puede ser nulo.")
+            Retornar Falso
+        FinSi
+
+        Si longitud(this.pacientes) >= CAPACIDAD_MAXIMA_PACIENTES Entonces
+            Imprimir("Aviso: El enfermero ha alcanzado su capacidad maxima (3 pacientes).")
+            Retornar Falso
+        FinSi
+
+        Si NO igualIgnorandoMayusculas(this.especialidad, paciente.getEspecialidadAtencion()) Entonces
+            Imprimir("Aviso: La especialidad del paciente no coincide con la del enfermero.")
+            Retornar Falso
+        FinSi
+
+        Si getPacienteAsignado(paciente) != Nulo Entonces
+            Imprimir("Aviso: El paciente ya esta asignado a este enfermero.")
+            Retornar Falso
+        FinSi
+
+        agregar(this.pacientes, paciente)
+        paciente.setEnfermeroAsignado(this)
+        Retornar Verdadero
+    FinMetodo
+
+    Metodo getPacienteAsignado(paciente: Paciente): Paciente
+        Si paciente == Nulo Entonces
+            Retornar Nulo
+        FinSi
+
+        Si contiene(this.pacientes, paciente) Entonces
+            Retornar paciente
+        SiNo
+            Retornar Nulo
+        FinSi
+    FinMetodo
+
+    Metodo getNombre(): Cadena
+        Retornar this.nombre
+    FinMetodo
+
+    Metodo setNombre(nombre: Cadena)
+        Si nombre == Nulo O esVacio(eliminarEspacios(nombre)) Entonces
+            Imprimir("Aviso: El nombre no puede estar vacio.")
+        SiNo
+            this.nombre = eliminarEspacios(nombre)
+        FinSi
+    FinMetodo
+
+    Metodo getCedula(): Cadena
+        Retornar this.cedula
+    FinMetodo
+
+    Metodo getEspecialidad(): Cadena
+        Retornar this.especialidad
+    FinMetodo
+
+    Metodo setEspecialidad(especialidad: Cadena)
+        Si especialidad == Nulo O esVacio(eliminarEspacios(especialidad)) Entonces
+            Imprimir("Aviso: La especialidad no puede estar vacia.")
+        SiNo
+            this.especialidad = eliminarEspacios(especialidad)
+        FinSi
+    FinMetodo
+
+    Metodo getNoPacientes(): Entero
+        Retornar longitud(this.pacientes)
+    FinMetodo
+
+    Metodo getPacientes(): Lista de Paciente
+        Retornar nueva Lista(this.pacientes)
+    FinMetodo
+
+    Metodo getSistema(): Sistema
+        Retornar this.sistema
+    FinMetodo
+
+    Metodo setSistema(sistema: Sistema)
+        this.sistema = sistema
+    FinMetodo
+
+    Metodo toString(): Cadena
+        Retornar "Enfermero: " + this.nombre + "\nCedula: " + this.cedula + "\nEspecialidad: " + this.especialidad + "\nPacientes a cargo: " + longitud(this.pacientes) + "/" + CAPACIDAD_MAXIMA_PACIENTES
+    FinMetodo
+FinClase

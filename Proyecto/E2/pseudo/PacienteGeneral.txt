@@ -1,0 +1,71 @@
+Clase PacienteGeneral HeredaDe Paciente
+    Atributos:
+        Privado clinicaProcedencia: Cadena
+
+    Constructor(nombre: Cadena, clinicaProcedencia: Cadena)
+        LlamarConstructorPadre(nombre, "General")
+        Si clinicaProcedencia == Nulo O esVacio(eliminarEspacios(clinicaProcedencia)) Entonces
+            this.clinicaProcedencia = "Sin asignar"
+        SiNo
+            this.clinicaProcedencia = eliminarEspacios(clinicaProcedencia)
+        FinSi
+    FinConstructor
+
+    Constructor(nombre: Cadena, especialidadAtencion: Cadena, clinicaProcedencia: Cadena)
+        LlamarConstructorPadre(nombre, especialidadAtencion)
+        Si clinicaProcedencia == Nulo O esVacio(eliminarEspacios(clinicaProcedencia)) Entonces
+            this.clinicaProcedencia = "Sin asignar"
+        SiNo
+            this.clinicaProcedencia = eliminarEspacios(clinicaProcedencia)
+        FinSi
+    FinConstructor
+
+    Metodo solicitarConsulta(medico: Medico): Booleano
+        Si medico == Nulo Entonces
+            Imprimir("Aviso: El medico no puede ser nulo.")
+            Retornar Falso
+        FinSi
+
+        Si NO (medico EsInstanciaDe MedicoGeneral) Entonces
+            Imprimir("Aviso: Un paciente general solo se atiende con medico general.")
+            Retornar Falso
+        FinSi
+
+        Si NO estaPendiente() Entonces
+            Imprimir("Aviso: El paciente no se encuentra en estado PENDIENTE.")
+            Retornar Falso
+        FinSi
+
+        Si medico.getPacienteAsignado(this) == Nulo Entonces
+            Imprimir("Aviso: El paciente no esta asignado a este medico.")
+            Retornar Falso
+        FinSi
+
+        Retornar medico.darConsulta(this)
+    FinMetodo
+
+    Metodo obtenerFichaGeneral(): Cadena
+        Retornar "Ficha General: " + getNombre() + " | Procedencia: " + this.clinicaProcedencia
+    FinMetodo
+
+    Metodo getClinicaProcedencia(): Cadena
+        Retornar this.clinicaProcedencia
+    FinMetodo
+
+    Metodo setClinicaProcedencia(clinicaProcedencia: Cadena)
+        Si clinicaProcedencia == Nulo O esVacio(eliminarEspacios(clinicaProcedencia)) Entonces
+            Imprimir("Aviso: La clinica de procedencia no puede estar vacia.")
+        SiNo
+            this.clinicaProcedencia = eliminarEspacios(clinicaProcedencia)
+        FinSi
+    FinMetodo
+
+    Metodo getTipoPaciente(): Cadena
+        Retornar "Paciente General"
+    FinMetodo
+
+    Metodo toString(): Cadena
+        Retornar LlamarMetodoPadre toString() + "\nClinica de procedencia: " + this.clinicaProcedencia
+    FinMetodo
+FinClase
+

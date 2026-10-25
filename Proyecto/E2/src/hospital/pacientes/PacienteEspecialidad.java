@@ -52,7 +52,7 @@ public class PacienteEspecialidad extends Paciente {
             return false;
         }
 
-        if (!this.especialidadAtencion.equalsIgnoreCase(medico.getEspecialidad())) {
+        if (!getEspecialidadAtencion().equalsIgnoreCase(medico.getEspecialidad())) {
             System.out.println("Aviso: La especialidad del medico no coincide con la del paciente.");
             return false;
         }
@@ -120,7 +120,7 @@ public class PacienteEspecialidad extends Paciente {
 
     @Override
     public String getTipoPaciente() {
-        return "Paciente de Especialidad (" + this.especialidadAtencion + ")";
+        return "Paciente de Especialidad (" + getEspecialidadAtencion() + ")";
     }
 
     @Override

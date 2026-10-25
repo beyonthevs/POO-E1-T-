@@ -1,0 +1,101 @@
+Clase PacienteEspecialidad HeredaDe Paciente
+    Atributos:
+        Privado diagnosticoPrevio: Cadena
+        Privado nivelPrioridad: Entero
+
+    Constructor(nombre: Cadena, especialidadAtencion: Cadena, diagnosticoPrevio: Cadena, nivelPrioridad: Entero)
+        LlamarConstructorPadre(nombre, especialidadAtencion)
+        Si diagnosticoPrevio == Nulo O esVacio(eliminarEspacios(diagnosticoPrevio)) Entonces
+            this.diagnosticoPrevio = "Sin diagnostico previo"
+        SiNo
+            this.diagnosticoPrevio = eliminarEspacios(diagnosticoPrevio)
+        FinSi
+
+        Si nivelPrioridad < 1 O nivelPrioridad > 3 Entonces
+            this.nivelPrioridad = 1
+        SiNo
+            this.nivelPrioridad = nivelPrioridad
+        FinSi
+    FinConstructor
+
+    Metodo solicitarConsulta(medico: Medico): Booleano
+        Si medico == Nulo Entonces
+            Imprimir("Aviso: El medico no puede ser nulo.")
+            Retornar Falso
+        FinSi
+
+        Si NO (medico EsInstanciaDe MedicoEspecialista) Entonces
+            Imprimir("Aviso: Un paciente de especialidad solo puede ser atendido por un medico especialista.")
+            Retornar Falso
+        FinSi
+
+        Si NO igualIgnorandoMayusculas(getEspecialidadAtencion(), medico.getEspecialidad()) Entonces
+            Imprimir("Aviso: La especialidad del medico no coincide con la del paciente.")
+            Retornar Falso
+        FinSi
+
+        Si NO estaPendiente() Entonces
+            Imprimir("Aviso: El paciente no se encuentra en estado PENDIENTE.")
+            Retornar Falso
+        FinSi
+
+        Si medico.getPacienteAsignado(this) == Nulo Entonces
+            Imprimir("Aviso: El paciente no esta asignado a este medico.")
+            Retornar Falso
+        FinSi
+
+        Retornar medico.darConsulta(this)
+    FinMetodo
+
+    Metodo obtenerResumenClinico(): Cadena
+        Si this.nivelPrioridad == 1 Entonces
+            etiqueta = "Alta / Urgente"
+        SiNo
+            Si this.nivelPrioridad == 2 Entonces
+                etiqueta = "Media / Prioritaria"
+            SiNo
+                etiqueta = "Baja / Ordinaria"
+            FinSi
+        FinSi
+
+        Retornar "Resumen: " + getNombre() + " | Especialidad: " + getEspecialidadAtencion() + " | Prioridad: " + etiqueta + " | Diagnostico: " + this.diagnosticoPrevio
+    FinMetodo
+
+    Metodo getDiagnosticoPrevio(): Cadena
+        Retornar this.diagnosticoPrevio
+    FinMetodo
+
+    Metodo setDiagnosticoPrevio(diagnosticoPrevio: Cadena)
+        Si diagnosticoPrevio == Nulo O esVacio(eliminarEspacios(diagnosticoPrevio)) Entonces
+            Imprimir("Aviso: El diagnostico no puede estar vacio.")
+        SiNo
+            this.diagnosticoPrevio = eliminarEspacios(diagnosticoPrevio)
+        FinSi
+    FinMetodo
+
+    Metodo actualizarDiagnostico(nuevoDiagnostico: Cadena)
+        setDiagnosticoPrevio(nuevoDiagnostico)
+    FinMetodo
+
+    Metodo getNivelPrioridad(): Entero
+        Retornar this.nivelPrioridad
+    FinMetodo
+
+    Metodo setNivelPrioridad(nivelPrioridad: Entero)
+        Si nivelPrioridad < 1 O nivelPrioridad > 3 Entonces
+            Imprimir("Aviso: La prioridad debe estar entre 1 y 3. Se asigna 1 por defecto.")
+            this.nivelPrioridad = 1
+        SiNo
+            this.nivelPrioridad = nivelPrioridad
+        FinSi
+    FinMetodo
+
+    Metodo getTipoPaciente(): Cadena
+        Retornar "Paciente de Especialidad (" + getEspecialidadAtencion() + ")"
+    FinMetodo
+
+    Metodo toString(): Cadena
+        Retornar LlamarMetodoPadre toString() + "\nDiagnostico previo: " + this.diagnosticoPrevio + "\nNivel de prioridad: " + this.nivelPrioridad
+    FinMetodo
+FinClase
+

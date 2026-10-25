@@ -1,0 +1,73 @@
+Clase EnfermeroEspecialista HeredaDe Enfermero
+    Atributos:
+        Privado areaProcedimientos: Cadena
+
+    Constructor(nombre: Cadena, cedula: Cadena, especialidad: Cadena, areaProcedimientos: Cadena)
+        LlamarConstructorPadre(nombre, cedula, especialidad)
+        Si areaProcedimientos == Nulo O esVacio(eliminarEspacios(areaProcedimientos)) Entonces
+            this.areaProcedimientos = "Sin asignar"
+        SiNo
+            this.areaProcedimientos = eliminarEspacios(areaProcedimientos)
+        FinSi
+    FinConstructor
+
+    Metodo darTratamiento(paciente: Paciente): Booleano
+        Si paciente == Nulo Entonces
+            Imprimir("Aviso: El paciente no puede ser nulo.")
+            Retornar Falso
+        FinSi
+
+        Si getPacienteAsignado(paciente) == Nulo Entonces
+            Imprimir("Aviso: El paciente no esta asignado a este enfermero especialista.")
+            Retornar Falso
+        FinSi
+
+        paciente.setEstado(Paciente.ESTADO_EN_TRATAMIENTO)
+        Retornar Verdadero
+    FinMetodo
+
+    Metodo administrarMedicamentoControlado(paciente: Paciente, medicamento: Cadena, dosis: Cadena): Booleano
+        Si paciente == Nulo Entonces
+            Imprimir("Aviso: El paciente no puede ser nulo.")
+            Retornar Falso
+        FinSi
+
+        Si getPacienteAsignado(paciente) == Nulo Entonces
+            Imprimir("Aviso: El paciente no esta asignado a este enfermero.")
+            Retornar Falso
+        FinSi
+
+        Si medicamento == Nulo O esVacio(eliminarEspacios(medicamento)) O dosis == Nulo O esVacio(eliminarEspacios(dosis)) Entonces
+            Imprimir("Aviso: El medicamento o la dosis no pueden estar vacios.")
+            Retornar Falso
+        FinSi
+
+        paciente.setEstado(Paciente.ESTADO_EN_TRATAMIENTO)
+        Retornar Verdadero
+    FinMetodo
+
+    Metodo suministrarMedicamento(paciente: Paciente, medicamento: Cadena, dosis: Cadena): Booleano
+        Retornar administrarMedicamentoControlado(paciente, medicamento, dosis)
+    FinMetodo
+
+    Metodo getAreaProcedimientos(): Cadena
+        Retornar this.areaProcedimientos
+    FinMetodo
+
+    Metodo setAreaProcedimientos(areaProcedimientos: Cadena)
+        Si areaProcedimientos == Nulo O esVacio(eliminarEspacios(areaProcedimientos)) Entonces
+            Imprimir("Aviso: El area de procedimientos no puede estar vacia.")
+        SiNo
+            this.areaProcedimientos = eliminarEspacios(areaProcedimientos)
+        FinSi
+    FinMetodo
+
+    Metodo getDescripcionAtencion(): Cadena
+        Retornar "Enfermeria Especializada en " + getEspecialidad() + " - Area: " + this.areaProcedimientos
+    FinMetodo
+
+    Metodo toString(): Cadena
+        Retornar LlamarMetodoPadre toString() + "\nTipo: Enfermero Especialista\nArea de procedimientos: " + this.areaProcedimientos
+    FinMetodo
+FinClase
+

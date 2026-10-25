@@ -1,5 +1,7 @@
 package hospital.sistema;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import hospital.pacientes.Paciente;
 import hospital.pacientes.PacienteGeneral;
 import hospital.pacientes.PacienteEspecialidad;
@@ -16,15 +18,13 @@ import hospital.personal.EnfermeroEspecialista;
 public class Sistema {
 
     private String nombreHospital;
-    private int noMedicos;
-    private int noEnfermeros;
-    private int noPacientes;
-    private Medico[] medicos;
-    private Enfermero[] enfermeros;
-    private Paciente[] pacientes;
+    private ArrayList<Medico> medicos;
+    private ArrayList<Enfermero> enfermeros;
+    private ArrayList<Paciente> pacientes;
 
-    /** Capacidad inicial por defecto para las listas del sistema. */
-    public static final int CAPACIDAD_DEFAULT = 100;
+    private HashMap<String, Medico> medicosPorCedula;
+    private HashMap<String, Enfermero> enfermerosPorCedula;
+    private HashMap<String, Paciente> pacientesPorNombre;
 
     /**
      * Crea un nuevo sistema hospitalario con su nombre.
@@ -38,19 +38,19 @@ public class Sistema {
             this.nombreHospital = nombreHospital.trim();
         }
 
-        this.medicos = new Medico[CAPACIDAD_DEFAULT];
-        this.enfermeros = new Enfermero[CAPACIDAD_DEFAULT];
-        this.pacientes = new Paciente[CAPACIDAD_DEFAULT];
-        this.noMedicos = 0;
-        this.noEnfermeros = 0;
-        this.noPacientes = 0;
+        this.medicos = new ArrayList<>();
+        this.enfermeros = new ArrayList<>();
+        this.pacientes = new ArrayList<>();
+        this.medicosPorCedula = new HashMap<>();
+        this.enfermerosPorCedula = new HashMap<>();
+        this.pacientesPorNombre = new HashMap<>();
     }
 
     /**
      * Registra a un medico en el hospital.
      *
      * @param medico Medico a registrar.
-     * @return true si se registro, false si es nulo, esta lleno o ya existe la cedula.
+     * @return true si se registro, false si es nulo o ya existe la cedula.
      */
     public boolean registroMedico(Medico medico) {
         if (medico == null) {
@@ -58,18 +58,14 @@ public class Sistema {
             return false;
         }
 
-        if (noMedicos >= medicos.length) {
-            System.out.println("Aviso: Capacidad maxima de medicos alcanzada en el sistema.");
-            return false;
-        }
-
-        if (buscarMedico(medico.getCedula()) != null) {
+        String clave = medico.getCedula().trim().toUpperCase();
+        if (medicosPorCedula.containsKey(clave)) {
             System.out.println("Aviso: Ya existe un medico registrado con la cedula: " + medico.getCedula());
             return false;
         }
 
-        medicos[noMedicos] = medico;
-        noMedicos++;
+        medicos.add(medico);
+        medicosPorCedula.put(clave, medico);
         if (medico.getSistema() != this) {
             medico.setSistema(this);
         }
@@ -80,7 +76,7 @@ public class Sistema {
      * Registra a un enfermero en el hospital.
      *
      * @param enfermero Enfermero a registrar.
-     * @return true si se registro, false si es nulo, esta lleno o ya existe la cedula.
+     * @return true si se registro, false si es nulo o ya existe la cedula.
      */
     public boolean registroEnfermero(Enfermero enfermero) {
         if (enfermero == null) {
@@ -88,18 +84,14 @@ public class Sistema {
             return false;
         }
 
-        if (noEnfermeros >= enfermeros.length) {
-            System.out.println("Aviso: Capacidad maxima de enfermeros alcanzada en el sistema.");
-            return false;
-        }
-
-        if (buscarEnfermero(enfermero.getCedula()) != null) {
+        String clave = enfermero.getCedula().trim().toUpperCase();
+        if (enfermerosPorCedula.containsKey(clave)) {
             System.out.println("Aviso: Ya existe un enfermero registrado con la cedula: " + enfermero.getCedula());
             return false;
         }
 
-        enfermeros[noEnfermeros] = enfermero;
-        noEnfermeros++;
+        enfermeros.add(enfermero);
+        enfermerosPorCedula.put(clave, enfermero);
         if (enfermero.getSistema() != this) {
             enfermero.setSistema(this);
         }
@@ -110,7 +102,7 @@ public class Sistema {
      * Registra a un paciente en el hospital.
      *
      * @param paciente Paciente a registrar.
-     * @return true si se registro, false si es nulo, esta lleno o ya existe el nombre.
+     * @return true si se registro, false si es nulo o ya existe el nombre.
      */
     public boolean registroPaciente(Paciente paciente) {
         if (paciente == null) {
@@ -118,18 +110,14 @@ public class Sistema {
             return false;
         }
 
-        if (noPacientes >= pacientes.length) {
-            System.out.println("Aviso: Capacidad maxima de pacientes alcanzada en el sistema.");
-            return false;
-        }
-
-        if (buscarPaciente(paciente.getNombre()) != null) {
+        String clave = paciente.getNombre().trim().toUpperCase();
+        if (pacientesPorNombre.containsKey(clave)) {
             System.out.println("Aviso: Ya existe un paciente registrado con el nombre: " + paciente.getNombre());
             return false;
         }
 
-        pacientes[noPacientes] = paciente;
-        noPacientes++;
+        pacientes.add(paciente);
+        pacientesPorNombre.put(clave, paciente);
         if (paciente.getSistema() != this) {
             paciente.setSistema(this);
         }
@@ -242,12 +230,7 @@ public class Sistema {
      * @return true si esta registrado, false si no.
      */
     private boolean estaRegistrado(Paciente paciente) {
-        for (int i = 0; i < noPacientes; i++) {
-            if (pacientes[i] == paciente) {
-                return true;
-            }
-        }
-        return false;
+        return paciente != null && pacientesPorNombre.containsKey(paciente.getNombre().trim().toUpperCase());
     }
 
     /**
@@ -257,12 +240,7 @@ public class Sistema {
      * @return true si esta registrado, false si no.
      */
     private boolean estaRegistrado(Medico medico) {
-        for (int i = 0; i < noMedicos; i++) {
-            if (medicos[i] == medico) {
-                return true;
-            }
-        }
-        return false;
+        return medico != null && medicosPorCedula.containsKey(medico.getCedula().trim().toUpperCase());
     }
 
     /**
@@ -272,12 +250,7 @@ public class Sistema {
      * @return true si esta registrado, false si no.
      */
     private boolean estaRegistrado(Enfermero enfermero) {
-        for (int i = 0; i < noEnfermeros; i++) {
-            if (enfermeros[i] == enfermero) {
-                return true;
-            }
-        }
-        return false;
+        return enfermero != null && enfermerosPorCedula.containsKey(enfermero.getCedula().trim().toUpperCase());
     }
 
     /**
@@ -290,13 +263,7 @@ public class Sistema {
         if (cedula == null) {
             return null;
         }
-
-        for (int i = 0; i < noMedicos; i++) {
-            if (medicos[i].getCedula().equalsIgnoreCase(cedula.trim())) {
-                return medicos[i];
-            }
-        }
-        return null;
+        return medicosPorCedula.get(cedula.trim().toUpperCase());
     }
 
     /**
@@ -309,13 +276,7 @@ public class Sistema {
         if (cedula == null) {
             return null;
         }
-
-        for (int i = 0; i < noEnfermeros; i++) {
-            if (enfermeros[i].getCedula().equalsIgnoreCase(cedula.trim())) {
-                return enfermeros[i];
-            }
-        }
-        return null;
+        return enfermerosPorCedula.get(cedula.trim().toUpperCase());
     }
 
     /**
@@ -328,33 +289,19 @@ public class Sistema {
         if (nombre == null) {
             return null;
         }
-
-        for (int i = 0; i < noPacientes; i++) {
-            if (pacientes[i].getNombre().equalsIgnoreCase(nombre.trim())) {
-                return pacientes[i];
-            }
-        }
-        return null;
+        return pacientesPorNombre.get(nombre.trim().toUpperCase());
     }
 
     /**
      * Devuelve el personal de salud registrado bajo la interfaz comun AtencionMedica.
      * Utiliza Fully Qualified Name como demostracion de paquetes.
      *
-     * @return Arreglo con medicos y enfermeros como AtencionMedica.
+     * @return Lista con medicos y enfermeros como AtencionMedica.
      */
-    public hospital.interfaces.AtencionMedica[] getPersonalAtencion() {
-        int total = noMedicos + noEnfermeros;
-        hospital.interfaces.AtencionMedica[] lista = new hospital.interfaces.AtencionMedica[total];
-        int indice = 0;
-        for (int i = 0; i < noMedicos; i++) {
-            lista[indice] = medicos[i];
-            indice++;
-        }
-        for (int i = 0; i < noEnfermeros; i++) {
-            lista[indice] = enfermeros[i];
-            indice++;
-        }
+    public ArrayList<hospital.interfaces.AtencionMedica> getPersonalAtencion() {
+        ArrayList<hospital.interfaces.AtencionMedica> lista = new ArrayList<>();
+        lista.addAll(this.medicos);
+        lista.addAll(this.enfermeros);
         return lista;
     }
 
@@ -371,38 +318,26 @@ public class Sistema {
     }
 
     public int getNoMedicos() {
-        return this.noMedicos;
+        return this.medicos.size();
     }
 
     public int getNoEnfermeros() {
-        return this.noEnfermeros;
+        return this.enfermeros.size();
     }
 
     public int getNoPacientes() {
-        return this.noPacientes;
+        return this.pacientes.size();
     }
 
-    public Medico[] getMedicos() {
-        Medico[] resultado = new Medico[noMedicos];
-        for (int i = 0; i < noMedicos; i++) {
-            resultado[i] = medicos[i];
-        }
-        return resultado;
+    public ArrayList<Medico> getMedicos() {
+        return new ArrayList<>(this.medicos);
     }
 
-    public Enfermero[] getEnfermeros() {
-        Enfermero[] resultado = new Enfermero[noEnfermeros];
-        for (int i = 0; i < noEnfermeros; i++) {
-            resultado[i] = enfermeros[i];
-        }
-        return resultado;
+    public ArrayList<Enfermero> getEnfermeros() {
+        return new ArrayList<>(this.enfermeros);
     }
 
-    public Paciente[] getPacientes() {
-        Paciente[] resultado = new Paciente[noPacientes];
-        for (int i = 0; i < noPacientes; i++) {
-            resultado[i] = pacientes[i];
-        }
-        return resultado;
+    public ArrayList<Paciente> getPacientes() {
+        return new ArrayList<>(this.pacientes);
     }
 }

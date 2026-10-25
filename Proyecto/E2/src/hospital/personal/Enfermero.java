@@ -1,5 +1,6 @@
 package hospital.personal;
 
+import java.util.ArrayList;
 import hospital.interfaces.AtencionMedica;
 import hospital.pacientes.Paciente;
 import hospital.sistema.Sistema;
@@ -14,16 +15,13 @@ public abstract class Enfermero implements AtencionMedica {
     private final String cedula;
 
     /** Especialidad clinica de enfermeria. */
-    protected String especialidad;
+    private String especialidad;
 
-    /** Cantidad de pacientes asignados. */
-    protected int noPacientes;
-
-    /** Arreglo de pacientes asignados. */
-    protected Paciente[] pacientes;
+    /** Lista de pacientes asignados. */
+    private ArrayList<Paciente> pacientes;
 
     /** Sistema hospitalario vinculado. */
-    protected Sistema sistema;
+    private Sistema sistema;
 
     /** Capacidad maxima de pacientes que puede atender un enfermero. */
     public static final int CAPACIDAD_MAXIMA_PACIENTES = 3;
@@ -54,8 +52,7 @@ public abstract class Enfermero implements AtencionMedica {
             this.especialidad = especialidad.trim();
         }
 
-        this.noPacientes = 0;
-        this.pacientes = new Paciente[CAPACIDAD_MAXIMA_PACIENTES];
+        this.pacientes = new ArrayList<>();
     }
 
     /**
@@ -98,29 +95,25 @@ public abstract class Enfermero implements AtencionMedica {
      */
     @Override
     public String verListaPacientes() {
-        if (noPacientes == 0) {
+        if (this.pacientes.isEmpty()) {
             return "";
         }
 
-        Paciente[] copia = new Paciente[noPacientes];
-        for (int i = 0; i < noPacientes; i++) {
-            copia[i] = pacientes[i];
-        }
-
-        for (int i = 0; i < copia.length - 1; i++) {
-            for (int j = 0; j < copia.length - 1 - i; j++) {
-                if (copia[j].getNombre().compareToIgnoreCase(copia[j + 1].getNombre()) < 0) {
-                    Paciente temporal = copia[j];
-                    copia[j] = copia[j + 1];
-                    copia[j + 1] = temporal;
+        ArrayList<Paciente> copia = new ArrayList<>(this.pacientes);
+        for (int i = 0; i < copia.size() - 1; i++) {
+            for (int j = 0; j < copia.size() - 1 - i; j++) {
+                if (copia.get(j).getNombre().compareToIgnoreCase(copia.get(j + 1).getNombre()) < 0) {
+                    Paciente temporal = copia.get(j);
+                    copia.set(j, copia.get(j + 1));
+                    copia.set(j + 1, temporal);
                 }
             }
         }
 
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < copia.length; i++) {
-            sb.append(copia[i].getNombre()).append(" - ").append(copia[i].getEspecialidadAtencion());
-            if (i < copia.length - 1) {
+        for (int i = 0; i < copia.size(); i++) {
+            sb.append(copia.get(i).getNombre()).append(" - ").append(copia.get(i).getEspecialidadAtencion());
+            if (i < copia.size() - 1) {
                 sb.append("\n");
             }
         }
@@ -139,7 +132,7 @@ public abstract class Enfermero implements AtencionMedica {
             return false;
         }
 
-        if (this.noPacientes >= CAPACIDAD_MAXIMA_PACIENTES) {
+        if (this.pacientes.size() >= CAPACIDAD_MAXIMA_PACIENTES) {
             System.out.println("Aviso: El enfermero ha alcanzado su capacidad maxima (3 pacientes).");
             return false;
         }
@@ -154,8 +147,7 @@ public abstract class Enfermero implements AtencionMedica {
             return false;
         }
 
-        pacientes[noPacientes] = paciente;
-        noPacientes++;
+        this.pacientes.add(paciente);
         paciente.setEnfermeroAsignado(this);
         return true;
     }
@@ -170,13 +162,7 @@ public abstract class Enfermero implements AtencionMedica {
         if (paciente == null) {
             return null;
         }
-
-        for (int i = 0; i < noPacientes; i++) {
-            if (pacientes[i] == paciente) {
-                return pacientes[i];
-            }
-        }
-        return null;
+        return this.pacientes.contains(paciente) ? paciente : null;
     }
 
     public String getNombre() {
@@ -208,15 +194,11 @@ public abstract class Enfermero implements AtencionMedica {
     }
 
     public int getNoPacientes() {
-        return this.noPacientes;
+        return this.pacientes.size();
     }
 
-    public Paciente[] getPacientes() {
-        Paciente[] copia = new Paciente[noPacientes];
-        for (int i = 0; i < noPacientes; i++) {
-            copia[i] = pacientes[i];
-        }
-        return copia;
+    public ArrayList<Paciente> getPacientes() {
+        return new ArrayList<>(this.pacientes);
     }
 
     public Sistema getSistema() {
@@ -232,6 +214,6 @@ public abstract class Enfermero implements AtencionMedica {
         return "Enfermero: " + this.nombre +
                "\nCedula: " + this.cedula +
                "\nEspecialidad: " + this.especialidad +
-               "\nPacientes a cargo: " + this.noPacientes + "/" + CAPACIDAD_MAXIMA_PACIENTES;
+               "\nPacientes a cargo: " + this.pacientes.size() + "/" + CAPACIDAD_MAXIMA_PACIENTES;
     }
 }

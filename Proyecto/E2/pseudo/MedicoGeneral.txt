@@ -1,0 +1,85 @@
+Clase MedicoGeneral HeredaDe Medico
+    Atributos:
+        Privado numeroConsultorio: Entero
+
+    Constructor(nombre: Cadena, cedula: Cadena, numeroConsultorio: Entero)
+        LlamarConstructorPadre(nombre, cedula, "General")
+        Si numeroConsultorio <= 0 Entonces
+            this.numeroConsultorio = 1
+        SiNo
+            this.numeroConsultorio = numeroConsultorio
+        FinSi
+    FinConstructor
+
+    Constructor(nombre: Cadena, cedula: Cadena, especialidad: Cadena, numeroConsultorio: Entero)
+        LlamarConstructorPadre(nombre, cedula, especialidad)
+        Si numeroConsultorio <= 0 Entonces
+            this.numeroConsultorio = 1
+        SiNo
+            this.numeroConsultorio = numeroConsultorio
+        FinSi
+    FinConstructor
+
+    Metodo darConsulta(paciente: Paciente): Booleano
+        Si paciente == Nulo Entonces
+            Imprimir("Aviso: El paciente no puede ser nulo.")
+            Retornar Falso
+        FinSi
+
+        Si getPacienteEnConsulta() != Nulo Entonces
+            Imprimir("Aviso: El medico general ya tiene un paciente en consulta.")
+            Retornar Falso
+        FinSi
+
+        Si getPacienteAsignado(paciente) == Nulo Entonces
+            Imprimir("Aviso: El paciente no esta asignado a este medico.")
+            Retornar Falso
+        FinSi
+
+        Si NO (paciente EsInstanciaDe PacienteGeneral) Entonces
+            Imprimir("Aviso: El medico general solo puede atender a pacientes generales.")
+            Retornar Falso
+        FinSi
+
+        Si NO paciente.estaPendiente() Entonces
+            Imprimir("Aviso: El paciente no esta en estado PENDIENTE.")
+            Retornar Falso
+        FinSi
+
+        setPacienteEnConsulta(paciente)
+        paciente.setEstado(Paciente.ESTADO_EN_CONSULTA)
+        Retornar Verdadero
+    FinMetodo
+
+    Metodo expedirCertificadoSalud(p: PacienteGeneral): Booleano
+        Si p == Nulo Entonces
+            Imprimir("Aviso: No se puede expedir certificado a un paciente nulo.")
+            Retornar Falso
+        FinSi
+
+        Imprimir("Certificado de salud expedido por el Dr(a). " + this.getNombre() + " para el paciente " + p.getNombre() + " (Clinica: " + p.getClinicaProcedencia() + ").")
+        Retornar Verdadero
+    FinMetodo
+
+    Metodo getNumeroConsultorio(): Entero
+        Retornar this.numeroConsultorio
+    FinMetodo
+
+    Metodo setNumeroConsultorio(numeroConsultorio: Entero)
+        Si numeroConsultorio <= 0 Entonces
+            Imprimir("Aviso: El numero de consultorio debe ser mayor a cero. Se asigna 1 por defecto.")
+            this.numeroConsultorio = 1
+        SiNo
+            this.numeroConsultorio = numeroConsultorio
+        FinSi
+    FinMetodo
+
+    Metodo getDescripcionAtencion(): Cadena
+        Retornar "Atencion Medica General - Consultorio " + this.numeroConsultorio
+    FinMetodo
+
+    Metodo toString(): Cadena
+        Retornar LlamarMetodoPadre toString() + "\nTipo: Medico General\nConsultorio: " + this.numeroConsultorio
+    FinMetodo
+FinClase
+

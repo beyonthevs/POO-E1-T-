@@ -1,0 +1,140 @@
+ClaseAbstracta Paciente
+    Constante Publico ESTADO_PENDIENTE = "PENDIENTE"
+    Constante Publico ESTADO_EN_CONSULTA = "EN CONSULTA"
+    Constante Publico ESTADO_EN_TRATAMIENTO = "EN TRATAMIENTO"
+
+    Atributos:
+        Privado nombre: Cadena
+        Privado especialidadAtencion: Cadena
+        Privado estado: Cadena
+        Privado medicoAsignado: Medico
+        Privado enfermeroAsignado: Enfermero
+        Privado sistema: Sistema
+
+    Constructor(nombre: Cadena, especialidadAtencion: Cadena)
+        Si nombre == Nulo O esVacio(eliminarEspacios(nombre)) Entonces
+            this.nombre = "Sin asignar"
+        SiNo
+            this.nombre = eliminarEspacios(nombre)
+        FinSi
+
+        Si especialidadAtencion == Nulo O esVacio(eliminarEspacios(especialidadAtencion)) Entonces
+            this.especialidadAtencion = "General"
+        SiNo
+            this.especialidadAtencion = eliminarEspacios(especialidadAtencion)
+        FinSi
+
+        this.estado = ESTADO_PENDIENTE
+    FinConstructor
+
+    Metodo registroEnSistema(sistema: Sistema): Booleano
+        Si sistema == Nulo Entonces
+            Imprimir("Aviso: El sistema hospitalario no puede ser nulo.")
+            Retornar Falso
+        FinSi
+
+        Si this.sistema == sistema Entonces
+            Retornar Verdadero
+        FinSi
+
+        Si sistema.registroPaciente(this) Entonces
+            this.sistema = sistema
+            Retornar Verdadero
+        SiNo
+            Retornar Falso
+        FinSi
+    FinMetodo
+
+    MetodoAbstracto solicitarConsulta(medico: Medico): Booleano
+
+    Metodo verTratamiento(): Booleano
+        Retornar estaEnTratamiento()
+    FinMetodo
+
+    Metodo estaEnTratamiento(): Booleano
+        Retornar igualIgnorandoMayusculas(ESTADO_EN_TRATAMIENTO, this.estado)
+    FinMetodo
+
+    Metodo estaEnConsulta(): Booleano
+        Retornar igualIgnorandoMayusculas(ESTADO_EN_CONSULTA, this.estado)
+    FinMetodo
+
+    Metodo estaPendiente(): Booleano
+        Retornar igualIgnorandoMayusculas(ESTADO_PENDIENTE, this.estado)
+    FinMetodo
+
+    Metodo getNombre(): Cadena
+        Retornar this.nombre
+    FinMetodo
+
+    Metodo getEspecialidadAtencion(): Cadena
+        Retornar this.especialidadAtencion
+    FinMetodo
+
+    Metodo setEspecialidadAtencion(especialidadAtencion: Cadena)
+        Si especialidadAtencion == Nulo O esVacio(eliminarEspacios(especialidadAtencion)) Entonces
+            Imprimir("Aviso: La especialidad no puede estar vacia.")
+        SiNo
+            this.especialidadAtencion = eliminarEspacios(especialidadAtencion)
+        FinSi
+    FinMetodo
+
+    Metodo getEstado(): Cadena
+        Retornar this.estado
+    FinMetodo
+
+    Metodo setEstado(nuevoEstado: Cadena)
+        Si nuevoEstado == Nulo Entonces
+            Imprimir("Aviso: El estado no puede ser nulo.")
+            Retornar
+        FinSi
+
+        limpio = mayusculas(eliminarEspacios(nuevoEstado))
+        Si limpio == ESTADO_PENDIENTE O limpio == ESTADO_EN_CONSULTA O limpio == ESTADO_EN_TRATAMIENTO Entonces
+            this.estado = limpio
+        SiNo
+            Imprimir("Aviso: Estado no valido (" + nuevoEstado + ").")
+        FinSi
+    FinMetodo
+
+    Metodo getMedicoAsignado(): Medico
+        Retornar this.medicoAsignado
+    FinMetodo
+
+    Metodo setMedicoAsignado(medicoAsignado: Medico)
+        this.medicoAsignado = medicoAsignado
+    FinMetodo
+
+    Metodo getEnfermeroAsignado(): Enfermero
+        Retornar this.enfermeroAsignado
+    FinMetodo
+
+    Metodo setEnfermeroAsignado(enfermeroAsignado: Enfermero)
+        this.enfermeroAsignado = enfermeroAsignado
+    FinMetodo
+
+    Metodo getSistema(): Sistema
+        Retornar this.sistema
+    FinMetodo
+
+    Metodo setSistema(sistema: Sistema)
+        this.sistema = sistema
+    FinMetodo
+
+    MetodoAbstracto getTipoPaciente(): Cadena
+
+    Metodo toString(): Cadena
+        nombreMed = "Ninguno"
+        Si medicoAsignado != Nulo Entonces
+            nombreMed = medicoAsignado.getNombre()
+        FinSi
+
+        nombreEnf = "Ninguno"
+        Si enfermeroAsignado != Nulo Entonces
+            nombreEnf = enfermeroAsignado.getNombre()
+        FinSi
+
+        Retornar "Paciente: " + this.nombre + "\nTipo: " + getTipoPaciente() + "\nEspecialidad solicitada: " + this.especialidadAtencion + "\nEstado: " + this.estado + "\nMedico asignado: " + nombreMed + "\nEnfermero asignado: " + nombreEnf
+    FinMetodo
+FinClase
+

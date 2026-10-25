@@ -57,7 +57,7 @@ public class MedicoGeneral extends Medico {
             return false;
         }
 
-        if (this.pacienteEnConsulta != null) {
+        if (getPacienteEnConsulta() != null) {
             System.out.println("Aviso: El medico general ya tiene un paciente en consulta.");
             return false;
         }
@@ -77,7 +77,7 @@ public class MedicoGeneral extends Medico {
             return false;
         }
 
-        this.pacienteEnConsulta = paciente;
+        setPacienteEnConsulta(paciente);
         paciente.setEstado(Paciente.ESTADO_EN_CONSULTA);
         return true;
     }
