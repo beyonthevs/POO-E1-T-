@@ -1,0 +1,4 @@
+Esta es una prueba de lectura de archivos de texto en Java para la practica 11.
+El programa abre este archivo, cuenta cuantas palabras contiene en total y muestra el texto completo dentro de una ventana grafica.
+
+La programacion orientada a objetos permite organizar el codigo en clases simples y faciles de mantener.
