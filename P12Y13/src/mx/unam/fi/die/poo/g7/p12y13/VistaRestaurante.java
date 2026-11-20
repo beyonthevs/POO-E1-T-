@@ -18,9 +18,10 @@ public class VistaRestaurante extends JFrame {
      */
     public VistaRestaurante() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(500, 400);
+        setSize(650, 480);
 
         areaTexto = new JTextArea();
+        areaTexto.setFont(areaTexto.getFont().deriveFont(15f));
         add(areaTexto);
         setVisible(true);
     }
