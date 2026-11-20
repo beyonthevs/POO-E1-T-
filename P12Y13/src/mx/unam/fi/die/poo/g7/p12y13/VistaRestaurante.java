@@ -1,23 +1,36 @@
 package mx.unam.fi.die.poo.g7.p12y13;
 
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+
 /**
- * Vista de consola encargada de imprimir los mensajes del restaurante.
+ * Ventana grafica sencilla que muestra lo que pasa en el restaurante.
  * @author Equipo 1
  * @version 1.0
  */
-public class VistaRestaurante {
+public class VistaRestaurante extends JFrame {
+
+    /** Area de texto para mostrar los mensajes. */
+    private JTextArea areaTexto;
 
     /**
-     * Constructor por defecto de la vista.
+     * Crea la ventana y la deja visible.
      */
     public VistaRestaurante() {
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(500, 400);
+
+        areaTexto = new JTextArea();
+        add(areaTexto);
+        setVisible(true);
     }
 
     /**
-     * Imprime un mensaje de estado en consola de forma sincronizada.
-     * @param msg Texto que se quiere mostrar.
+     * Muestra un mensaje en consola y en la ventana.
+     * @param msg Texto que se va a mostrar.
      */
     public synchronized void mostrarMensaje(String msg) {
         System.out.println(msg);
+        areaTexto.append(msg + "\n");
     }
 }
